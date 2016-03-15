@@ -1,0 +1,17 @@
+// @file global.scss
+
+// Type Sizes
+$base-type-size: 1em;
+
+//
+// Root Elements
+//
+html {
+	font-size: $base-type-size;
+	-webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+	height: 100%;
+}
