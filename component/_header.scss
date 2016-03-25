@@ -1,0 +1,18 @@
+.mainhead {
+	background-color: palette(mono,10);
+	color: palette(mono,75);
+	
+	a {
+		color: palette(mono,75);
+
+		@include touch-hover() {
+			color: palette(brand);
+		}
+	}
+
+	&--title {
+		@extend .kilo;
+		display: block;
+		padding: ($vert-line-height/2) 0;
+	}
+}
