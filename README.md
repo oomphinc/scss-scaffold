@@ -16,6 +16,35 @@ In this way, maintenance becomes a team effort and no one person is burdened wit
 
 Likewise, if there is a new great idea that we should incorporate into this scaffold, any team member can file an Issue and bring the idea forward for review and inclusion. 
 
+## Add Bourbon and Neat
+If you are going to compile and test this Scaffold locally, you will need to add the dependencies Bourbon and Neat:
+
+```
+# You already have SASS installed, right? 
+$ which sass
+# You should see a path to your local SASS copy
+
+# Requires Sass 3.3+
+$ sass --v
+$ Sass 3.4.20
+
+# If you need the gem installed
+$ gem install bourbon
+$ gem install neat
+
+# Then, navigate to the directory to install Boubon into
+$ cd /scaffold/libraries
+$ bourbon install
+$ neat install
+```
+
+## Compile manually
+While working on the Scaffold, compile your CSS and test the output by running it in this folder. Here's the command: 
+
+```
+$ sass --watch styles.scss:output.css --style compressed
+```
+
 ## Run Lint
 We use the Brigade Linter gem: <https://github.com/brigade/scss-lint>
 
@@ -23,6 +52,9 @@ Install: `gem install scss_lint`
 
 Run `scss-lint` from the command line by passing in a directory (or multiple directories) to recursively scan:
 
-`scss-lint ~/path/to/oomph-scaffold/` from the root of this scaffold. 
+```
+# from the root of your system, set the path to this Scaffold
+$ scss-lint ~/path/to/scaffold/ 
+```
 
 # Now go make something cool
