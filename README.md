@@ -16,4 +16,13 @@ In this way, maintenance becomes a team effort and no one person is burdened wit
 
 Likewise, if there is a new great idea that we should incorporate into this scaffold, any team member can file an Issue and bring the idea forward for review and inclusion. 
 
-## Now go make something cool
+## Run Lint
+We use the Brigade Linter gem: <https://github.com/brigade/scss-lint>
+
+Install: `gem install scss_lint`
+
+Run `scss-lint` from the command line by passing in a directory (or multiple directories) to recursively scan:
+
+`scss-lint ~/path/to/oomph-scaffold/` from the root of this scaffold. 
+
+# Now go make something cool
