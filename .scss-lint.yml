@@ -1,8 +1,8 @@
 # Default application configuration that all configurations inherit from.
 # https://github.com/brigade/scss-lint/blob/master/lib/scss_lint/linter/README.md
 
-scss_files: '../*/*/*.scss'
-exclude: '../*/libraries/*'
+scss_files: '../*.scss'
+exclude: '../libraries/*'
 plugin_directories: ['.scss-linters']
 
 # List of gem names to load custom linters from (make sure they are already
@@ -30,10 +30,10 @@ linters:
     enabled: false
 
   ColorKeyword:
-    enabled: true
+    enabled: false
 
   ColorVariable:
-    enabled: true
+    enabled: false
 
   Comment:
     enabled: true
@@ -46,7 +46,7 @@ linters:
     enabled: true
 
   DisableLinterReason:
-    enabled: true
+    enabled: false
 
   DuplicateProperty:
     enabled: true
@@ -66,8 +66,8 @@ linters:
     enabled: false
 
   FinalNewline:
-    enabled: true
-    present: true
+    enabled: false
+    present: false
 
   HexLength:
     enabled: true

@@ -1,41 +1,66 @@
 // @file colors.scss
 
+// Getter function for color palettes using SASS maps
+// Link: http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
+// Example usage: { color: palette(brand,blue); }
+@function palette($palette, $tone:base) {
+
+	@if not index(map-keys($palettes), $palette) {
+		@error "Palette `#{$palette}` does not exist.";
+	}
+	@if not index(map-keys(map-get($palettes, $palette)), $tone) {
+		@error "There is no `#{$tone}` defined in your `#{$palette}` color map however, its being called in your theme.";
+	}
+	@return map-deep-get( $palettes, $palette, $tone );
+}
+
 
 // Color palettes using SASS maps
 // Link: http://chir.ag/projects/name-that-color/
-
 $palettes: (
-  brand: (),
-  mono: (
-    black-hole: #000,
-    snow-white: #fff,
-    iron: #d1d6d9,
-    dove-gray: #727272,
-  ),
-  drupal: (
-    lochmara: #0077c0,
-    anakiwa: #81ceff,
-    orient: #00598e,
-  ),
-  wordpress: (
-    jelly-bean: #21759b,
-    piper: #d54e21,
-    tundora: #464646,
-  ),
+
+	// We NEED to define a "base" for each, so that we can use pallette(brand) without throwing an error
+	// Brand should contain this project's specific color scheme
+	brand: (
+		base: #d62901, // Oomph red
+		dark: #a31f02
+	),
+
+	// Default color scheme, edit values in relation to the numeric representation
+	// In other words, keep high values dark and low values light
+	mono: (
+		black: #131313,
+		90: #303030,
+		75: #4f4f4f,
+		66: #666,
+		base: #888,
+		33: #999,
+		25: #ccc,
+		10: #f2f2f2,
+		white: #fff
+	),
+
+	// Default color scheme, if we need it
+	drupal: (
+		base: #0077c0, //blue
+		light: #81ceff,
+		dark: #00598e
+	),
+
+	// Default color scheme, if we need it
+	wordpress: (
+		base: #21759b, // blue
+		orange: #d54e21,
+		grey: #464646
+	),
 );
 
-// Getter function for color palettes using SASS maps
-// Link: http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
-// Usage: color: palette(brand,tan);
-@function palette( $palette, $tone ) {
 
-  @if not index(map-keys($palettes), $palette) {
-    @error "Palette `#{$palette}` does not exist.";
-  }
-
-  @if not index(map-keys(map-get($palettes, $palette)), $tone) {
-    @error "There is no `#{$tone}` defined in your `#{$palette}` color map however, its being called in your theme.";
-  }
-
-  @return map-deep-get( $palettes, $palette, $tone );
-}
+// Specific colors used for major elements
+$color-text: palette(mono);
+$color-link: palette(brand);
+$color-hover: palette(brand, dark);
+$color-background: palette(mono, white);
+$color-header: palette(mono, 10);
+$color-footer: palette(mono, 90);
+$color-borders: palette(mono, 25);
