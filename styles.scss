@@ -4,23 +4,26 @@
 @import
 "libraries/bourbon/bourbon",
 "base/grid_settings",
-"libraries/neat/neat";
+"libraries/neat/neat",
 
-
-@import
+// #Mixins and Variables
 "base/functions",
-"base/colors",
 "base/mixins",
+"base/colors",
 "base/variables",
+"base/typesizes",
+
+"layout/breakpoints",
+
+// #Project: Start to output CSS
 "base/reset",
 "base/accessibility",
 "base/typography",
 
-"layout/breakpoints",
 "layout/layout",
 
 "component/global",
-"component/navigation",
 "component/forms",
 "component/search",
-"component/buttons";
+"component/buttons",
+"component/navigation";
