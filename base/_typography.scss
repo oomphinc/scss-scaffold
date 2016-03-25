@@ -1,236 +1,223 @@
 // @file typography.scss
 
-// Fonts
-$font-sans: $helvetica;
-$font-serif: $georgia;
-$font-mono: $monospace;
-
 // Copy
 $paragraph: 1em;
-$line-height: 1.5;
+$line-height: 1.75;
 
-// establishing some vertical rythm for no type elements
+// establishing some vertical rhythm for no type elements
 // use this on margin bottom etc.
-$vert-line-height: $line-height + em;
+$vert-line-height: $line-height * 1em;
 
 body,
 button,
 input,
 select,
 textarea {
-	color: palette(mono, black);
+	color: palette(mono);
 	font-family: $font-sans;
-	font-size: $paragraph;
+	font-weight: normal;
 	line-height: $line-height;
 }
 
-a:link,
-a:visited {
-	color: palette(mono, black);
+a {
+	border-bottom: 3px solid palette(mono,10);
+	color: palette(mono, 75);
 	text-decoration: none;
-}
+	@include transition( all 250ms ease );
 
-a:hover,
-a:active {
-	color: palette(mono, black);
-	text-decoration: underline;
-}
-
-a[href^=tel] {
-	color: inherit;
-	text-decoration: none;
-}
-
-// Headings
-$heading-1: em(26);
-$heading-2: em(24);
-$heading-3: em(22);
-$heading-4: em(20);
-$heading-5: em(18);
-$heading-6: em(16);
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	clear: both;
-}
-
-h1 {
-	font-size: $heading-1;
-}
-
-h2 {
-	font-size: $heading-2;
-}
-
-h3 {
-	font-size: $heading-3;
-}
-
-h4 {
-	font-size: $heading-4;
-}
-
-h5 {
-	font-size: $heading-5;
-}
-
-h6 {
-	font-size: $heading-6;
-}
-
-p {
-	margin-bottom: 1.5em;
-}
-
-b,
-strong {
-	font-weight: bold;
-}
-
-dfn,
-cite,
-em,
-i {
-	font-style: italic;
-}
-
-blockquote {
-	margin: 0 1.5em 1.5em;
-	padding: 1em 2em;
-
-	p:last-child {
-		margin-bottom: 0;
+	@include touch-hover() {
+		border-bottom-color: palette(mono,25);
+		color: palette(brand);
+		text-decoration: none;
+	}
+	
+	&[href^=tel] {
+		color: inherit;
+		text-decoration: none;
 	}
 }
 
-address {
-	margin: 0 0 1.5em;
+// Other sizes to use or @extend
+.giga { @include one-element-size(giga); }
+
+.mega { @include one-element-size(mega); }
+
+.kilo { @include one-element-size(kilo); }
+
+%base-rwd-size { @include one-element-size(); }
+
+.micro { @include one-element-size(micro); }
+
+
+// Headings
+h1, .alpha,
+h2, .bravo,
+h3, .charlie,
+h4, .delta,
+h5, .echo,
+h6, .foxtrot {
+	color: palette(mono, 75);
+	clear: both;
 }
 
-pre {
-	background: palette(mono, 10);
-	font-family: $font-mono;
-	font-size: 1.5rem;
-	line-height: 1.6;
-	margin-bottom: 1.6em;
-	max-width: 100%;
-	overflow: auto;
-	padding: 1.6em;
+h1,
+.alpha {
+	@include one-element-size(h1);
 }
 
-code,
-kbd,
-tt,
-var {
-	font: em(14) $font-mono;
+h2,
+.bravo {
+	font-weight: 700;
+	@include one-element-size(h2);
 }
 
-abbr,
-acronym {
-	border-bottom: 1px dotted palette(mono, 25);
-	cursor: help;
+h3,
+.charlie {
+	@include one-element-size(h3);
 }
 
-mark,
-ins {
-	background: palette(mono, 10);
-	text-decoration: none;
+h4,
+.delta {
+	@include one-element-size(h4);
 }
 
-sup,
-sub {
-	font-size: em(14);
-	height: 0;
-	line-height: 0;
+h5,
+.echo {
+	@extend %base-rwd-size;
+	font-weight: 700;
+	letter-spacing: .03125em;
+	text-transform: uppercase;
+	
+}
+
+h6,
+.foxtrot {
+	@extend %base-rwd-size;
+	font-weight: 700;
+}
+
+p,
+li,
+dt,
+dd,
+address,
+input,
+button,
+select,
+textarea {
+	@extend %base-rwd-size;
+}
+
+p,
+ul,
+ol,
+dl,
+address,
+form,
+table {
+	margin-bottom: $vert-line-height;
+}
+
+// Block level elements
+blockquote {
 	position: relative;
-	vertical-align: baseline;
+
+	p {
+		color: palette(mono);
+		font-style: italic;
+		padding-left: em(32);
+	}
+
+	p:before, 
+	p:last-child:after {
+		color: palette(brand);
+		font-family: $font-serif;
+		font-size: rem(48);
+		font-style: italic;
+		font-weight: bold; 
+		line-height: 1; 
+	}
+
+	p:before {
+		content: "“";
+		position: absolute;
+			top: 0; left: .0625em; 
+	}
+
+	p:last-child:after {
+		display: inline; 
+		content: "”";
+		line-height: 0;
+		vertical-align: text-bottom;
+		margin-left: .125em;
+	}
 }
 
-sup {
-	bottom: 1ex;
-}
-
-sub {
-	top: .5ex;
-}
-
-small {
-	font-size: em(14);
-}
-
-big {
-	font-size: em(20);
-}
+address { font-style: italic; }
 
 hr {
-	background-color: palette(mono, 10);
-	border: 0;
-	height: 1px;
-	margin-bottom: 1.5em;
+	border: none;
+	border-top: 1px solid palette(mono, 25);
+	line-height: 1;
+	height: 0px;
+	margin: $vert-line-height 0;
+	width: 100%;
 }
 
 ul,
-ol {
-	margin: 0 0 1.5em 3em;
-}
+ol { margin-left: 3em; }
 
-ul {
-	list-style: disc;
-}
+ul { list-style: square; }
 
-ol {
-	list-style: decimal;
-}
+ul ul { list-style: disc; }
 
-li > ul,
-li > ol {
-	margin-bottom: 0;
-	margin-left: 1.5em;
+ul ul ul { list-style: circle; }
+
+ol { list-style: decimal; }
+
+ol ol { list-style: upper-alpha; }
+
+ol ol ol { list-style: upper-roman; }
+
+ol ol ol ol { list-style: lower-alpha; }
+
+ol ol ol ol ol { list-style: lower-roman; }
+
+dl { border-top: 1px solid $color-borders; }
+
+dt,
+dd {
+	border-left: 1px solid $color-borders;
+	border-right: 1px solid $color-borders;
+	padding: .75em 1em .5625em;
 }
 
 dt {
-	font-weight: bold;
+	border-bottom: 1px solid $color-borders;
+	font-weight: 700;
 }
 
-dd {
-	margin: 0 1.5em 1.5em;
-}
+dd { border-bottom: 2px solid $color-borders; }
 
-img {
-	display: block;
-	height: auto; // Make sure images are scaled correctly.
-	max-width: 100%; // Adhere to container width.
-}
-
-figure {
-	margin: 0;
-}
-
-// Tables
-$table-border-collapse: true;
-$table-border-color: palette(mono, 25);
-$table-cell-padding: 8px;
+figure { margin: 0; }
 
 table {
 	border-spacing: 0;
 	width: 100%;
-
 	@if $table-border-collapse == true {
 		border-collapse: collapse;
 	}
 
 	th {
 		border-bottom: 2px solid $table-border-color;
+		font-weight: 700;
 		padding: $table-cell-padding;
+		text-align: left;
 	}
 
 	td {
-		border-top: 1px solid $table-border-color;
 		padding: $table-cell-padding;
+		border-top: 1px solid $table-border-color;
 	}
 
 	caption {
@@ -238,11 +225,158 @@ table {
 	}
 
 	// zebra striping pattern
-	&.striped {
-		tbody {
-			tr:nth-of-type(odd) {
-				background-color: $table-border-color;
-			}
+	tbody {
+		tr:nth-of-type(odd) {
+			background-color: $table-border-color;
 		}
 	}
+}
+
+// Inline typography elements
+strong, b, 
+em, i, cite, 
+small,
+sup, sup { letter-spacing: .03125em; }
+
+sub,
+sup {
+	font-size: 75%;
+	line-height: 1;
+	position: relative;
+}
+
+sup { top: -0.5em; }
+
+sub { bottom: -0.25em; }
+
+abbr[title], 
+cite,
+dfn[title] { border-bottom: 1px dotted palette(brand); }
+
+abbr[title], 
+dfn[title] { cursor: help; }
+
+abbr[title] {
+	font-size: 75%;
+	font-weight: 700;
+	letter-spacing: 0.125em;
+	text-transform: uppercase;
+}
+
+b,
+strong { font-weight: 700; }
+
+i,
+em,
+cite { font-style: italic; }
+
+var { 
+	color: palette(mono, 75);
+	display: inline-block;
+	font-style: italic;
+	padding: 0 .125em;
+}
+
+// Proper code blocks need to be surrounded by a <pre>. They work together. 
+pre {
+	white-space: pre-wrap; 
+	white-space: -moz-pre-wrap !important;	// 1999+ Mozilla 
+	white-space: -o-pre-wrap;				// Opera 7 and up 
+	word-wrap: break-word;					// IE 5.5+ and up 
+
+	code {
+		display: block;
+		padding: 1.375em 1.25em 1.3125em;
+		margin: 0;
+		border-left: 5px solid palette(brand,green);
+		border-bottom: 1px solid palette(mono, 25);
+		border-radius: 0;
+	}
+}
+
+code, 
+kbd, 
+samp,
+mark,
+ins { 
+	display: inline-block;
+	line-height: 1.5;
+	padding: .125em .25em 0;
+}
+
+code,
+kbd,
+samp {
+	background: palette(mono, 10);
+	background: rgba(#000, .05);
+	border-radius: 4px;
+	box-shadow: 0 0 .25em rgba(#000, .1) inset;
+	font-family: $font-mono;
+}
+
+code {
+	color: palette(brand,green);
+}
+
+mark { background-color: #ff9; }
+
+strike,
+s { color: palette(mono, 25); }
+
+del { color: palette(brand); }
+
+u { text-decoration: underline; }
+
+ins { 
+	background-color: palette(mono, 25);
+	text-decoration: none;
+}
+
+small { font-size: 87.5%; }
+
+// These should change depending on the language
+[lang="en-US"] {
+
+	q {
+		display: inline;
+
+		&:before { content: "“"; }
+		&:after { content: "”"; white-space: nowrap; }
+
+		// Nested 
+		& > q:before { content: "‘"; }
+
+		& > q:after { content: "’"; }
+	}
+}
+
+.typography {
+
+	// For the style guide template
+	.example { 
+		position: relative; 
+		background-color: transparent;
+		border: 1px solid $color-borders; 
+		padding: 1em 1.25em 1px;
+		margin: -1em -1.25em -1px;
+		box-shadow: 0 0 1em rgba( 0,0,0,0.2 ); 
+	}
+	.example:before {
+		content: 'EXAMPLE'; 
+		position: absolute; 
+			top: 0; right: 0; 
+		z-index: 9999; 
+		font-size: .75em; 
+		color: #fff; 
+		background-color: palette(brand); 
+		padding: .4em .75em .3em; 
+	} 
+	//.example + .examplecode { margin-top: -1.25em; }
+	.element-caption { display: block; }
+}
+
+.vertical-grid {
+	// Debug vertical rhythm
+	background-image: url(http://basehold.it/i/31/cc0000);
+	background-position: 0px 14px;
 }
