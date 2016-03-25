@@ -7,52 +7,52 @@ $form-input-color: palette(mono, dove-gray);
 $form-input-padding: .25em;
 
 fieldset {
-  border: $form-input-border-width solid $form-input-border-color;
-  border-radius: $form-input-border-radius;
-  margin-bottom: 1em;
-  padding: 1em;
+	border: $form-input-border-width solid $form-input-border-color;
+	border-radius: $form-input-border-radius;
+	margin-bottom: 1em;
+	padding: 1em;
 }
 
 label {}
 
 #{$all-text-inputs} {
-  border: $form-input-border-width solid $form-input-border-color;
-  border-radius: $form-input-border-radius;
-  color: $form-input-color;
-  padding: $form-input-padding;
-  width: 100%;
+	border: $form-input-border-width solid $form-input-border-color;
+	border-radius: $form-input-border-radius;
+	color: $form-input-color;
+	padding: $form-input-padding;
+	width: 100%;
 
-  @include placeholder {
-    color: $form-input-color;
-  }
+	@include placeholder {
+		color: $form-input-color;
+	}
 }
 
 #{$all-text-inputs-focus} {
-  color: $form-input-color;
+	color: $form-input-color;
 }
 
 textarea {
-  overflow: auto;
-  padding-left: $form-input-padding;
-  vertical-align: top;
-  width: 100%;
+	overflow: auto;
+	padding-left: $form-input-padding;
+	vertical-align: top;
+	width: 100%;
 }
 
 select {
-  background-color: palette(mono, snow-white);
-  background-image: none;
-  border: $form-input-border-width solid $form-input-border-color;
-  border-radius: $form-input-border-radius;
-  color: $form-input-color;
-  padding: $form-input-padding;
-  width: 100%;
+	background-color: palette(mono, snow-white);
+	background-image: none;
+	border: $form-input-border-width solid $form-input-border-color;
+	border-radius: $form-input-border-radius;
+	color: $form-input-color;
+	padding: $form-input-padding;
+	width: 100%;
 }
 
 input[type="checkbox"],
 input[type="radio"] {}
 
 input[type="file"] {
-  line-height: 1;
+	line-height: 1;
 }
 
 $form-button-background: palette(brand, cerulean);
@@ -62,13 +62,13 @@ $form-button-border-radius: 3px;
 $form-button-padding: .5em 1em;
 
 #{$all-buttons} {
-  @include appearance(button);
-  background: palette(brand, cerulean);
-  border: $form-button-border-width solid $form-button-border-color;
-  border-radius: $form-button-border-radius;
-  color: palette(mono, black-hole);
-  cursor: pointer;
-  padding: $form-button-padding;
+	@include appearance(button);
+	background: palette(brand, cerulean);
+	border: $form-button-border-width solid $form-button-border-color;
+	border-radius: $form-button-border-radius;
+	color: palette(mono, black-hole);
+	cursor: pointer;
+	padding: $form-button-padding;
 }
 
 #{$all-buttons-hover} {}

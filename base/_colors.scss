@@ -18,14 +18,14 @@
 // Color palettes using SASS maps
 // Link: http://chir.ag/projects/name-that-color/
 $palettes: (
-	
+
 	// We NEED to define a "base" for each, so that we can use pallette(brand) without throwing an error
 	// Brand should contain this project's specific color scheme
 	brand: (
 		base: #d62901, // Oomph red
 		dark-red: #a31f02
 	),
-	
+
 	// Default color scheme, edit values in relation to the numeric representation
 	// In other words, keep high values dark and low values light
 	mono: (
@@ -39,14 +39,14 @@ $palettes: (
 		10: #f2f2f2,
 		white: #fff
 	),
-	
+
 	// Default color scheme, if we need it
 	drupal: (
 		base: #0077c0, //blue
 		light: #81ceff,
 		dark: #00598e
 	),
-	
+
 	// Default color scheme, if we need it
 	wordpress: (
 		base: #21759b, // blue
@@ -59,8 +59,8 @@ $palettes: (
 // Specific colors used for major elements
 $color-text: palette(mono);
 $color-link: palette(brand);
-$color-hover: palette(brand,dark-red);
-$color-background: palette(mono,white);
-$color-header: palette(mono,10);
-$color-footer: palette(mono,90);
-$color-borders: palette(mono,25);
+$color-hover: palette(brand, dark-red);
+$color-background: palette(mono, white);
+$color-header: palette(mono, 10);
+$color-footer: palette(mono, 90);
+$color-borders: palette(mono, 25);

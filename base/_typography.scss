@@ -18,27 +18,27 @@ button,
 input,
 select,
 textarea {
-  color: palette(mono, black-hole);
-  font-family: $font-sans;
-  font-size: $paragraph;
-  line-height: $line-height;
+	color: palette(mono, black-hole);
+	font-family: $font-sans;
+	font-size: $paragraph;
+	line-height: $line-height;
 }
 
 a:link,
 a:visited {
-  color: palette(mono, black-hole);
-  text-decoration: none;
+	color: palette(mono, black-hole);
+	text-decoration: none;
 }
 
 a:hover,
 a:active {
-  color: palette(mono, black-hole);
-  text-decoration: underline;
+	color: palette(mono, black-hole);
+	text-decoration: underline;
 }
 
 a[href^=tel] {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 // Headings
@@ -55,158 +55,158 @@ h3,
 h4,
 h5,
 h6 {
-  clear: both;
+	clear: both;
 }
 
 h1 {
-  font-size: $heading-1;
+	font-size: $heading-1;
 }
 
 h2 {
-  font-size: $heading-2;
+	font-size: $heading-2;
 }
 
 h3 {
-  font-size: $heading-3;
+	font-size: $heading-3;
 }
 
 h4 {
-  font-size: $heading-4;
+	font-size: $heading-4;
 }
 
 h5 {
-  font-size: $heading-5;
+	font-size: $heading-5;
 }
 
 h6 {
-  font-size: $heading-6;
+	font-size: $heading-6;
 }
 
 p {
-  margin-bottom: 1.5em;
+	margin-bottom: 1.5em;
 }
 
 b,
 strong {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 dfn,
 cite,
 em,
 i {
-  font-style: italic;
+	font-style: italic;
 }
 
 blockquote {
-  margin: 0 1.5em 1.5em;
-  padding: 1em 2em;
+	margin: 0 1.5em 1.5em;
+	padding: 1em 2em;
 
-  p:last-child {
-    margin-bottom: 0;
-  }
+	p:last-child {
+		margin-bottom: 0;
+	}
 }
 
 address {
-  margin: 0 0 1.5em;
+	margin: 0 0 1.5em;
 }
 
 pre {
-  background: palette(mono, iron);
-  font-family: $font-mono;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  margin-bottom: 1.6em;
-  max-width: 100%;
-  overflow: auto;
-  padding: 1.6em;
+	background: palette(mono, iron);
+	font-family: $font-mono;
+	font-size: 1.5rem;
+	line-height: 1.6;
+	margin-bottom: 1.6em;
+	max-width: 100%;
+	overflow: auto;
+	padding: 1.6em;
 }
 
 code,
 kbd,
 tt,
 var {
-  font: em(14) $font-mono;
+	font: em(14) $font-mono;
 }
 
 abbr,
 acronym {
-  border-bottom: 1px dotted palette(mono, dove-gray);
-  cursor: help;
+	border-bottom: 1px dotted palette(mono, dove-gray);
+	cursor: help;
 }
 
 mark,
 ins {
-  background: palette(mono, iron);
-  text-decoration: none;
+	background: palette(mono, iron);
+	text-decoration: none;
 }
 
 sup,
 sub {
-  font-size: em(14);
-  height: 0;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
+	font-size: em(14);
+	height: 0;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
 }
 
 sup {
-  bottom: 1ex;
+	bottom: 1ex;
 }
 
 sub {
-  top: .5ex;
+	top: .5ex;
 }
 
 small {
-  font-size: em(14);
+	font-size: em(14);
 }
 
 big {
-  font-size: em(20);
+	font-size: em(20);
 }
 
 hr {
-  background-color: palette(mono, iron);
-  border: 0;
-  height: 1px;
-  margin-bottom: 1.5em;
+	background-color: palette(mono, iron);
+	border: 0;
+	height: 1px;
+	margin-bottom: 1.5em;
 }
 
 ul,
 ol {
-  margin: 0 0 1.5em 3em;
+	margin: 0 0 1.5em 3em;
 }
 
 ul {
-  list-style: disc;
+	list-style: disc;
 }
 
 ol {
-  list-style: decimal;
+	list-style: decimal;
 }
 
 li > ul,
 li > ol {
-  margin-bottom: 0;
-  margin-left: 1.5em;
+	margin-bottom: 0;
+	margin-left: 1.5em;
 }
 
 dt {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 dd {
-  margin: 0 1.5em 1.5em;
+	margin: 0 1.5em 1.5em;
 }
 
 img {
-  height: auto; // Make sure images are scaled correctly.
-  max-width: 100%; // Adhere to container width.
+	height: auto; // Make sure images are scaled correctly.
+	max-width: 100%; // Adhere to container width.
 }
 
 figure {
-  margin: 0;
+	margin: 0;
 }
 
 // Tables
@@ -215,34 +215,34 @@ $table-border-color: palette(mono, dove-gray);
 $table-cell-padding: 8px;
 
 table {
-  border-spacing: 0;
-  width: 100%;
+	border-spacing: 0;
+	width: 100%;
 
-  @if $table-border-collapse == true {
-    border-collapse: collapse;
-  }
+	@if $table-border-collapse == true {
+		border-collapse: collapse;
+	}
 
-  th {
-    border-bottom: 2px solid $table-border-color;
-    padding: $table-cell-padding;
-  }
+	th {
+		border-bottom: 2px solid $table-border-color;
+		padding: $table-cell-padding;
+	}
 
-  td {
-    border-top: 1px solid $table-border-color;
-    padding: $table-cell-padding;
-  }
+	td {
+		border-top: 1px solid $table-border-color;
+		padding: $table-cell-padding;
+	}
 
-  caption {
-    text-align: center;
-  }
+	caption {
+		text-align: center;
+	}
 
-  // zebra striping pattern
-  &.striped {
-    tbody {
-      tr:nth-of-type(odd) {
-        background-color: $table-border-color;
-      }
-    }
-  }
+	// zebra striping pattern
+	&.striped {
+		tbody {
+			tr:nth-of-type(odd) {
+				background-color: $table-border-color;
+			}
+		}
+	}
 }
 // @file typography.scss

@@ -30,10 +30,10 @@ linters:
     enabled: false
 
   ColorKeyword:
-    enabled: true
+    enabled: false
 
   ColorVariable:
-    enabled: true
+    enabled: false
 
   Comment:
     enabled: true
@@ -46,7 +46,7 @@ linters:
     enabled: true
 
   DisableLinterReason:
-    enabled: true
+    enabled: false
 
   DuplicateProperty:
     enabled: true
@@ -66,8 +66,8 @@ linters:
     enabled: false
 
   FinalNewline:
-    enabled: true
-    present: true
+    enabled: false
+    present: false
 
   HexLength:
     enabled: true

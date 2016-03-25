@@ -9,27 +9,27 @@
 //
 @mixin touch-hover( $disabled: false ) {
 
-  @if $disabled {
-    .no-js &,
-    .no-js &:hover, // the fallback
-    .no-js &:focus,
-    .js.no-touchevents &,
-    .js.no-touchevents &:hover, // enhanced for no-touch
-    .js.no-touchevents &:focus,
-    .js.touchevents &,
-    .js.touchevents &:active { // relay same styles to active for touch devices
-        @content;
-    }
+	@if $disabled {
+		.no-js &,
+		.no-js &:hover, // the fallback
+		.no-js &:focus,
+		.js.no-touchevents &,
+		.js.no-touchevents &:hover, // enhanced for no-touch
+		.js.no-touchevents &:focus,
+		.js.touchevents &,
+		.js.touchevents &:active { // relay same styles to active for touch devices
+			@content;
+	}
 
-  } @else {
-    .no-js &:hover, // the fallback
-    .no-js &:focus,
-    .js.no-touchevents &:hover, // enhanced for no-touch
-    .js.no-touchevents &:focus,
-    .js.touchevents &:active { // relay same styles to active for touch devices
-        @content;
-    }
-  }
+	} @else {
+		.no-js &:hover, // the fallback
+		.no-js &:focus,
+		.js.no-touchevents &:hover, // enhanced for no-touch
+		.js.no-touchevents &:focus,
+		.js.touchevents &:active { // relay same styles to active for touch devices
+			@content;
+		}
+	}
 }
 
 // Column Grid
@@ -38,13 +38,13 @@
 // @usage column-grid(2)
 // @johncionci
 @mixin column-grid( $columns: null ) {
-  @if $columns == 3 {
-    @include span-columns(4);
-  } @else if $columns == 4 {
-    @include span-columns(3);
-  } @else {
-    @include span-columns(6);
-  }
+	@if $columns == 3 {
+		@include span-columns(4);
+	} @else if $columns == 4 {
+		@include span-columns(3);
+	} @else {
+		@include span-columns(6);
+	}
 }
 
 // List Reset
@@ -52,19 +52,19 @@
 // @johncionci
 //
 @mixin list-reset() {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 // Mixins for accessible show/hide
 // @jhogue
 @mixin hide() {
-    display: none;
-    visibility: hidden;
+	display: none;
+	visibility: hidden;
 }
 
 @mixin show( $display: block ) {
-    display: $display;
-    visibility: visible;
+	display: $display;
+	visibility: visible;
 }
