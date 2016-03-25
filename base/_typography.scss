@@ -18,7 +18,7 @@ button,
 input,
 select,
 textarea {
-	color: palette(mono, black-hole);
+	color: palette(mono, black);
 	font-family: $font-sans;
 	font-size: $paragraph;
 	line-height: $line-height;
@@ -26,13 +26,13 @@ textarea {
 
 a:link,
 a:visited {
-	color: palette(mono, black-hole);
+	color: palette(mono, black);
 	text-decoration: none;
 }
 
 a:hover,
 a:active {
-	color: palette(mono, black-hole);
+	color: palette(mono, black);
 	text-decoration: underline;
 }
 
@@ -112,7 +112,7 @@ address {
 }
 
 pre {
-	background: palette(mono, iron);
+	background: palette(mono, 10);
 	font-family: $font-mono;
 	font-size: 1.5rem;
 	line-height: 1.6;
@@ -131,13 +131,13 @@ var {
 
 abbr,
 acronym {
-	border-bottom: 1px dotted palette(mono, dove-gray);
+	border-bottom: 1px dotted palette(mono, 25);
 	cursor: help;
 }
 
 mark,
 ins {
-	background: palette(mono, iron);
+	background: palette(mono, 10);
 	text-decoration: none;
 }
 
@@ -167,7 +167,7 @@ big {
 }
 
 hr {
-	background-color: palette(mono, iron);
+	background-color: palette(mono, 10);
 	border: 0;
 	height: 1px;
 	margin-bottom: 1.5em;
@@ -212,7 +212,7 @@ figure {
 
 // Tables
 $table-border-collapse: true;
-$table-border-color: palette(mono, dove-gray);
+$table-border-color: palette(mono, 25);
 $table-cell-padding: 8px;
 
 table {

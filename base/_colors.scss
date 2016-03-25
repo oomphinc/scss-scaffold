@@ -3,7 +3,7 @@
 // Getter function for color palettes using SASS maps
 // Link: http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
 // Example usage: { color: palette(brand,blue); }
-@function palette( $palette, $tone ) {
+@function palette($palette, $tone:base) {
 
 	@if not index(map-keys($palettes), $palette) {
 		@error "Palette `#{$palette}` does not exist.";
@@ -23,7 +23,7 @@ $palettes: (
 	// Brand should contain this project's specific color scheme
 	brand: (
 		base: #d62901, // Oomph red
-		dark-red: #a31f02
+		dark: #a31f02
 	),
 
 	// Default color scheme, edit values in relation to the numeric representation
@@ -59,7 +59,7 @@ $palettes: (
 // Specific colors used for major elements
 $color-text: palette(mono);
 $color-link: palette(brand);
-$color-hover: palette(brand, dark-red);
+$color-hover: palette(brand, dark);
 $color-background: palette(mono, white);
 $color-header: palette(mono, 10);
 $color-footer: palette(mono, 90);
