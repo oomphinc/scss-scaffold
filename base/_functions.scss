@@ -7,8 +7,51 @@
 // @param {Arglist} $keys - Key chain
 // @return {*} - Desired value
 @function map-deep-get($map, $keys...) {
-	@each $key in $keys {
-		$map: map-get($map, $key);
-	}
-	@return $map;
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+
+// Bourbon changes (assumed) px values to EM or REM. 
+// Here we change a unitless value to px
+// @jhogue
+@function px($value) {
+	// Make sure it is unitless
+	$value: strip-units($value);
+	@return ($value * 1px);
+}
+
+
+
+// Used for responsive typography and managing breakpoint values
+// @requires: SASS map of $breakpoints
+// @requires: SASS map of $type-sizes
+// @usage: For an EM value: bp(name)
+// @usage: For an PX value: bppx(name)
+// @usage: For a corresponding text size (from base/_textsize.scss): rwd-size(element,group)
+@function bp($size: 'base') {
+	@return em( map-get( $breakpoints, $size ) );
+}
+
+@function bppx($size: 'base') {
+	@return px( map-get( $breakpoints, $size ) );
+}
+
+@function rwd-size($elem, $group: 'base') {
+	@return map-get( map-get($type-sizes, $group), $elem );
+}
+
+
+// Emulate the way Adobe Illustrator allows percentages of defined global colors 
+// @accepts: color as Hex, RGB or HSL. Percent as numeric
+// Optional: Background color for mixing function
+// @returns: hexidecimal color
+// Inspiration from http://thesassway.com/intermediate/mixins-for-semi-transparent-colors
+@function percent-color( $color, $percent, $background: white ) {
+	$percent: strip-units($percent); 
+	$opaque: opacify($color, 1);
+	$solid-color: mix($opaque, $background, $percent);
+	@return $solid-color; 
 }

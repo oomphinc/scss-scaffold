@@ -118,16 +118,8 @@ ul {
 	list-style: none;
 }
 
-blockquote,
-q {
+blockquote {
 	quotes: none;
-
-	&::before,
-	&::after {
-		// scss-lint:disable DuplicateProperty
-		content: '';
-		content: none;
-	}
 }
 
 table {

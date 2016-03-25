@@ -8,28 +8,29 @@
 // @jhogue
 //
 @mixin touch-hover( $disabled: false ) {
+	$modernizr-hook-off: 'no-touch';
+	$modernizr-hook-on: 'touch';
 
 	@if $disabled {
 		.no-js &,
 		.no-js &:hover, // the fallback
 		.no-js &:focus,
-		.js.no-touchevents &,
-		.js.no-touchevents &:hover, // enhanced for no-touch
-		.js.no-touchevents &:focus,
-		.js.touchevents &,
-		.js.touchevents &:active { // relay same styles to active for touch devices
+		.js.#{$modernizr-hook-off} &,
+		.js.#{$modernizr-hook-off} &:hover, // enhanced for no-touch
+		.js.#{$modernizr-hook-off} &:focus,
+		.js.#{$modernizr-hook-on} &,
+		.js.#{$modernizr-hook-on} &:active { // relay same styles to active for touch devices
 			@content;
-	}
-
+		}
 	} @else {
 		.no-js &:hover, // the fallback
 		.no-js &:focus,
-		.js.no-touchevents &:hover, // enhanced for no-touch
-		.js.no-touchevents &:focus,
-		.js.touchevents &:active { // relay same styles to active for touch devices
+		.js.#{$modernizr-hook-off} &:hover, // enhanced for no-touch
+		.js.#{$modernizr-hook-off} &:focus,
+		.js.#{$modernizr-hook-on} &:active { // relay same styles to active for touch devices
 			@content;
 		}
-	}
+  }
 }
 
 // Column Grid
@@ -60,11 +61,28 @@
 // Mixins for accessible show/hide
 // @jhogue
 @mixin hide() {
-	display: none;
-	visibility: hidden;
+    display: none;
+    visibility: hidden;
 }
 
 @mixin show( $display: block ) {
-	display: $display;
-	visibility: visible;
+    display: $display;
+    visibility: visible;
+}
+
+// Control the output of rem() when font size is involved
+// Gulp used to do this for us, but Brunch does not
+// Requires: px(), a function of ours, and rem(), a function of Bourbon
+// @jhogue
+@mixin rem-fontsize($value) {
+	font-size: px($value);
+	font-size: rem($value);
+}
+
+
+// Bring back a border-radius mixin, if only so we can define a default
+// They have not deprecated their individual mixins, i.e. border-radius-top(), etc…
+// @jhogue
+@mixin border-radius($radius: $default-border-radius) {
+	border-radius: $radius;
 }

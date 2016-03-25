@@ -1,1 +1,15 @@
-// @file variables.scss
+// Variables throughout the project
+// Most variables are localized at the top of the file from which they are first used
+
+// Global font declarations
+$font-sans: $helvetica;
+$font-serif: $georgia;
+$font-mono: $monospace;
+
+// Other globals
+$default-border-radius: 4px;
+
+// Tables
+$table-border-collapse: true;
+$table-border-color: $default-border-color;
+$table-cell-padding: .5em;
