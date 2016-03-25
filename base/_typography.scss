@@ -20,17 +20,17 @@ textarea {
 }
 
 a {
-	border-bottom: 3px solid palette(mono,10);
+	@include transition( all 250ms ease );
+	border-bottom: 3px solid palette(mono, 10);
 	color: palette(mono, 75);
 	text-decoration: none;
-	@include transition( all 250ms ease );
 
 	@include touch-hover() {
-		border-bottom-color: palette(mono,25);
+		border-bottom-color: palette(mono, 25);
 		color: palette(brand);
 		text-decoration: none;
 	}
-	
+
 	&[href^=tel] {
 		color: inherit;
 		text-decoration: none;
@@ -50,14 +50,20 @@ a {
 
 
 // Headings
-h1, .alpha,
-h2, .bravo,
-h3, .charlie,
-h4, .delta,
-h5, .echo,
-h6, .foxtrot {
-	color: palette(mono, 75);
+h1,
+.alpha,
+h2,
+.bravo,
+h3,
+.charlie,
+h4,
+.delta,
+h5,
+.echo,
+h6,
+.foxtrot {
 	clear: both;
+	color: palette(mono, 75);
 }
 
 h1,
@@ -67,8 +73,8 @@ h1,
 
 h2,
 .bravo {
-	font-weight: 700;
 	@include one-element-size(h2);
+	font-weight: 700;
 }
 
 h3,
@@ -87,7 +93,6 @@ h5,
 	font-weight: 700;
 	letter-spacing: .03125em;
 	text-transform: uppercase;
-	
 }
 
 h6,
@@ -128,28 +133,28 @@ blockquote {
 		padding-left: em(32);
 	}
 
-	p:before, 
-	p:last-child:after {
+	p::before,
+	p:last-child::after {
 		color: palette(brand);
 		font-family: $font-serif;
 		font-size: rem(48);
 		font-style: italic;
-		font-weight: bold; 
-		line-height: 1; 
+		font-weight: bold;
+		line-height: 1;
 	}
 
-	p:before {
+	p::before {
 		content: "“";
 		position: absolute;
-			top: 0; left: .0625em; 
+			top: 0; left: .0625em;
 	}
 
-	p:last-child:after {
-		display: inline; 
+	p:last-child::after {
 		content: "”";
+		display: inline;
 		line-height: 0;
-		vertical-align: text-bottom;
 		margin-left: .125em;
+		vertical-align: text-bottom;
 	}
 }
 
@@ -158,8 +163,8 @@ address { font-style: italic; }
 hr {
 	border: none;
 	border-top: 1px solid palette(mono, 25);
+	height: 0;
 	line-height: 1;
-	height: 0px;
 	margin: $vert-line-height 0;
 	width: 100%;
 }
@@ -167,6 +172,7 @@ hr {
 ul,
 ol { margin-left: 3em; }
 
+// scss-lint:disable MergeableSelector
 ul { list-style: square; }
 
 ul ul { list-style: disc; }
@@ -182,6 +188,7 @@ ol ol ol { list-style: upper-roman; }
 ol ol ol ol { list-style: lower-alpha; }
 
 ol ol ol ol ol { list-style: lower-roman; }
+// scss-lint:enable MergeableSelector
 
 dl { border-top: 1px solid $color-borders; }
 
@@ -202,11 +209,11 @@ dd { border-bottom: 2px solid $color-borders; }
 figure { margin: 0; }
 
 table {
-	border-spacing: 0;
-	width: 100%;
 	@if $table-border-collapse == true {
 		border-collapse: collapse;
 	}
+	border-spacing: 0;
+	width: 100%;
 
 	th {
 		border-bottom: 2px solid $table-border-color;
@@ -216,8 +223,8 @@ table {
 	}
 
 	td {
-		padding: $table-cell-padding;
 		border-top: 1px solid $table-border-color;
+		padding: $table-cell-padding;
 	}
 
 	caption {
@@ -226,6 +233,7 @@ table {
 
 	// zebra striping pattern
 	tbody {
+
 		tr:nth-of-type(odd) {
 			background-color: $table-border-color;
 		}
@@ -233,10 +241,14 @@ table {
 }
 
 // Inline typography elements
-strong, b, 
-em, i, cite, 
+strong,
+b,
+em,
+i,
+cite,
 small,
-sup, sup { letter-spacing: .03125em; }
+sup,
+sup { letter-spacing: .03125em; }
 
 sub,
 sup {
@@ -249,11 +261,11 @@ sup { top: -0.5em; }
 
 sub { bottom: -0.25em; }
 
-abbr[title], 
+abbr[title],
 cite,
 dfn[title] { border-bottom: 1px dotted palette(brand); }
 
-abbr[title], 
+abbr[title],
 dfn[title] { cursor: help; }
 
 abbr[title] {
@@ -270,35 +282,36 @@ i,
 em,
 cite { font-style: italic; }
 
-var { 
+var {
 	color: palette(mono, 75);
 	display: inline-block;
 	font-style: italic;
 	padding: 0 .125em;
 }
 
-// Proper code blocks need to be surrounded by a <pre>. They work together. 
+// Proper code blocks need to be surrounded by a <pre>. They work together.
 pre {
-	white-space: pre-wrap; 
-	white-space: -moz-pre-wrap !important;	// 1999+ Mozilla 
-	white-space: -o-pre-wrap;				// Opera 7 and up 
-	word-wrap: break-word;					// IE 5.5+ and up 
+	// scss-lint:disable ImportantRule
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap !important;	// 1999+ Mozilla
+	white-space: -o-pre-wrap;				// Opera 7 and up
+	word-wrap: break-word;					// IE 5.5+ and up
 
 	code {
-		display: block;
-		padding: 1.375em 1.25em 1.3125em;
-		margin: 0;
-		border-left: 5px solid palette(brand,green);
 		border-bottom: 1px solid palette(mono, 25);
+		border-left: 5px solid palette(brand, green);
 		border-radius: 0;
+		display: block;
+		margin: 0;
+		padding: 1.375em 1.25em 1.3125em;
 	}
 }
 
-code, 
-kbd, 
+code,
+kbd,
 samp,
 mark,
-ins { 
+ins {
 	display: inline-block;
 	line-height: 1.5;
 	padding: .125em .25em 0;
@@ -307,6 +320,7 @@ ins {
 code,
 kbd,
 samp {
+	// scss-lint:disable DuplicateProperty
 	background: palette(mono, 10);
 	background: rgba(#000, .05);
 	border-radius: 4px;
@@ -315,7 +329,7 @@ samp {
 }
 
 code {
-	color: palette(brand,green);
+	color: palette(brand, green);
 }
 
 mark { background-color: #ff9; }
@@ -327,7 +341,7 @@ del { color: palette(brand); }
 
 u { text-decoration: underline; }
 
-ins { 
+ins {
 	background-color: palette(mono, 25);
 	text-decoration: none;
 }
@@ -340,43 +354,50 @@ small { font-size: 87.5%; }
 	q {
 		display: inline;
 
-		&:before { content: "“"; }
-		&:after { content: "”"; white-space: nowrap; }
+		::before { content: "“"; }
 
-		// Nested 
-		& > q:before { content: "‘"; }
+		::after {
+			content: "”";
+			white-space: nowrap;
+		}
 
-		& > q:after { content: "’"; }
+		// Nested
+		q::before { content: "‘"; }
+
+		q::after { content: "’"; }
 	}
 }
 
 .typography {
 
 	// For the style guide template
-	.example { 
-		position: relative; 
+	.example {
 		background-color: transparent;
-		border: 1px solid $color-borders; 
-		padding: 1em 1.25em 1px;
+		border: 1px solid $color-borders;
+		box-shadow: 0 0 1em rgba(#000, 0.2 );
 		margin: -1em -1.25em -1px;
-		box-shadow: 0 0 1em rgba( 0,0,0,0.2 ); 
+		padding: 1em 1.25em 1px;
+		position: relative;
 	}
-	.example:before {
-		content: 'EXAMPLE'; 
-		position: absolute; 
-			top: 0; right: 0; 
-		z-index: 9999; 
-		font-size: .75em; 
-		color: #fff; 
-		background-color: palette(brand); 
-		padding: .4em .75em .3em; 
-	} 
+
+	.example::before {
+		background-color: palette(brand);
+		color: #fff;
+		content: 'EXAMPLE';
+		font-size: .75em;
+		padding: .4em .75em .3em;
+		position: absolute;
+			top: 0; right: 0;
+		z-index: 9999;
+	}
 	//.example + .examplecode { margin-top: -1.25em; }
 	.element-caption { display: block; }
 }
 
 .vertical-grid {
 	// Debug vertical rhythm
-	background-image: url(http://basehold.it/i/31/cc0000);
-	background-position: 0px 14px;
+	// scss-lint:disable UrlFormat
+	background-image: url('http://basehold.it/i/31/cc0000');
+	background-position: 0 14px;
+	// scss-lint:enable UrlFormat
 }

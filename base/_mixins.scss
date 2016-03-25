@@ -30,7 +30,7 @@
 		.js.#{$modernizr-hook-on} &:active { // relay same styles to active for touch devices
 			@content;
 		}
-  }
+	}
 }
 
 // Column Grid
@@ -61,13 +61,13 @@
 // Mixins for accessible show/hide
 // @jhogue
 @mixin hide() {
-    display: none;
-    visibility: hidden;
+	display: none;
+	visibility: hidden;
 }
 
 @mixin show( $display: block ) {
-    display: $display;
-    visibility: visible;
+	display: $display;
+	visibility: visible;
 }
 
 // Control the output of rem() when font size is involved
@@ -75,6 +75,7 @@
 // Requires: px(), a function of ours, and rem(), a function of Bourbon
 // @jhogue
 @mixin rem-fontsize($value) {
+	// scss-lint:disable DuplicateProperty
 	font-size: px($value);
 	font-size: rem($value);
 }

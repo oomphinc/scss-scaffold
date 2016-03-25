@@ -7,14 +7,14 @@
 // @param {Arglist} $keys - Key chain
 // @return {*} - Desired value
 @function map-deep-get($map, $keys...) {
-  @each $key in $keys {
-    $map: map-get($map, $key);
-  }
-  @return $map;
+	@each $key in $keys {
+		$map: map-get($map, $key);
+	}
+	@return $map;
 }
 
 
-// Bourbon changes (assumed) px values to EM or REM. 
+// Bourbon changes (assumed) px values to EM or REM.
 // Here we change a unitless value to px
 // @jhogue
 @function px($value) {
@@ -44,14 +44,14 @@
 }
 
 
-// Emulate the way Adobe Illustrator allows percentages of defined global colors 
+// Emulate the way Adobe Illustrator allows percentages of defined global colors
 // @accepts: color as Hex, RGB or HSL. Percent as numeric
 // Optional: Background color for mixing function
 // @returns: hexidecimal color
 // Inspiration from http://thesassway.com/intermediate/mixins-for-semi-transparent-colors
 @function percent-color( $color, $percent, $background: white ) {
-	$percent: strip-units($percent); 
+	$percent: strip-units($percent);
 	$opaque: opacify($color, 1);
 	$solid-color: mix($opaque, $background, $percent);
-	@return $solid-color; 
+	@return $solid-color;
 }
