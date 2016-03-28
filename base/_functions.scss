@@ -40,7 +40,7 @@
 }
 
 @function rwd-size($elem, $group: 'base') {
-	@return map-get( map-get($type-sizes, $group), $elem );
+	@return map-deep-get( $type-sizes, $group, $elem );
 }
 
 
