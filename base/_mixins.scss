@@ -73,17 +73,11 @@
 // Control the output of rem() when font size is involved
 // Gulp used to do this for us, but Brunch does not
 // Requires: px(), a function of ours, and rem(), a function of Bourbon
+// @uses px(), our own function
+// @uses rem() from Bourbon
 // @jhogue
 @mixin rem-fontsize($value) {
 	// scss-lint:disable DuplicateProperty
 	font-size: px($value);
 	font-size: rem($value);
-}
-
-
-// Bring back a border-radius mixin, if only so we can define a default
-// They have not deprecated their individual mixins, i.e. border-radius-top(), etc…
-// @jhogue
-@mixin border-radius($radius: $default-border-radius) {
-	border-radius: $radius;
 }
