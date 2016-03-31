@@ -58,7 +58,7 @@
 	padding: 0;
 }
 
-// Mixins for accessible show/hide
+// Accessible show/hide
 // @jhogue
 @mixin hide() {
 	display: none;
@@ -70,14 +70,36 @@
 	visibility: visible;
 }
 
-// Control the output of rem() when font size is involved
+// Provide REM and PX fallback for any property
 // Gulp used to do this for us, but Brunch does not
-// Requires: px(), a function of ours, and rem(), a function of Bourbon
-// @uses px(), our own function
-// @uses rem() from Bourbon
+// @accepts: css property, numeric value
+// @requires: value must be a pixel value, stripped of its unit
+// @dependson: px(), a function of ours, and rem(), a function of Bourbon
+// @returns: two property values, one with px, one with rem units
 // @jhogue
-@mixin rem-fontsize($value) {
+@mixin rem($property, $value) {
+	$number: strip-units($value * 1);
+	$declaration: unquote($property);
 	// scss-lint:disable DuplicateProperty
-	font-size: px($value);
-	font-size: rem($value);
+	#{$declaration}: px($number);
+	#{$declaration}: rem($number);
+}
+// Alias of the above
+@mixin rem-fontsize($value) {
+	@include rem('font-size', $value);
+}
+
+
+// Output a little 'tag' on the body:after content
+// @accepts: string
+// @requires: $content string should be in single quotes
+// @returns: entire body pseudo-class declaration
+// @usage: @include javascript_tag( 'actionhook' );
+// @jhogue
+@mixin javascript-listener( $content ) {
+	body:after {
+		content: $content; 
+		display: none; 
+		speak: none; 
+	}
 }
