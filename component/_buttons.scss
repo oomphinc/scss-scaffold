@@ -11,12 +11,12 @@ $form-button-padding: .325em 1em .25em;
 a.button,
 button.button,
 input.button {
+	@include appearance(button);
+	@include transition( all 250ms ease );
 	border-radius: $form-button-border-radius;
 	cursor: pointer;
 	margin-bottom: .5em;
 	padding: $form-button-padding;
-	@include appearance(button);
-	@include transition( all 250ms ease );
 }
 
 // Additional button styles must be chained, i.e. class="button button--primary"

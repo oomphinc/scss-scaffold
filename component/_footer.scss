@@ -1,13 +1,1 @@
-.mainfoot {
-	background-color: palette(mono,75);
-	color: palette(mono,10);
-	padding: $vert-line-height 0;
-
-	a {
-		color: palette(mono,10);
-		
-		@include touch-hover() {
-			color: palette(brand);
-		}
-	}
-}
+// @file footer.scss

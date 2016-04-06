@@ -1,13 +1,5 @@
 .content {
-	background-color: palette(mono, white);
 	clear: both;
-	padding: $vert-line-height 0;
-
-	&--title {
-		@extend .mega;
-		color: palette(brand);
-		margin-bottom: .75em;
-	}
 
 	&--main {
 

@@ -61,7 +61,8 @@ $palettes: (
 $color-text: palette(mono);
 $color-link: palette(brand);
 $color-hover: palette(brand, dark);
+$color-body: palette(mono, 90);
 $color-background: palette(mono, white);
 $color-header: palette(mono, 10);
-$color-footer: palette(mono, 90);
+$color-footer: $color-body;
 $color-borders: palette(mono, 25);
