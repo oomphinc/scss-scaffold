@@ -15,8 +15,8 @@ fieldset {
 
 label {}
 
-input:not(type="checkbox"),
-input:not(type="radio") {
+input:not([type='checkbox']),
+input:not([type='radio']) {
 	border: $form-input-border-width solid $form-input-border-color;
 	border-radius: $form-input-border-radius;
 	color: $form-input-color;
