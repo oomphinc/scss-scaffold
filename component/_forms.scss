@@ -15,7 +15,8 @@ fieldset {
 
 label {}
 
-#{$all-text-inputs} {
+input:not(type="checkbox"),
+input:not(type="radio") {
 	border: $form-input-border-width solid $form-input-border-color;
 	border-radius: $form-input-border-radius;
 	color: $form-input-color;
@@ -25,10 +26,10 @@ label {}
 	@include placeholder {
 		color: $form-input-color;
 	}
-}
 
-#{$all-text-inputs-focus} {
-	color: $form-input-color;
+	&:focus {
+		color: $form-input-color;
+	}
 }
 
 textarea {
