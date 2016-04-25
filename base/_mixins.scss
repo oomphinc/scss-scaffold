@@ -57,6 +57,15 @@
 	padding: 0;
 }
 
+// List Item Reset
+// This is mostly for Drupal projects to override the
+// default item links styles
+@mixin list-item-reset() {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 // Mixins for accessible show/hide
 // @jhogue
 @mixin hide() {
