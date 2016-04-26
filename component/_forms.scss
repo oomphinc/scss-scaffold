@@ -1,9 +1,11 @@
 // @file forms.scss
 
 $form-input-border-color: palette(mono, 25);
+$form-input-border-focus: palette(mono,33);
 $form-input-border-width: 1px;
-$form-input-border-radius: 3px;
-$form-input-color: palette(mono, 33);
+$form-input-border-radius: $default-border-radius;
+$form-input-placeholder-color: palette(mono, 33);
+$form-input-color: palette(mono, 66);
 $form-input-padding: .25em;
 
 fieldset {
@@ -23,14 +25,28 @@ input:not([type='radio']) {
 	color: $form-input-color;
 	padding: $form-input-padding;
 	width: 100%;
+	@include transition( all 250ms ease );
 
 	@include placeholder {
-		color: $form-input-color;
+		color: $form-input-placeholder-color;
+		font-style: italic;
+	}
+	
+	@include touch-hover() {
+		border-color: darken($form-input-border-focus, 10%);
+		outline: none;
+	}
+	
+	&[required]:focus, 
+	&[required=true]:focus, 
+	&[required="required"]:focus {
+		border-color: palette(brand);
+		box-shadow: 0 0 .5em rgba( palette(brand), .5 );
+		outline: none;
 	}
 
-	&:focus {
-		color: $form-input-color;
-	}
+#{$all-text-inputs-focus} {
+	color: $form-input-color;
 }
 
 textarea {
@@ -41,7 +57,7 @@ textarea {
 }
 
 select {
-	background-color: palette(mono, 10);
+	background-color: palette(mono, white);
 	background-image: none;
 	border: $form-input-border-width solid $form-input-border-color;
 	border-radius: $form-input-border-radius;
@@ -57,23 +73,10 @@ input[type="file"] {
 	line-height: 1;
 }
 
-$form-button-background: palette(brand);
-$form-button-border-color: palette(brand, dark);
-$form-button-border-width: 1px;
-$form-button-border-radius: 3px;
-$form-button-padding: .5em 1em;
 
-#{$all-buttons} {
-	@include appearance(button);
-	background: palette(brand);
-	border: $form-button-border-width solid $form-button-border-color;
-	border-radius: $form-button-border-radius;
-	color: palette(mono, black);
-	cursor: pointer;
-	padding: $form-button-padding;
-}
-
-#{$all-buttons-hover} {}
-
-#{$all-buttons-focus},
-#{$all-buttons-active} {}
+// ! ===== Special rules for older Safari and iOS =====
+input[type="search"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="number"] { -webkit-appearance: textfield; }

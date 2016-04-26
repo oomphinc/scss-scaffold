@@ -1,14 +1,39 @@
-// @file breakpoints.scss
+// ! ===== Bourbon and Neat Configuration ===== 
+@import "../libraries/neat/neat-helpers";
 
-$xsmall: new-breakpoint( max-width 480px );
 
-$small-up: new-breakpoint( min-width 481px );
-$small: new-breakpoint( min-width 481px max-width 767px );
+// Grid Settings
+$grid-columns: 12;
+$min-width: em(320);
+$max-width: em(1200);
+$visual-grid: false;
 
-$medium-up: new-breakpoint( min-width 768px );
-$medium: new-breakpoint( min-width 768px max-width 1023px );
 
-$large-up: new-breakpoint( min-width 1024px );
-$large: new-breakpoint( min-width 1024px max-width 1279px );
+// Breakpoints Map
+$breakpoints: (
+	// List as unitless pixels
+	base: 480, 
+	small: 620, // 480 + 140
+	medium: 760, // 640 + 140
+	large: 1000, // 760 + 240
+	x-large: 1360, // 1000 + 360
+	xx-large: 1600 // 1360 + 240
+);
 
-$xlarge: new-breakpoint( min-width 1280px );
+// Reusable Media Queries
+$xsmall-up: new-breakpoint( min-width bppx(base) );
+$xsmall: new-breakpoint( min-width ( bppx(base) ) max-width ( (bppx(small)-1px) ) );
+
+$small-up: new-breakpoint( min-width bppx(small) );
+$small: new-breakpoint( min-width ( bppx(small) ) max-width ( bppx(medium)-1px ) );
+
+$medium-up: new-breakpoint( min-width bppx(medium) );
+$medium: new-breakpoint( min-width ( bppx(medium) ) max-width (bppx(large)-1px) );
+
+$large-up: new-breakpoint( min-width bppx(large) );
+$large: new-breakpoint( min-width ( bppx(large) ) max-width (bppx(x-large)-1px) );
+
+$xlarge-up: new-breakpoint( min-width bppx(x-large) );
+$xlarge: new-breakpoint( min-width ( bppx(x-large) ) max-width (bppx(xx-large)-1px) );
+
+$xxlarge-up: new-breakpoint( min-width bppx(xx-large) );

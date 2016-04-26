@@ -1,4 +1,3 @@
-// @file global.scss
 
 // Type Sizes
 $base-type-size: 1em;
@@ -14,4 +13,28 @@ html {
 html,
 body {
 	height: 100%;
+}
+
+//
+// Media Elements
+//
+img,
+video,
+object {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
+//
+// Reset lists when used as navigational elements
+//
+nav > ul, 
+nav > ol, 
+ul.menu, 
+ol.menu {
+    @include list-reset();
+    
+    // More often than not, we want anchors in menus to display block
+    a { display: block; }
 }

@@ -8,25 +8,26 @@
 // @jhogue
 //
 @mixin touch-hover( $disabled: false ) {
+	$modernizr-hook-off: 'no-touch';
+	$modernizr-hook-on: 'touch';
 
 	@if $disabled {
 		.no-js &,
 		.no-js &:hover, // the fallback
 		.no-js &:focus,
-		.js.no-touchevents &,
-		.js.no-touchevents &:hover, // enhanced for no-touch
-		.js.no-touchevents &:focus,
-		.js.touchevents &,
-		.js.touchevents &:active { // relay same styles to active for touch devices
+		.js.#{$modernizr-hook-off} &,
+		.js.#{$modernizr-hook-off} &:hover, // enhanced for no-touch
+		.js.#{$modernizr-hook-off} &:focus,
+		.js.#{$modernizr-hook-on} &,
+		.js.#{$modernizr-hook-on} &:active { // relay same styles to active for touch devices
 			@content;
-	}
-
+		}
 	} @else {
 		.no-js &:hover, // the fallback
 		.no-js &:focus,
-		.js.no-touchevents &:hover, // enhanced for no-touch
-		.js.no-touchevents &:focus,
-		.js.touchevents &:active { // relay same styles to active for touch devices
+		.js.#{$modernizr-hook-off} &:hover, // enhanced for no-touch
+		.js.#{$modernizr-hook-off} &:focus,
+		.js.#{$modernizr-hook-on} &:active { // relay same styles to active for touch devices
 			@content;
 		}
 	}
@@ -57,7 +58,7 @@
 	padding: 0;
 }
 
-// Mixins for accessible show/hide
+// Accessible show/hide
 // @jhogue
 @mixin hide() {
 	display: none;
@@ -67,4 +68,38 @@
 @mixin show( $display: block ) {
 	display: $display;
 	visibility: visible;
+}
+
+// Provide REM and PX fallback for any property
+// Gulp used to do this for us, but Brunch does not
+// @accepts: css property, numeric value
+// @requires: value must be a pixel value, stripped of its unit
+// @dependson: px(), a function of ours, and rem(), a function of Bourbon
+// @returns: two property values, one with px, one with rem units
+// @jhogue
+@mixin rem($property, $value) {
+	$number: strip-units($value * 1);
+	$declaration: unquote($property);
+	// scss-lint:disable DuplicateProperty
+	#{$declaration}: px($number);
+	#{$declaration}: rem($number);
+}
+// Alias of the above
+@mixin rem-fontsize($value) {
+	@include rem('font-size', $value);
+}
+
+
+// Output a little 'tag' on the body:after content
+// @accepts: string
+// @requires: $content string should be in single quotes
+// @returns: entire body pseudo-class declaration
+// @usage: @include javascript_tag( 'actionhook' );
+// @jhogue
+@mixin javascript-listener( $content ) {
+	body:after {
+		content: $content; 
+		display: none; 
+		speak: none; 
+	}
 }

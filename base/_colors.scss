@@ -23,7 +23,8 @@ $palettes: (
 	// Brand should contain this project's specific color scheme
 	brand: (
 		base: #d62901, // Oomph red
-		dark: #a31f02
+		dark: #a31f02,
+		green: #61a143
 	),
 
 	// Default color scheme, edit values in relation to the numeric representation
@@ -60,7 +61,8 @@ $palettes: (
 $color-text: palette(mono);
 $color-link: palette(brand);
 $color-hover: palette(brand, dark);
+$color-body: palette(mono, 90);
 $color-background: palette(mono, white);
 $color-header: palette(mono, 10);
-$color-footer: palette(mono, 90);
+$color-footer: $color-body;
 $color-borders: palette(mono, 25);

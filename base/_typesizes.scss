@@ -1,0 +1,175 @@
+//
+// The idea:
+//  • One list of breakpoints.
+//  • One list of type sizes/scales with a corresponding key name.
+//
+// Helpers:
+//  • @include all-type-sizes( size-grouping ): A mixin that can iterate and output all type sizes from one breakpoint
+//  • @incude one-element-size( element ): A mixin that can iterate over the breakpoints, find the
+//	  matching type size, and output all breakpoint sizes for that element.
+// • type-size( element, size-grouping ): A function that can output one type size at one specific breakpoint
+//
+
+
+// Typographic Scales Map
+$type-sizes: (
+	// List as unitless pixels, use SASS function to convert to whatever you want
+	// Not supplying these programatically. Allows curation of sizes.
+
+	// Use the same $key names as the corresponding breakpoint in base/_breakpoints.scss $breakpoints
+
+	// 1.125 typographic scale base 16
+	// scss-lint:disable DeclarationOrder
+	base: (
+		giga: 33,
+		mega: 30,
+		kilo: 27,
+		h1: 24,
+		h2: 22,
+		h3: 20,
+		h4: 18,
+		base: 16,
+		micro: 13,
+	),
+
+	// 1.15 typographic scale base 17
+	large: (
+		giga: 40,
+		mega: 35,
+		kilo: 31,
+		h1: 27,
+		h2: 24,
+		h3: 21,
+		h4: 19,
+		base: 17,
+		micro: 14,
+	),
+
+	// 1.2 typographic scale base 18
+	x-large: (
+		giga: 61,
+		mega: 51,
+		kilo: 43,
+		h1: 36,
+		h2: 30,
+		h3: 25,
+		h4: 21,
+		base: 18,
+		micro: 15
+	),
+);
+
+
+// ! ===== Mixins to support pulling out type sizes at breakpoints =====
+
+//
+// A deep function used by other mixins
+// Check each $key-s by name and treats some of them special
+// @jhogue
+//
+@mixin type-size-key-value-output($item, $value, $base:'p,ul,ol,dl,table,form') {
+	// Add some warnings in case the element or breakpoint name does not exist?
+
+	@if str-slice(#{$item}, 0, 1) == 'h' {
+		// Output these as HTMl elements
+		#{$item} {
+			@include rem-fontsize($value);
+		}
+	} @elseif $item == 'base' {
+		// Output 'base' as a custom set of HTML elements
+		#{$base} {
+			@include rem-fontsize($value);
+		}
+	} @else {
+		// Output anything else as a class
+		.#{$item} {
+			@include rem-fontsize($value);
+		}
+	}
+}
+
+//
+// Returns all elements/sizes for an entire array set
+// usage: @include all-type-sizes( $array-key );
+// @jhogue
+//
+@mixin all-type-sizes($array: 'base') {
+	@each $item, $value in map-get($type-sizes, $array) {
+		@include type-size-key-value-output($item, $value);
+	}
+}
+
+//
+// Iterates over the list of breakpoints and returns only one element at ALL sizes
+// usage: @include one-element-size( $element );
+// @jhogue
+//
+@mixin one-element-size($elem: 'base') {
+	// First, loop over the breakpoints
+	@each $bp-name, $bp in $breakpoints {
+		@if map-has-key($type-sizes, $bp-name) {
+			// Found a matching key value for an array of type sizes
+			// Now loop over those matched key/value pairs
+			@each $key, $value in map-get($type-sizes, $bp-name) {
+				// When there are values in $type-sizes that match the name of a $breakpoints
+				@if $elem == $key {
+					// Finally, we output some CSS
+					@if $bp-name == 'base' {
+						@include rem-fontsize($value);
+					} @else {
+						@media (min-width: em($bp)) {
+							@include rem-fontsize($value);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// ! ===== Examples =====
+// ! @mixin all-type-sizes() – Output all elements for one breakpoint
+//	@media (min-width: bp(medium) ) {
+//		@include all-type-sizes(medium);
+//	}
+//
+// Outputs:
+// @media (min-width: 60em) {
+//	h1 {
+//		font-size: 1.6875rem;
+//	}
+//	h2 {
+//		font-size: 1.5rem;
+//	}
+//	h3 {
+//		font-size: 1.3125rem;
+//	}
+//	h4 {
+//		font-size: 1.1875rem;
+//	}
+//	p {
+//		font-size: 1.0625rem;
+//	}
+//}
+//
+// ! @mixin one-element-size() – Output one specific element for all breakpoints
+//	alpha { @include one-element-size(h1); }
+//
+// Outputs:
+//	alpha { font-size: 1.5rem; }
+//
+//	@media (min-width: 61.25em) {
+//		.alpha { font-size: 1.6875rem; }
+//	}
+//
+// @media (min-width: 75em) {
+// 	.alpha { font-size: 2.25rem; }
+// }
+//
+//
+// ! @function rwd-size() — Output one size for one element
+//	.bravo { font-size: rem( rwd-size(h2,large) ); }
+//
+// Outputs:
+//	.bravo { font-size: 1.5rem; }
