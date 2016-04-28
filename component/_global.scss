@@ -27,6 +27,18 @@ object {
 }
 
 //
+// Text selection colors. Keep declarations separate
+//
+::selection {
+	background: palette(brand);
+	color: palette(mono, white);
+}
+::-moz-selection {
+	background: palette(brand);
+	color: palette(mono, white);
+}
+
+//
 // Reset lists when used as navigational elements
 //
 nav > ul, 
