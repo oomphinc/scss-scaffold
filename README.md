@@ -21,21 +21,24 @@ Likewise, if there is a new great idea that we should incorporate into this scaf
 
 If you are going to compile and test this Scaffold locally, you will need to add the dependencies Bourbon and Neat:
 
-```
+```sh
 # You already have SASS installed, right? 
 $ which sass
+
 # You should see a path to your local SASS copy
-# Not there? Head over here to install it. http://sass-lang.com/install
+# Not there? Install it:
+$ sudo gem install sass
 
 # Requires Sass 3.3+
 $ sass --v
 $ Sass 3.4.20
-# Old version?
-$ gem update sass
+
+# Old version? Update!
+$ sudo gem update sass
 
 # Never installed bourbon or neat? Install their gems first.
-$ gem install bourbon
-$ gem install neat
+$ sudo gem install bourbon
+$ sudo gem install neat
 
 # Then, navigate to the directory to install Bourbon into
 $ cd /scaffold/libraries
@@ -46,7 +49,7 @@ $ neat install
 ### Compile manually
 While working on the Scaffold, compile your CSS and test the output by running it in this folder. Here's the command: 
 
-```
+```sh
 $ sass --watch styles.scss:output.css --style compressed
 ```
 
@@ -57,7 +60,7 @@ Install: `gem install scss_lint`
 
 Run `scss-lint` from the command line by passing in a directory (or multiple directories) to recursively scan:
 
-```
+```sh
 # from the root of your system, set the path to this Scaffold
 $ scss-lint ~/path/to/scaffold/ 
 ```
