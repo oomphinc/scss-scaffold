@@ -31,19 +31,20 @@ input:not([type='radio']) {
 		color: $form-input-placeholder-color;
 		font-style: italic;
 	}
-	
+
 	@include touch-hover() {
 		border-color: darken($form-input-border-focus, 10%);
 		outline: none;
 	}
-	
-	&[required]:focus, 
-	&[required=true]:focus, 
+
+	&[required]:focus,
+	&[required=true]:focus,
 	&[required="required"]:focus {
 		border-color: palette(brand);
 		box-shadow: 0 0 .5em rgba( palette(brand), .5 );
 		outline: none;
 	}
+}
 
 #{$all-text-inputs-focus} {
 	color: $form-input-color;
