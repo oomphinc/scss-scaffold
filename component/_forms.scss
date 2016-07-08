@@ -25,7 +25,6 @@ input:not([type='radio']) {
 	color: $form-input-color;
 	padding: $form-input-padding;
 	width: 100%;
-	@include transition( all 250ms ease );
 
 	@include placeholder {
 		color: $form-input-placeholder-color;
