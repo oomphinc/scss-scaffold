@@ -7,28 +7,39 @@
 // Adds styles via @content
 // @jhogue
 //
-@mixin touch-hover( $disabled: false ) {
-	$modernizr-hook-off: 'no-touch';
-	$modernizr-hook-on: 'touch';
+@mixin touch-hover( $state: 'idle', $disabled: false ) {
+	// Change these as needed, based on your version of Modernizr
+	$modernizr-hook-off: 'no-touchevents';
+	$modernizr-hook-on: 'touchevents';
 
-	@if $disabled {
-		.no-js &,
-		.no-js &:hover, // the fallback
-		.no-js &:focus,
-		.js.#{$modernizr-hook-off} &,
-		.js.#{$modernizr-hook-off} &:hover, // enhanced for no-touch
-		.js.#{$modernizr-hook-off} &:focus,
-		.js.#{$modernizr-hook-on} &,
-		.js.#{$modernizr-hook-on} &:active { // relay same styles to active for touch devices
-			@content;
+	@if $state == 'idle' {
+		&,
+		&:link,
+		&:visited {
+	    @content;
 		}
-	} @else {
-		.no-js &:hover, // the fallback
-		.no-js &:focus,
-		.js.#{$modernizr-hook-off} &:hover, // enhanced for no-touch
-		.js.#{$modernizr-hook-off} &:focus,
-		.js.#{$modernizr-hook-on} &:active { // relay same styles to active for touch devices
-			@content;
+	} 
+
+	@if $state == 'hover' {
+		@if $disabled {
+			.no-js &,
+			.no-js &:hover, // the fallback
+			.no-js &:focus,
+			.js.#{$modernizr-hook-off} &,
+			.js.#{$modernizr-hook-off} &:hover, // enhanced for no-touch
+			.js.#{$modernizr-hook-off} &:focus,
+			.js.#{$modernizr-hook-on} &,
+			.js.#{$modernizr-hook-on} &:active { // relay same styles to active for touch devices
+				@content;
+			}
+		} @else {
+			.no-js &:hover, // the fallback
+			.no-js &:focus,
+			.js.#{$modernizr-hook-off} &:hover, // enhanced for no-touch
+			.js.#{$modernizr-hook-off} &:focus,
+			.js.#{$modernizr-hook-on} &:active { // relay same styles to active for touch devices
+				@content;
+			}
 		}
 	}
 }
@@ -80,15 +91,15 @@
   @if length($ratio) < 2 or length($ratio) > 2 {
     @warn "$ratio must be a list with two values.";
   }
-  width: 100%;
   height: 0;
   padding-bottom: percentage(nth($ratio, 2) / nth($ratio, 1));
+  width: 100%;
 }
 
 // Apply as a typical container mixin
 @mixin proportional-container( $ratio: 1 1 ) {
-  position: relative;
   overflow: hidden;
+  position: relative;
   z-index: 1;
   @include maintain-ratio( $ratio );
 }
@@ -118,8 +129,8 @@
     // Default: Fill the height, let the width be what it needs to be
     @include transform( translateX(-50%) );
     top: 0; left: 50%;
-    max-width: 200%; // reset the max-width: 100% present on all img elements
     height: 100%;
+    max-width: 200%; // reset the max-width: 100% present on all img elements
     width: auto;
   }
 }
