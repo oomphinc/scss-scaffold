@@ -63,6 +63,18 @@ $type-sizes: (
 // ! ===== Mixins to support pulling out type sizes at breakpoints =====
 
 //
+// Deep getter to go into the $type-sizes array
+// and return with a specific element at a particular breakpoint
+// @jhogue
+//
+// @usage: .bravo { font-size: type-size(h2,large); }
+// @returns: .bravo { font-size: 1.5rem; }
+//
+@function type-size($break, $element: 'base') {
+  @return map-get( map-get($type-sizes, $break), $element );
+}
+
+//
 // A deep function used by other mixins
 // Check each $key-s by name and treats some of them special
 // @jhogue
@@ -93,6 +105,14 @@ $type-sizes: (
 // usage: @include all-type-sizes( $array-key );
 // @jhogue
 //
+// @usage: @media (min-width: bp(medium) ) { @include all-type-sizes(medium); }
+// @returns: @media (min-width: 60em) {
+//	h1 { font-size: 1.6875rem; }
+//	h2 { font-size: 1.5rem; }
+//	h3 { font-size: 1.3125rem; }
+//	h4 { font-size: 1.1875rem; }
+//	p { font-size: 1.0625rem; }
+//
 @mixin all-type-sizes($array: 'base') {
 	@each $item, $value in map-get($type-sizes, $array) {
 		@include type-size-key-value-output($item, $value);
@@ -103,6 +123,15 @@ $type-sizes: (
 // Iterates over the list of breakpoints and returns only one element at ALL sizes
 // usage: @include one-element-size( $element );
 // @jhogue
+//
+// @usage: alpha { @include one-element-size(h1); }
+// @returns: alpha { font-size: 1.5rem; }
+//    @media (min-width: 61.25em) {
+//		  .alpha { font-size: 1.6875rem; }
+//	  }
+//    @media (min-width: 75em) {
+//   	  .alpha { font-size: 2.25rem; }
+//    }
 //
 @mixin one-element-size($elem: 'base') {
 	// First, loop over the breakpoints
@@ -126,50 +155,3 @@ $type-sizes: (
 		}
 	}
 }
-
-
-// ! ===== Examples =====
-// ! @mixin all-type-sizes() – Output all elements for one breakpoint
-//	@media (min-width: bp(medium) ) {
-//		@include all-type-sizes(medium);
-//	}
-//
-// Outputs:
-// @media (min-width: 60em) {
-//	h1 {
-//		font-size: 1.6875rem;
-//	}
-//	h2 {
-//		font-size: 1.5rem;
-//	}
-//	h3 {
-//		font-size: 1.3125rem;
-//	}
-//	h4 {
-//		font-size: 1.1875rem;
-//	}
-//	p {
-//		font-size: 1.0625rem;
-//	}
-//}
-//
-// ! @mixin one-element-size() – Output one specific element for all breakpoints
-//	alpha { @include one-element-size(h1); }
-//
-// Outputs:
-//	alpha { font-size: 1.5rem; }
-//
-//	@media (min-width: 61.25em) {
-//		.alpha { font-size: 1.6875rem; }
-//	}
-//
-// @media (min-width: 75em) {
-// 	.alpha { font-size: 2.25rem; }
-// }
-//
-//
-// ! @function rwd-size() — Output one size for one element
-//	.bravo { font-size: rem( rwd-size(h2,large) ); }
-//
-// Outputs:
-//	.bravo { font-size: 1.5rem; }
