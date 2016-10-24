@@ -1,18 +1,7 @@
-// ! ===== Bourbon and Neat Configuration ===== 
-@import "../libraries/neat/neat-helpers";
-
-
-// Grid Settings
-$grid-columns: 12;
-$min-width: em(320);
-$max-width: em(1200);
-$visual-grid: false;
-
-
 // Breakpoints Map
 $breakpoints: (
 	// List as unitless pixels
-	base: 480, 
+	base: 480,
 	small: 620, // 480 + 140
 	medium: 760, // 640 + 140
 	large: 1000, // 760 + 240
