@@ -20,6 +20,7 @@ label {}
 #{$all-text-inputs} {
 	@include transition( all 250ms ease );
 	border: $form-input-border-width solid $form-input-border-color;
+	box-sizing: border-box; // Declare explicitly, as form elements do not inherit from HTML declaration in iOS and Android
 	border-radius: $form-input-border-radius;
 	color: $form-input-color;
 	padding: $form-input-padding;
