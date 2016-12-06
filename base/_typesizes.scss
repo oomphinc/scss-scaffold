@@ -67,11 +67,12 @@ $type-sizes: (
 // and return with a specific element at a particular breakpoint
 // @jhogue
 //
-// @usage: .bravo { font-size: type-size(h2,large); }
-// @returns: .bravo { font-size: 1.5rem; }
+// @usage: .bravo { @include one-type-size(large, h2); }
+// @returns: .bravo { font-size: 0.66667rem; }
 //
-@function type-size($break, $element: 'base') {
-  @return map-get( map-get($type-sizes, $break), $element );
+@mixin one-type-size($break, $element: 'base') {
+  $elementsize: map-get( map-get($type-sizes, $break), $element );
+  font-size: rem-fontsize($elementsize);
 }
 
 //
