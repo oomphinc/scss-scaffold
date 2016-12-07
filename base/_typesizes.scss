@@ -113,7 +113,7 @@ $type-sizes: (
 //	h3 { font-size: 1.3125rem; }
 //	h4 { font-size: 1.1875rem; }
 //	p { font-size: 1.0625rem; }
-//
+// }
 @mixin all-type-sizes($array: 'base') {
 	@each $item, $value in map-get($type-sizes, $array) {
 		@include type-size-key-value-output($item, $value);

@@ -41,67 +41,67 @@
 // }
 //
 @mixin touch-hover( $state: 'idle', $disabled: false ) {
-	$modernizr-hook-off: 'no-touchevents';
-	$modernizr-hook-on: 'touchevents';
+  $modernizr-hook-off: 'no-touchevents';
+  $modernizr-hook-on: 'touchevents';
   $modernizr: true !default; // set this to false to maintain mixin but use the no-modernizr fallbacks
 
-	@if $state == 'idle' {
-		&,
-		&:link,
-		&:visited {
-		  @content;
-		}
-	}
+@if $state == 'idle' {
+  &,
+  &:link,
+  &:visited {
+    @content;
+  }
+}
 
-	@if $state == 'hover' {
-		@if $disabled == true {
-  		// If this link is meant to look disabled, style all states the same
-  		@if $modernizr == true {
-    		.no-js &,
-    		.no-js &:link,
-    		.no-js &:visited,
-  			.no-js &:hover,
-  			.no-js &:focus,
-  			.js.#{$modernizr-hook-off} &,
-  			.js.#{$modernizr-hook-off} &:link,
-  			.js.#{$modernizr-hook-off} &:visited,
-  			.js.#{$modernizr-hook-off} &:hover,
-  			.js.#{$modernizr-hook-off} &:focus,
-  			.js.#{$modernizr-hook-on} &,
-  			.js.#{$modernizr-hook-on} &:active {
-  				cursor: default;
-  				@content;
-  			}
+  @if $state == 'hover' {
+    @if $disabled == true {
+      // If this link is meant to look disabled, style all states the same
+      @if $modernizr == true {
+        .no-js &,
+        .no-js &:link,
+        .no-js &:visited,
+        .no-js &:hover,
+        .no-js &:focus,
+        .js.#{$modernizr-hook-off} &,
+        .js.#{$modernizr-hook-off} &:link,
+        .js.#{$modernizr-hook-off} &:visited,
+        .js.#{$modernizr-hook-off} &:hover,
+        .js.#{$modernizr-hook-off} &:focus,
+        .js.#{$modernizr-hook-on} &,
+        .js.#{$modernizr-hook-on} &:active {
+          cursor: default;
+          @content;
+        }
       } @else {
         &,
         &:link,
         &:visited,
-  			&:hover,
-  			&:focus,
-  			&:active {
-    			cursor: default;
-    			@content;
-  			}
+        &:hover,
+        &:focus,
+        &:active {
+          cursor: default;
+          @content;
+        }
       }
     } @else {
-  		@if $modernizr == true {
-    		.no-js &:hover,
-  			.no-js &:focus,
-  			.js.#{$modernizr-hook-off} &:hover,
-  			.js.#{$modernizr-hook-off} &:focus,
-  			.js.#{$modernizr-hook-on} &:active {
-  				@content;
-  			}
+      @if $modernizr == true {
+        .no-js &:hover,
+        .no-js &:focus,
+        .js.#{$modernizr-hook-off} &:hover,
+        .js.#{$modernizr-hook-off} &:focus,
+        .js.#{$modernizr-hook-on} &:active {
+          @content;
+        }
       } @else {
         &,
-  			&:hover,
-  			&:focus,
-  			&:active {
-    			@content;
-  			}
+        &:hover,
+        &:focus,
+        &:active {
+          @content;
+        }
       }
     }
-	}
+  }
 }
 
 // Column Grid
