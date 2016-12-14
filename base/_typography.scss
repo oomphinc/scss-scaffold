@@ -13,28 +13,29 @@ button,
 input,
 select,
 textarea {
-	color: palette(mono);
-	font-family: $font-sans;
-	font-weight: normal;
-	line-height: $line-height;
+  color: palette(mono);
+  font-family: $font-sans;
+  font-weight: $font-weight-normal;
+  line-height: $line-height;
 }
 
 a {
-	@include transition( all 250ms ease );
-	border-bottom: 3px solid palette(mono, 10);
-	color: palette(mono, 75);
-	text-decoration: none;
+  @include transition(all 250ms ease);
 
-	@include touch-hover() {
-		border-bottom-color: palette(mono, 25);
-		color: palette(brand);
-		text-decoration: none;
-	}
+  @include touch-hover('idle') {
+    color: palette(mono, 75);
+    text-decoration: none;
+  }
 
-	&[href^=tel] {
-		color: inherit;
-		text-decoration: none;
-	}
+  @include touch-hover('hover') {
+    color: palette(brand);
+    text-decoration: none;
+  }
+
+  &[href^=tel] {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 // Other sizes to use or @extend
@@ -58,45 +59,45 @@ h5,
 .echo,
 h6,
 .foxtrot {
-	clear: both;
-	color: palette(mono, 75);
+  clear: both;
+  color: palette(mono, 75);
 }
 
 h1,
 .alpha {
-	@include one-element-size(h1);
+  @include one-element-size(h1);
 }
 
 h2,
 .bravo {
-	@include one-element-size(h2);
-	font-weight: 700;
+  @include one-element-size(h2);
+  font-weight: $font-weight-bold;
 }
 
 h3,
 .charlie {
-	@include one-element-size(h3);
+  @include one-element-size(h3);
 }
 
 h4,
 .delta {
-	@include one-element-size(h4);
+  @include one-element-size(h4);
 }
 
 %base-rwd-size { @include one-element-size(); }
 
 h5,
 .echo {
-	@extend %base-rwd-size;
-	font-weight: 700;
-	letter-spacing: .03125em;
-	text-transform: uppercase;
+  @extend %base-rwd-size;
+  font-weight: $font-weight-bold;
+  letter-spacing: .03125em;
+  text-transform: uppercase;
 }
 
 h6,
 .foxtrot {
-	@extend %base-rwd-size;
-	font-weight: 700;
+  @extend %base-rwd-size;
+  font-weight: $font-weight-bold;
 }
 
 p,
@@ -108,7 +109,7 @@ input,
 button,
 select,
 textarea {
-	@extend %base-rwd-size;
+  @extend %base-rwd-size;
 }
 
 p,
@@ -118,7 +119,7 @@ dl,
 address,
 form,
 table {
-	margin-bottom: $vert-line-height;
+  margin-bottom: $vert-line-height;
 }
 
 .micro { @include one-element-size(micro); }
@@ -139,7 +140,7 @@ blockquote {
 		font-family: $font-serif;
 		font-size: rem(48);
 		font-style: italic;
-		font-weight: bold;
+		font-weight: $font-weight-bold;
 		line-height: 1;
 	}
 
@@ -201,7 +202,7 @@ dd {
 
 dt {
 	border-bottom: 1px solid $color-borders;
-	font-weight: 700;
+	font-weight: $font-weight-bold;
 }
 
 dd { border-bottom: 2px solid $color-borders; }
@@ -217,7 +218,7 @@ table {
 
 	th {
 		border-bottom: 2px solid $table-border-color;
-		font-weight: 700;
+		font-weight: $font-weight-bold;
 		padding: $table-cell-padding;
 		text-align: left;
 	}
@@ -270,13 +271,13 @@ dfn[title] { cursor: help; }
 
 abbr[title] {
 	font-size: 75%;
-	font-weight: 700;
+	font-weight: $font-weight-bold;
 	letter-spacing: 0.125em;
 	text-transform: uppercase;
 }
 
 b,
-strong { font-weight: 700; }
+strong { font-weight: $font-weight-bold; }
 
 i,
 em,

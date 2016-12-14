@@ -45,13 +45,13 @@
   $modernizr-hook-on: 'touchevents';
   $modernizr: true !default; // set this to false to maintain mixin but use the no-modernizr fallbacks
 
-@if $state == 'idle' {
-  &,
-  &:link,
-  &:visited {
-    @content;
+  @if $state == 'idle' {
+    &,
+    &:link,
+    &:visited {
+      @content;
+    }
   }
-}
 
   @if $state == 'hover' {
     @if $disabled == true {
