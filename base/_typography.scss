@@ -20,9 +20,9 @@ textarea {
 }
 
 a {
-  @include transition( all 250ms ease );
+  @include transition(all 250ms ease);
 
-	@include touch-hover('hover') {
+  @include touch-hover('idle') {
     color: palette(mono, 75);
     text-decoration: none;
   }
