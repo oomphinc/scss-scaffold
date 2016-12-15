@@ -47,8 +47,8 @@ textarea {
   &[required]:focus,
   &[required=true]:focus,
   &[required="required"]:focus {
-    border-color: palette(brand);
-    box-shadow: 0 0 .5em rgba( palette(brand), .5 );
+    border-color: $color-error;
+    box-shadow: 0 0 .5em rgba( $color-error, .5 );
     outline: none;
   }
 }
