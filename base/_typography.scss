@@ -297,7 +297,7 @@ pre {
 
 	code {
 		border-bottom: 1px solid palette(mono, 25);
-		border-left: 5px solid palette(brand, green);
+		border-left: 5px solid $color-code;
 		border-radius: 0;
 		display: block;
 		margin: 0;
@@ -327,7 +327,7 @@ samp {
 }
 
 code {
-	color: palette(brand, green);
+	color: $color-code;
 }
 
 mark { background-color: #ff9; }
