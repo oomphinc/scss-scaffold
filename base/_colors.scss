@@ -37,6 +37,7 @@ $palettes: (
 		base: #888,
 		33: #999,
 		25: #ccc,
+		15: #e6e6e6,
 		10: #f2f2f2,
 		white: #fff
 	),
@@ -73,6 +74,8 @@ $palettes: (
 $color-text: palette(mono);
 $color-link: palette(brand);
 $color-hover: palette(brand, dark);
+$color-code: palette(brand, green);
+$color-error: palette(brand);
 $color-body: palette(mono, 90);
 $color-background: palette(mono, white);
 $color-header: palette(mono, 10);
