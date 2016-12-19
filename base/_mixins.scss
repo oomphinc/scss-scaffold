@@ -243,9 +243,13 @@
 		font-style: normal;
 		font-weight: normal;
 		text-decoration: inherit;
-		margin-right: .5em;
 		-webkit-font-smoothing: antialiased;
 		moz-osx-font-smoothing: grayscale;
+
+		@if $position == before {
+			margin-right: .5em;
+		}
+
 		@if $position == after {
 			margin-left: .5em;
 		}
