@@ -7,17 +7,17 @@
 // Adds styles via @content
 // @jhogue
 
-// Usage: 
+// Usage:
 // .link {
 //   padding: .5em 1em; // Styles that do not change when interacting with this element
-// 
+//
 //   @include touch-hover('idle') {
 //     color: black;
 //   }
 //   @include touch-hover('hover') {
 //     color: red;
 //   }
-//   
+//
 //   &__disabled {
 //     @include touch-hover('hover', true) {
 //      color: silver;
@@ -25,7 +25,7 @@
 //   }
 // }
 
-// Outputs: 
+// Outputs:
 // .link {
 //   padding: .5em 1em;
 // }
@@ -41,66 +41,66 @@
 // }
 //
 @mixin touch-hover( $state: 'idle', $disabled: false ) {
-  $modernizr-hook-off: 'no-touchevents';
-  $modernizr-hook-on: 'touchevents';
-  $modernizr: true !default; // set this to false to maintain mixin but use the no-modernizr fallbacks
+	$modernizr-hook-off: 'no-touchevents';
+	$modernizr-hook-on: 'touchevents';
+	$modernizr: true !default; // set this to false to maintain mixin but use the no-modernizr fallbacks
 
-  @if $state == 'idle' {
-    &,
-    &:link,
-    &:visited {
-      @content;
-    }
-  }
+	@if $state == 'idle' {
+		&,
+		&:link,
+		&:visited {
+			@content;
+		}
+	}
 
-  @if $state == 'hover' {
-    @if $disabled == true {
-      // If this link is meant to look disabled, style all states the same
-      @if $modernizr == true {
-        .no-js &,
-        .no-js &:link,
-        .no-js &:visited,
-        .no-js &:hover,
-        .no-js &:focus,
-        .js.#{$modernizr-hook-off} &,
-        .js.#{$modernizr-hook-off} &:link,
-        .js.#{$modernizr-hook-off} &:visited,
-        .js.#{$modernizr-hook-off} &:hover,
-        .js.#{$modernizr-hook-off} &:focus,
-        .js.#{$modernizr-hook-on} &,
-        .js.#{$modernizr-hook-on} &:active {
-          cursor: default;
-          @content;
-        }
-      } @else {
-        &,
-        &:link,
-        &:visited,
-        &:hover,
-        &:focus,
-        &:active {
-          cursor: default;
-          @content;
-        }
-      }
-    } @else {
-      @if $modernizr == true {
-        .no-js &:hover,
-        .no-js &:focus,
-        .js.#{$modernizr-hook-off} &:hover,
-        .js.#{$modernizr-hook-off} &:focus,
-        .js.#{$modernizr-hook-on} &:active {
-          @content;
-        }
-      } @else {
-        &:hover,
-        &:focus,
-        &:active {
-          @content;
-        }
-      }
-    }
-  }
+	@if $state == 'hover' {
+		@if $disabled == true {
+			// If this link is meant to look disabled, style all states the same
+			@if $modernizr == true {
+				.no-js &,
+				.no-js &:link,
+				.no-js &:visited,
+				.no-js &:hover,
+				.no-js &:focus,
+				.js.#{$modernizr-hook-off} &,
+				.js.#{$modernizr-hook-off} &:link,
+				.js.#{$modernizr-hook-off} &:visited,
+				.js.#{$modernizr-hook-off} &:hover,
+				.js.#{$modernizr-hook-off} &:focus,
+				.js.#{$modernizr-hook-on} &,
+				.js.#{$modernizr-hook-on} &:active {
+					cursor: default;
+					@content;
+				}
+			} @else {
+				&,
+				&:link,
+				&:visited,
+				&:hover,
+				&:focus,
+				&:active {
+					cursor: default;
+					@content;
+				}
+			}
+		} @else {
+			@if $modernizr == true {
+				.no-js &:hover,
+				.no-js &:focus,
+				.js.#{$modernizr-hook-off} &:hover,
+				.js.#{$modernizr-hook-off} &:focus,
+				.js.#{$modernizr-hook-on} &:active {
+					@content;
+				}
+			} @else {
+				&:hover,
+				&:focus,
+				&:active {
+					@content;
+				}
+			}
+		}
+	}
 }
 
 // Column Grid
@@ -147,51 +147,51 @@
 // Example: A 16:9 ratio would look like this: .element { @include maintain-ratio(16 9); }
 // @jhogue
 @mixin maintain-ratio($ratio: 1 1) {
-  @if length($ratio) < 2 or length($ratio) > 2 {
-    @warn "$ratio must be a list with two values.";
-  }
-  height: 0;
-  padding-bottom: percentage(nth($ratio, 2) / nth($ratio, 1));
-  width: 100%;
+	@if length($ratio) < 2 or length($ratio) > 2 {
+		@warn "$ratio must be a list with two values.";
+	}
+	height: 0;
+	padding-bottom: percentage(nth($ratio, 2) / nth($ratio, 1));
+	width: 100%;
 }
 
 // Apply as a typical container mixin
 @mixin proportional-container( $ratio: 1 1 ) {
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
-  @include maintain-ratio( $ratio );
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+	@include maintain-ratio( $ratio );
 }
 
 // Use like you would background-cover, except on imgs inside a wrapper
 // Accepts '100% auto' (width height), 'auto 100%' (width height) or 'contain' as values
 @mixin image-cover( $center: '100% auto' ) {
-  $allowed: ('100% auto','auto 100%','contain');
-  @if not index($allowed, $center) {
+	$allowed: ('100% auto','auto 100%','contain');
+	@if not index($allowed, $center) {
 		@error "Keyword `#{$center}` for mixin 'image-cover' is not allowed. #{$allowed} is expected.";
-  }
-  position: absolute;
-  z-index: 2;
-  @if ($center == 'contain') {
-    @include transform( translate(-50%,-50%) );
-    top: 50%; left: 50%;
-    height: auto;
-    max-height: 100%; // we already have a rule for max-width: 100%
-    width: auto;
-  } @else if ($center == '100% auto') {
-    // Fill the width, let the height be what it needs to be
-    @include transform( translateY(-50%) );
-    top: 50%; left: 0;
-    height: auto;
-    width: 100%;
-  } @else {
-    // Default: Fill the height, let the width be what it needs to be
-    @include transform( translateX(-50%) );
-    top: 0; left: 50%;
-    height: 100%;
-    max-width: 200%; // reset the max-width: 100% present on all img elements
-    width: auto;
-  }
+	}
+	position: absolute;
+	z-index: 2;
+	@if ($center == 'contain') {
+		@include transform( translate(-50%,-50%) );
+		top: 50%; left: 50%;
+		height: auto;
+		max-height: 100%; // we already have a rule for max-width: 100%
+		width: auto;
+	} @else if ($center == '100% auto') {
+		// Fill the width, let the height be what it needs to be
+		@include transform( translateY(-50%) );
+		top: 50%; left: 0;
+		height: auto;
+		width: 100%;
+	} @else {
+		// Default: Fill the height, let the width be what it needs to be
+		@include transform( translateX(-50%) );
+		top: 0; left: 50%;
+		height: 100%;
+		max-width: 200%; // reset the max-width: 100% present on all img elements
+		width: auto;
+	}
 }
 
 // Provide REM and PX fallback for any property
@@ -222,8 +222,36 @@
 // @jhogue
 @mixin javascript-listener( $content ) {
 	body:after {
-		content: $content; 
-		display: none; 
-		speak: none; 
+		content: $content;
+		display: none;
+		speak: none;
+	}
+}
+
+// Icon Font Mixin
+// @accepts string(s)
+// @param: - $icon - "\f105"
+// @param: - $positin - before or after
+// @param: - $color - any hex value
+// @usage: icon("\f105", before, palette(brand, primary));
+@mixin icon($icon, $position:before, $color:inherit) {
+	&::#{$position} {
+		content: $icon;
+		color: $color;
+		display: inline-block;
+		font-family: 'Custom Font Family';
+		font-style: normal;
+		font-weight: normal;
+		text-decoration: inherit;
+		-webkit-font-smoothing: antialiased;
+		moz-osx-font-smoothing: grayscale;
+
+		@if $position == before {
+			margin-right: .5em;
+		}
+
+		@if $position == after {
+			margin-left: .5em;
+		}
 	}
 }
