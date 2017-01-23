@@ -23,54 +23,54 @@ $ICON_FONT_FAMILY: 'font-awesome';
 /// @content the @content directive is used
 // 
 /// @example
-/// .link {
-///  padding: .5em 1em; // Styles that do not change when interacting with this element
-/// 
-///  @include touch-hover('idle') {
-///    color: black; // Styles for the :link and :visited states
-///  }
-///  @include touch-hover('hover') {
-///    color: red; // Styles for the :focus, :hover and :active states
-///  }
-/// 
-///  &__disabled {
-///    @include touch-hover('hover', true) {
-///     color: silver; // All psuedo states are included
-///    }
-///  }
-/// }
+///   //  .link {
+///   //   padding: .5em 1em; // Styles that do not change when interacting with this element
+///   //  
+///   //   @include touch-hover('idle') {
+///   //     color: black; // Styles for the :link and :visited states
+///   //   }
+///   //   @include touch-hover('hover') {
+///   //     color: red; // Styles for the :focus, :hover and :active states
+///   //   }
+///   //  
+///   //   &__disabled {
+///   //     @include touch-hover('hover', true) {
+///   //      color: silver; // All psuedo states are included
+///   //     }
+///   //   }
+///   //  }
 ///
 /// @output
-/// .link {
-///   padding: .5em 1em;
-/// }
-/// .link,
-/// .link:link,
-/// .link:visited {
-///   color: black;
-/// }
-/// .no-js .link:hover,
-/// .no-js .link:focus,
-/// .js.no-touchevents .link:hover,
-/// .js.no-touchevents .link:focus,
-/// .js.touchevents .link:active {
-///   color: red;
-/// }
-/// .no-js .link__disabled,
-/// .no-js .link__disabled:link,
-/// .no-js .link__disabled:visited,
-/// .no-js .link__disabled:hover,
-/// .no-js .link__disabled:focus,
-/// .js.no-touchevents .link__disabled,
-/// .js.no-touchevents .link__disabled:link,
-/// .js.no-touchevents .link__disabled:visited,
-/// .js.no-touchevents .link__disabled:hover,
-/// .js.no-touchevents .link__disabled:focus,
-/// .js.touchevents .link__disabled,
-/// .js.touchevents .link__disabled:active {
-///   cursor: default;
-///   color: silver;
-/// }
+///   //  .link {
+///   //    padding: .5em 1em;
+///   //  }
+///   //  .link,
+///   //  .link:link,
+///   //  .link:visited {
+///   //    color: black;
+///   //  }
+///   //  .no-js .link:hover,
+///   //  .no-js .link:focus,
+///   //  .js.no-touchevents .link:hover,
+///   //  .js.no-touchevents .link:focus,
+///   //  .js.touchevents .link:active {
+///   //    color: red;
+///   //  }
+///   //  .no-js .link__disabled,
+///   //  .no-js .link__disabled:link,
+///   //  .no-js .link__disabled:visited,
+///   //  .no-js .link__disabled:hover,
+///   //  .no-js .link__disabled:focus,
+///   //  .js.no-touchevents .link__disabled,
+///   //  .js.no-touchevents .link__disabled:link,
+///   //  .js.no-touchevents .link__disabled:visited,
+///   //  .js.no-touchevents .link__disabled:hover,
+///   //  .js.no-touchevents .link__disabled:focus,
+///   //  .js.touchevents .link__disabled,
+///   //  .js.touchevents .link__disabled:active {
+///   //    cursor: default;
+///   //    color: silver;
+///   //  }
 ///
 // @parameter 
 // 1. 'idle' or 'hover'
@@ -186,41 +186,43 @@ $ICON_FONT_FAMILY: 'font-awesome';
 
 
 /// Set a container to crop an element and maintain an aspect ratio
-/// Use proportional-container() and image-crop() together:
+/// Use proportional-container() and image-cover() together:
 /// @example
-///   .container {
-///     @include proportional-container(16 9);
-///     
-///     .element {
-///       @include image-cover();
-///     }
-///   }
+///   // .container {
+///   //   @include proportional-container(16 9);
+///   //   
+///   //   .element {
+///   //     @include image-cover();
+///   //   }
+///   // }
 ///
 /// @outputs
-///   .container {
-///     position: relative;
-///     overflow: hidden;
-///     z-index: 1;
-///     width: 100%;
-///     height: 0;
-///     padding-bottom: 56.25%;
-///   }
-///   .container .element {
-///   	transform: translateX(-50%);
-///   	top: 0;
-///   	left: 50%;
-///   	width: auto;
-///   	max-width: none;
-///   	height: 100%;
-///   }
+///   // .container {
+///   //   position: relative;
+///   //   overflow: hidden;
+///   //   z-index: 1;
+///   //   width: 100%;
+///   //   height: 0;
+///   //   padding-bottom: 56.25%;
+///   // }
+///   // .container .element {
+///   // 	transform: translateX(-50%);
+///   // 	top: 0;
+///   // 	left: 50%;
+///   // 	width: auto;
+///   // 	max-width: none;
+///   // 	height: 100%;
+///   // }
 /// @link https://gist.github.com/brianmcallister/2932463
 
 
 /// maintain-ratio() =
 /// Helper mixin that calculates a percentage padding value to "fix" the proportions of a container to an aspect ratio
 /// @require SASS length(), SASS percentage(), SASS nth()
-/// @example @include maintain-ratio(16 9)
-/// @output width: 100%; height: 0; padding-bottom: 56.25%;
+/// @example
+///  //  @include maintain-ratio(16 9)
+/// @output
+///  //  width: 100%; height: 0; padding-bottom: 56.25%;
 /// @parameter space separated ratio definition
 ///
 @mixin maintain-ratio($ratio: 1 1) {
@@ -235,8 +237,10 @@ $ICON_FONT_FAMILY: 'font-awesome';
 /// proportional-container() =
 /// Sets a container to "crop" an element to a fixed aspect ratio
 /// @require Oomph maintain-ratio()
-/// @example @include proportional-container(16 9)
-/// @output position: relative; overflow: hidden; z-index: 1; height: 0; padding-bottom: 56.25%; width: 100%
+/// @example 
+///  //  @include proportional-container(16 9)
+/// @output
+///  //  position: relative; overflow: hidden; z-index: 1; height: 0; padding-bottom: 56.25%; width: 100%
 /// @parameter space separated ratio definition
 ///
 @mixin proportional-container( $ratio: 1 1 ) {
@@ -249,7 +253,8 @@ $ICON_FONT_FAMILY: 'font-awesome';
 /// image-cover() =
 /// Sets a container to "crop" an element to a fixed aspect ratio
 /// @require Bourbon transform()
-/// @example @include image-cover(auto 100%)
+/// @example
+///  //  @include image-cover(auto 100%)
 /// @output various depending on parameter
 /// @parameter '100% auto' (width height), 'auto 100%' (width height) or 'contain'
 ///
@@ -293,8 +298,10 @@ $ICON_FONT_FAMILY: 'font-awesome';
 /// Provide REM and PX fallback for any property
 /// @author jhogue
 /// @require Bourbon px() and rem() functions
-/// @example @include rem('padding-top', 32)
-/// @output padding-top: 32px; padding-top: 2rem;
+/// @example 
+///  //  @include rem('padding-top', 32)
+/// @output
+///  //  padding-top: 32px; padding-top: 2rem;
 /// @parameter 
 ///   1. valid css property declaration
 ///   2. numeric value assumed to be pixels
@@ -319,8 +326,10 @@ $ICON_FONT_FAMILY: 'font-awesome';
 /// Provide a method for passing parameters to JS
 /// @author jhogue
 /// @link https://adactio.com/journal/5429
-/// @example @include javascript-listener('action-hook')
-/// @output body:after { content: 'action-hook', display: none; speak: none; }
+/// @example 
+///  //  @include javascript-listener('action-hook')
+/// @output
+///  //  body:after { content: 'action-hook', display: none; speak: none; }
 /// @parameter quoted string
 ///
 @mixin javascript-listener($content) {
@@ -335,7 +344,8 @@ $ICON_FONT_FAMILY: 'font-awesome';
 /// icon() =
 /// Set a font-family and use this mixin to simplify declaring properties to :before or :after elements
 /// @author jcionci
-/// @example .element { @include icon('\f105', after); }
+/// @example 
+///  //  .element { @include icon('\f105', after); }
 /// @output see below
 /// @parameter
 ///   1. a particular icon content code in quotes
