@@ -1,49 +1,96 @@
-// @file mixins.scss
+////
+// Oomph Scaffold Mixins
+// @access public
+// @group Oomph Mixins
+// @author Oomph, Inc. UX Engineers
+// @content the @content directive is not used
+// @parameter none
+// @require no 3rd party requirements
+////
 
-// @link http://csswizardry.com/2016/02/mixins-better-for-performance/
 
-// Provide an accesible hover for non-touch devices, turns it into the active state for mobile, and maintain a no-js fallback
-// @requires Modernizr as a JS dependency to get .no-touch classes
-// Adds styles via @content
-// @jhogue
+// Default constants used by these mixins
+// Change below only if you require a different value
+// These are set by Bourbon
+// $em-base: 16px;
+$ICON_FONT_FAMILY: 'font-awesome';
 
-// Usage:
-// .link {
-//   padding: .5em 1em; // Styles that do not change when interacting with this element
-//
-//   @include touch-hover('idle') {
-//     color: black;
-//   }
-//   @include touch-hover('hover') {
-//     color: red;
-//   }
-//
-//   &__disabled {
-//     @include touch-hover('hover', true) {
-//      color: silver;
-//     }
-//   }
-// }
 
-// Outputs:
-// .link {
-//   padding: .5em 1em;
-// }
-// .link, .link:link, .link:visited {
-//   color: black;
-// }
-// .no-js .link:hover, .no-js .link:focus, .js.no-touchevents .link:hover, .js.no-touchevents .link:focus, .js.touchevents .link:active {
-//   color: red;
-// }
-// .no-js .link__disabled, .no-js .link__disabled:link, .no-js .link__disabled:visited, .no-js .link__disabled:hover, .no-js .link__disabled:focus, .js.no-touchevents .link__disabled, .js.no-touchevents .link__disabled:link, .js.no-touchevents .link__disabled:visited, .js.no-touchevents .link__disabled:hover, .js.no-touchevents .link__disabled:focus, .js.touchevents .link__disabled, .js.touchevents .link__disabled:active {
-//   cursor: default;
-//   color: silver;
-// }
+/// touch-hover() =
+/// Provide an accesible hover for non-touch devices, turns it into the active state for mobile, and maintains a no-js fallback
+/// @author jhogue
+/// @require Modernizr.js to get .no-touchevents classes
+/// @content the @content directive is used
+// 
+/// @example
+/// .link {
+///  padding: .5em 1em; // Styles that do not change when interacting with this element
+/// 
+///  @include touch-hover('idle') {
+///    color: black; // Styles for the :link and :visited states
+///  }
+///  @include touch-hover('hover') {
+///    color: red; // Styles for the :focus, :hover and :active states
+///  }
+/// 
+///  &__disabled {
+///    @include touch-hover('hover', true) {
+///     color: silver; // All psuedo states are included
+///    }
+///  }
+/// }
+///
+/// @output
+/// .link {
+///   padding: .5em 1em;
+/// }
+/// .link,
+/// .link:link,
+/// .link:visited {
+///   color: black;
+/// }
+/// .no-js .link:hover,
+/// .no-js .link:focus,
+/// .js.no-touchevents .link:hover,
+/// .js.no-touchevents .link:focus,
+/// .js.touchevents .link:active {
+///   color: red;
+/// }
+/// .no-js .link__disabled,
+/// .no-js .link__disabled:link,
+/// .no-js .link__disabled:visited,
+/// .no-js .link__disabled:hover,
+/// .no-js .link__disabled:focus,
+/// .js.no-touchevents .link__disabled,
+/// .js.no-touchevents .link__disabled:link,
+/// .js.no-touchevents .link__disabled:visited,
+/// .js.no-touchevents .link__disabled:hover,
+/// .js.no-touchevents .link__disabled:focus,
+/// .js.touchevents .link__disabled,
+/// .js.touchevents .link__disabled:active {
+///   cursor: default;
+///   color: silver;
+/// }
+///
+// @parameter 
+// 1. 'idle' or 'hover'
+// 2. true/false
+// 
+// @options
+// 1. Set the name of the class hooks that moderniizr provides
+// 2. Turn off modernizr as a dependency
 //
 @mixin touch-hover( $state: 'idle', $disabled: false ) {
 	$modernizr-hook-off: 'no-touchevents';
 	$modernizr-hook-on: 'touchevents';
 	$modernizr: true !default; // set this to false to maintain mixin but use the no-modernizr fallbacks
+
+  @if $state != 'idle' or $state != 'hover' {
+		@warn "First parameter expects 'idle' or 'hover' as valid values";
+	}
+	@if $disabled !== true or $disabled !== false {
+		@warn "Second parameter must be true or false";
+	}
 
 	@if $state == 'idle' {
 		&,
@@ -103,124 +150,180 @@
 	}
 }
 
-// Column Grid
-// Simple mixin to display the grid - options are either 2, 3, or 4
-// @param number of columns
-// @usage column-grid(2)
-// @johncionci
-@mixin column-grid( $columns: null ) {
-	@if $columns == 3 {
-		@include span-columns(4);
-	} @else if $columns == 4 {
-		@include span-columns(3);
-	} @else {
-		@include span-columns(6);
-	}
-}
 
-// List Reset
-// Remove the margin, padding, and bullets from lists
-// @johncionci
-//
+/// list-reset() =
+/// Remove the margin, padding, and bullets from lists
+/// @author jcionci
+/// @example ul{ @include list-reset(); }
+/// @output ul{ list-style-type: none; margin: 0; padding: 0; }
+///
 @mixin list-reset() {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
 
-// Accessible show/hide
-// @jhogue
-@mixin hide() {
-	display: none;
-	visibility: hidden;
-}
 
+/// show/hide() =
+/// Provide a more complete show/hide option over using display: none
+/// @author jhogue
+/// @example @include show()
+/// @output display: block; visibility: visible;
+/// @parameter valid display definitions
+///
 @mixin show( $display: block ) {
 	display: $display;
 	visibility: visible;
 }
 
-// Maintain ratio mixin. Great for responsive grids, or videos.
-// "Crops" the element to the size of the container with overflow: hidden
-// https://gist.github.com/brianmcallister/2932463
-// $ratio - Ratio the element needs to maintain.
-// Example: A 16:9 ratio would look like this: .element { @include maintain-ratio(16 9); }
-// @jhogue
+/// @author jhogue
+/// @example @include hide()
+/// @output display: none; visibility: hidden;
+@mixin hide() {
+	display: none;
+	visibility: hidden;
+}
+
+
+/// Set a container to crop an element and maintain an aspect ratio
+/// Use proportional-container() and image-crop() together:
+/// @example
+///   .container {
+///     @include proportional-container(16 9);
+///     
+///     .element {
+///       @include image-cover();
+///     }
+///   }
+///
+/// @outputs
+///   .container {
+///     position: relative;
+///     overflow: hidden;
+///     z-index: 1;
+///     width: 100%;
+///     height: 0;
+///     padding-bottom: 56.25%;
+///   }
+///   .container .element {
+///   	transform: translateX(-50%);
+///   	top: 0;
+///   	left: 50%;
+///   	width: auto;
+///   	max-width: none;
+///   	height: 100%;
+///   }
+/// @link https://gist.github.com/brianmcallister/2932463
+
+
+/// maintain-ratio() =
+/// Helper mixin that calculates a percentage padding value to "fix" the proportions of a container to an aspect ratio
+/// @require SASS length(), SASS percentage(), SASS nth()
+/// @example @include maintain-ratio(16 9)
+/// @output width: 100%; height: 0; padding-bottom: 56.25%;
+/// @parameter space separated ratio definition
+///
 @mixin maintain-ratio($ratio: 1 1) {
 	@if length($ratio) < 2 or length($ratio) > 2 {
 		@warn "$ratio must be a list with two values.";
 	}
+	width: 100%;
 	height: 0;
 	padding-bottom: percentage(nth($ratio, 2) / nth($ratio, 1));
-	width: 100%;
 }
 
-// Apply as a typical container mixin
+/// proportional-container() =
+/// Sets a container to "crop" an element to a fixed aspect ratio
+/// @require Oomph maintain-ratio()
+/// @example @include proportional-container(16 9)
+/// @output position: relative; overflow: hidden; z-index: 1; height: 0; padding-bottom: 56.25%; width: 100%
+/// @parameter space separated ratio definition
+///
 @mixin proportional-container( $ratio: 1 1 ) {
-	overflow: hidden;
 	position: relative;
+	overflow: hidden;
 	z-index: 1;
 	@include maintain-ratio( $ratio );
 }
 
-// Use like you would background-cover, except on imgs inside a wrapper
-// Accepts '100% auto' (width height), 'auto 100%' (width height) or 'contain' as values
+/// image-cover() =
+/// Sets a container to "crop" an element to a fixed aspect ratio
+/// @require Bourbon transform()
+/// @example @include image-cover(auto 100%)
+/// @output various depending on parameter
+/// @parameter '100% auto' (width height), 'auto 100%' (width height) or 'contain'
+///
 @mixin image-cover( $center: '100% auto' ) {
 	$allowed: ('100% auto','auto 100%','contain');
+
 	@if not index($allowed, $center) {
-		@error "Keyword `#{$center}` for mixin 'image-cover' is not allowed. #{$allowed} is expected.";
+		@warn "Keyword `#{$center}` for mixin 'image-cover' is not allowed. #{$allowed} is expected.";
 	}
+
 	position: absolute;
 	z-index: 2;
+
 	@if ($center == 'contain') {
+		// Keep the entire element inside the container
 		@include transform( translate(-50%,-50%) );
-		top: 50%; left: 50%;
-		height: auto;
-		max-height: 100%; // we already have a rule for max-width: 100%
+		top: 50%;
+		left: 50%;
 		width: auto;
+		height: auto;
+		max-height: 100%;
 	} @else if ($center == '100% auto') {
 		// Fill the width, let the height be what it needs to be
 		@include transform( translateY(-50%) );
-		top: 50%; left: 0;
-		height: auto;
+		top: 50%;
+		left: 0;
 		width: 100%;
+		height: auto;
 	} @else {
 		// Default: Fill the height, let the width be what it needs to be
 		@include transform( translateX(-50%) );
-		top: 0; left: 50%;
-		height: 100%;
-		max-width: 200%; // reset the max-width: 100% present on all img elements
+		top: 0;
+		left: 50%;
 		width: auto;
+		max-width: none;
+		height: 100%;
 	}
 }
 
-// Provide REM and PX fallback for any property
-// Gulp used to do this for us, but Brunch does not
-// @accepts: css property, numeric value
-// @requires: value must be a pixel value, stripped of its unit
-// @dependson: px(), a function of ours, and rem(), a function of Bourbon
-// @returns: two property values, one with px, one with rem units
-// @jhogue
-@mixin rem($property, $value) {
+/// rem() =
+/// Provide REM and PX fallback for any property
+/// @author jhogue
+/// @require Bourbon px() and rem() functions
+/// @example @include rem('padding-top', 32)
+/// @output padding-top: 32px; padding-top: 2rem;
+/// @parameter 
+///   1. valid css property declaration
+///   2. numeric value assumed to be pixels
+///   3. (optional) base value to calculate from if not the default 16px
+///
+@mixin rem($property, $value, $base: $em-base) {
 	$number: strip-units($value * 1);
 	$declaration: unquote($property);
+
 	// scss-lint:disable DuplicateProperty
-	#{$declaration}: px($number);
-	#{$declaration}: rem($number);
+	#{$declaration}: px($number, $base);
+	#{$declaration}: rem($number, $base);
 }
-// Alias of the above
-@mixin rem-fontsize($value) {
-	@include rem('font-size', $value);
+
+/// Alias of the above for font-size only
+@mixin rem-fontsize($value, $base: $em-base) {
+	@include rem('font-size', $value, $base);
 }
 
 
-// Output a little 'tag' on the body:after content
-// @accepts: string
-// @requires: $content string should be in single quotes
-// @returns: entire body pseudo-class declaration
-// @usage: @include javascript_tag( 'actionhook' );
-// @jhogue
-@mixin javascript-listener( $content ) {
+/// javascript-listener() =
+/// Provide a method for passing parameters to JS
+/// @author jhogue
+/// @link https://adactio.com/journal/5429
+/// @example @include javascript-listener('action-hook')
+/// @output body:after { content: 'action-hook', display: none; speak: none; }
+/// @parameter quoted string
+///
+@mixin javascript-listener($content) {
 	body:after {
 		content: $content;
 		display: none;
@@ -228,29 +331,34 @@
 	}
 }
 
-// Icon Font Mixin
-// @accepts string(s)
-// @param: - $icon - "\f105"
-// @param: - $positin - before or after
-// @param: - $color - any hex value
-// @usage: icon("\f105", before, palette(brand, primary));
-@mixin icon($icon, $position:before, $color:inherit) {
-	&::#{$position} {
+
+/// icon() =
+/// Set a font-family and use this mixin to simplify declaring properties to :before or :after elements
+/// @author jcionci
+/// @example .element { @include icon('\f105', after); }
+/// @output see below
+/// @parameter
+///   1. a particular icon content code in quotes
+///   2. 'before' (default) or 'after'
+///   3. (optional) color value
+///
+@mixin icon($icon, $position: 'before', $color:inherit) {
+	&::#{unquote($position)} {
 		content: $icon;
 		color: $color;
 		display: inline-block;
-		font-family: 'Custom Font Family';
+		font-family: $ICON_FONT_FAMILY;
 		font-style: normal;
 		font-weight: normal;
 		text-decoration: inherit;
 		-webkit-font-smoothing: antialiased;
 		moz-osx-font-smoothing: grayscale;
 
-		@if $position == before {
+		@if $position == 'before' {
 			margin-right: .5em;
 		}
 
-		@if $position == after {
+		@if $position == 'after' {
 			margin-left: .5em;
 		}
 	}
