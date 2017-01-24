@@ -91,7 +91,7 @@ $DEFAULT_MAX_VW: bp(x-large);
   @if $state != 'idle' or $state != 'hover' {
 		@warn "First parameter expects 'idle' or 'hover' as valid values";
 	}
-	@if $disabled !== true or $disabled !== false {
+	@if $disabled != true or $disabled != false {
 		@warn "Second parameter must be true or false";
 	}
 
@@ -308,20 +308,19 @@ $DEFAULT_MAX_VW: bp(x-large);
 /// @parameter 
 ///   1. valid css property declaration
 ///   2. numeric value assumed to be pixels
-///   3. (optional) base value to calculate from if not the default 16px
 ///
-@mixin rem($property, $value, $base: $em-base) {
+@mixin rem($property, $value) {
 	$number: strip-units($value * 1);
 	$declaration: unquote($property);
 
 	// scss-lint:disable DuplicateProperty
-	#{$declaration}: px($number, $base);
-	#{$declaration}: rem($number, $base);
+	#{$declaration}: px($number);
+	#{$declaration}: rem($number);
 }
 
 /// Alias of the above for font-size only
-@mixin rem-fontsize($value, $base: $em-base) {
-	@include rem('font-size', $value, $base);
+@mixin rem-fontsize($value) {
+	@include rem('font-size', $value);
 }
 
 

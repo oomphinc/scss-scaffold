@@ -4,6 +4,7 @@
 @import
 "libraries/bourbon/bourbon",
 "layout/settings",
+"layout/breakpoints",
 "libraries/neat/neat";
 
 @import
@@ -14,7 +15,6 @@
 "base/variables",
 "base/typesizes",
 
-"layout/breakpoints",
 
 // #Project: Start to output CSS
 "base/reset",
