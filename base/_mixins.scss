@@ -300,7 +300,7 @@ $DEFAULT_MAX_VW: bp(x-large);
 /// rem() =
 /// Provide REM and PX fallback for any property
 /// @author jhogue
-/// @require Bourbon px() and rem() functions
+/// @require Oomph Scaffold px() and Bourbon rem() functions
 /// @example 
 ///  //  @include rem('padding-top', 32)
 /// @output
