@@ -19,25 +19,6 @@ $DEFAULT_MIN_VW: bp(small);
 $DEFAULT_MAX_VW: bp(x-large);
 
 
-/// palette() =
-/// Helper that does a deep get on a map called $palette
-/// @author jcionci
-/// @link http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
-/// @example color: palette(mono, white);
-/// @output color: #fff;
-///
-@function palette($palette, $tone:base) {
-
-	@if not index(map-keys($palettes), $palette) {
-		@error "Palette `#{$palette}` does not exist.";
-	}
-	@if not index(map-keys(map-get($palettes, $palette)), $tone) {
-		@error "There is no `#{$tone}` defined in your `#{$palette}` color map however, its being called in your theme.";
-	}
-	@return map-deep-get( $palettes, $palette, $tone );
-}
-
-
 /// touch-hover() =
 /// Provide an accesible hover for non-touch devices, turns it into the active state for mobile, and maintains a no-js fallback
 /// @author jhogue
