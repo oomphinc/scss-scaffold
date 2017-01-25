@@ -408,3 +408,20 @@ $DEFAULT_MAX_VW: bp(x-large);
 		}
 	}
 }
+
+
+/// writing-mode() =
+/// Bourbon-style helper to output vendor-prefixed rulesets
+/// @author jhogue
+/// @link http://labs.jensimmons.com/#writing-modes
+/// @link https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode
+/// @require Bourbon prefixer()
+/// @example @include writing-mode(vertical-rl);
+/// @output -webkit-writing-mode: vertical-rl; writing-mode: vertical-rl;
+/// parameter valid writing-mode values
+///
+@mixin writing-mode($mode) {
+  // 01-24-2017 Webkit vendor prefix still needed
+  // 01-24-2017 dropping MS prefix as IE11+ supports the spec
+  @include prefixer(writing-mode, $mode, webkit spec);
+}
