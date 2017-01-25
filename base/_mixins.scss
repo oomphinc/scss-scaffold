@@ -14,9 +14,9 @@
 // These are set by Bourbon
 // $em-base: 16px;
 // These are used by our mixins. Uppercase denotes they are global in scope
-$ICON_FONT_FAMILY: 'font-awesome';
-$DEFAULT_MIN_VW: bp(small);
-$DEFAULT_MAX_VW: bp(x-large);
+$icon-font-family: 'font-awesome';
+$min-vw: bp(small) !default;
+$max-vw: bp(x-large) !default;
 
 
 /// touch-hover() =
@@ -88,11 +88,11 @@ $DEFAULT_MAX_VW: bp(x-large);
 	$modernizr-hook-on: 'touchevents';
 	$modernizr: true !default; // set this to false to maintain mixin but use the no-modernizr fallbacks
 
-  @if $state != 'idle' or $state != 'hover' {
-		@warn "First parameter expects 'idle' or 'hover' as valid values";
+  @if $state != 'idle' and $state != 'hover' {
+		@error "First parameter expects 'idle' or 'hover' as valid values";
 	}
-	@if $disabled != true or $disabled != false {
-		@warn "Second parameter must be true or false";
+	@if $disabled != true and $disabled != false {
+		@error "Second parameter must be true or false";
 	}
 
 	@if $state == 'idle' {
@@ -335,7 +335,7 @@ $DEFAULT_MAX_VW: bp(x-large);
 ///  //  
 /// @parameter quoted string, four numeric values of the same measurement unit, i.e. all PX or all EM
 ///
-@mixin fluid-units($properties, $min-value, $max-value, $min-vw: $DEFAULT_MIN_VW, $max-vw: $DEFAULT_MAX_VW) {
+@mixin fluid-units($properties, $min-value, $max-value, $min-vw, $max-vw) {
   // Mobile-first: declare the $min-value as the default for any property passed
   @each $property in $properties {
     #{$property}: $min-value;
@@ -392,7 +392,7 @@ $DEFAULT_MAX_VW: bp(x-large);
 		content: $icon;
 		color: $color;
 		display: inline-block;
-		font-family: $ICON_FONT_FAMILY;
+		font-family: $icon-font-family;
 		font-style: normal;
 		font-weight: normal;
 		text-decoration: inherit;
