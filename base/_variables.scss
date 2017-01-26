@@ -1,6 +1,14 @@
 // Variables throughout the project
 // Most variables are localized at the top of the file from which they are first used
 
+
+// Default constants used by our mixins
+// Change below only if you require a different value
+$icon-font-family: 'font-awesome';
+$min-vw: bp(small) !default;
+$max-vw: bp(x-large) !default;
+
+
 // Global font declarations
 $font-sans: $helvetica;
 $font-serif: $georgia;

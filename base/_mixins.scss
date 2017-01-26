@@ -9,16 +9,6 @@
 ////
 
 
-// Default constants used by these mixins
-// Change below only if you require a different value
-// These are set by Bourbon
-// $em-base: 16px;
-// These are used by our mixins. Uppercase denotes they are global in scope
-$icon-font-family: 'font-awesome';
-$min-vw: bp(small) !default;
-$max-vw: bp(x-large) !default;
-
-
 /// touch-hover() =
 /// Provide an accesible hover for non-touch devices, turns it into the active state for mobile, and maintains a no-js fallback
 /// @author jhogue
@@ -88,10 +78,10 @@ $max-vw: bp(x-large) !default;
 	$modernizr-hook-on: 'touchevents';
 	$modernizr: true !default; // set this to false to maintain mixin but use the no-modernizr fallbacks
 
-  @if $state != 'idle' and $state != 'hover' {
+  @if ($state != 'idle') and ($state != 'hover') {
 		@error "First parameter expects 'idle' or 'hover' as valid values";
 	}
-	@if $disabled != true and $disabled != false {
+	@if ($disabled != true) and ($disabled != false) {
 		@error "Second parameter must be true or false";
 	}
 
