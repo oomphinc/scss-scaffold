@@ -154,10 +154,16 @@
 /// @param {None}
 ///
 /// @example scss - Usage
-///   // ul{ @include list-reset(); }
+///   // ul {
+///   //   @include list-reset();
+///   // }
 ///
 /// @example css - Output
-///   // ul{ list-style-type: none; margin: 0; padding: 0; }
+///   // ul {
+///   //   list-style-type: none;
+///   //   margin: 0;
+///   //   padding: 0;
+///   // }
 ///
 @mixin list-reset() {
 	list-style-type: none;
@@ -177,7 +183,8 @@
 ///   // @include show()
 ///
 /// @example css - Output
-///   // display: block; visibility: visible;
+///   // display: block;
+///   // visibility: visible;
 ///
 @mixin show( $display: block ) {
 	display: $display;
@@ -192,7 +199,8 @@
 ///   // @include hide()
 ///
 /// @example css - Output
-///   // display: none; visibility: hidden;
+///   // display: none;
+///   // visibility: hidden;
 ///
 @mixin hide() {
 	display: none;
@@ -200,7 +208,7 @@
 }
 
 
-/// maintain-ratio(), proportional-container)_ and image-cover() = 
+/// maintain-ratio(), proportional-container) and image-cover() = 
 ///
 /// Set a container to crop an element and maintain an aspect ratio
 /// Use proportional-container() and image-cover() together:
@@ -247,10 +255,12 @@
 /// @require {function} nth
 ///
 /// @example scss - Usage
-///  // @include maintain-ratio(16 9)
+///   // @include maintain-ratio(16 9)
 ///
 /// @example css - Output
-///  // width: 100%; height: 0; padding-bottom: 56.25%;
+///   // width: 100%;
+///   // height: 0;
+///   // padding-bottom: 56.25%;
 ///
 @mixin maintain-ratio($ratio: 1 1) {
 	@if length($ratio) < 2 or length($ratio) > 2 {
@@ -273,7 +283,12 @@
 ///  // @include proportional-container(16 9)
 ///
 /// @example css - Output
-///  // position: relative; overflow: hidden; z-index: 1; height: 0; padding-bottom: 56.25%; width: 100%
+///  // position: relative;
+///  // overflow: hidden;
+///  // z-index: 1;
+///  // height: 0;
+///  // padding-bottom: 56.25%;
+///  // width: 100%
 ///
 @mixin proportional-container( $ratio: 1 1 ) {
 	position: relative;
@@ -352,7 +367,8 @@
 ///  // @include rem('padding-top', 32)
 ///
 /// @example css - Output
-///  // padding-top: 32px; padding-top: 2rem;
+///  // padding-top: 32px;
+///  // padding-top: 2rem;
 ///
 @mixin rem($property, $value) {
 	$number: strip-units($value * 1);
@@ -424,7 +440,11 @@
 ///  // @include javascript-listener('action-hook')
 ///
 /// @example css - Output
-///  // body:after { content: 'action-hook', display: none; speak: none; }
+///  // body:after {
+///  //   content: 'action-hook',
+///  //   display: none;
+///  //   speak: none;
+///  // }
 ///
 @mixin javascript-listener($content) {
 	body:after {
@@ -486,8 +506,10 @@
 ///
 /// @example scss - Usage
 ///   // @include writing-mode(vertical-rl);
+///
 /// @example css - Output
-///   // -webkit-writing-mode: vertical-rl; writing-mode: vertical-rl;
+///   // -webkit-writing-mode: vertical-rl;
+///   // writing-mode: vertical-rl;
 ///
 @mixin writing-mode($mode) {
   // 01-24-2017 Webkit vendor prefix still needed
