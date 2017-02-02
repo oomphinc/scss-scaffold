@@ -77,73 +77,73 @@
 /// 2. Turn off modernizr as a dependency
 ///
 @mixin touch-hover( $state: 'idle', $disabled: false ) {
-	$modernizr-hook-off: 'no-touchevents';
-	$modernizr-hook-on: 'touchevents';
-	$modernizr: true !default; // set this to false to maintain mixin but use the no-modernizr fallbacks
+  $modernizr-hook-off: 'no-touchevents';
+  $modernizr-hook-on: 'touchevents';
+  $modernizr: true !default; // set this to false to maintain mixin but use the no-modernizr fallbacks
 
   @if ($state != 'idle') and ($state != 'hover') {
-		@error "First parameter expects 'idle' or 'hover' as valid values";
-	}
-	@if ($disabled != true) and ($disabled != false) {
-		@error "Second parameter must be true or false";
-	}
+    @error "First parameter expects 'idle' or 'hover' as valid values";
+  }
+  @if ($disabled != true) and ($disabled != false) {
+    @error "Second parameter must be true or false";
+  }
 
-	@if $state == 'idle' {
-		&,
-		&:link,
-		&:visited {
-			@content;
-		}
-	}
+  @if $state == 'idle' {
+    &,
+    &:link,
+    &:visited {
+      @content;
+    }
+  }
 
-	@if $state == 'hover' {
-		@if $disabled == true {
-			// If this link is meant to look disabled, style all states the same
-			@if $modernizr == true {
-				.no-js &,
-				.no-js &:link,
-				.no-js &:visited,
-				.no-js &:hover,
-				.no-js &:focus,
-				.js.#{$modernizr-hook-off} &,
-				.js.#{$modernizr-hook-off} &:link,
-				.js.#{$modernizr-hook-off} &:visited,
-				.js.#{$modernizr-hook-off} &:hover,
-				.js.#{$modernizr-hook-off} &:focus,
-				.js.#{$modernizr-hook-on} &,
-				.js.#{$modernizr-hook-on} &:active {
-					cursor: default;
-					@content;
-				}
-			} @else {
-				&,
-				&:link,
-				&:visited,
-				&:hover,
-				&:focus,
-				&:active {
-					cursor: default;
-					@content;
-				}
-			}
-		} @else {
-			@if $modernizr == true {
-				.no-js &:hover,
-				.no-js &:focus,
-				.js.#{$modernizr-hook-off} &:hover,
-				.js.#{$modernizr-hook-off} &:focus,
-				.js.#{$modernizr-hook-on} &:active {
-					@content;
-				}
-			} @else {
-				&:hover,
-				&:focus,
-				&:active {
-					@content;
-				}
-			}
-		}
-	}
+  @if $state == 'hover' {
+    @if $disabled == true {
+      // If this link is meant to look disabled, style all states the same
+      @if $modernizr == true {
+        .no-js &,
+        .no-js &:link,
+        .no-js &:visited,
+        .no-js &:hover,
+        .no-js &:focus,
+        .js.#{$modernizr-hook-off} &,
+        .js.#{$modernizr-hook-off} &:link,
+        .js.#{$modernizr-hook-off} &:visited,
+        .js.#{$modernizr-hook-off} &:hover,
+        .js.#{$modernizr-hook-off} &:focus,
+        .js.#{$modernizr-hook-on} &,
+        .js.#{$modernizr-hook-on} &:active {
+          cursor: default;
+          @content;
+        }
+      } @else {
+        &,
+        &:link,
+        &:visited,
+        &:hover,
+        &:focus,
+        &:active {
+          cursor: default;
+          @content;
+        }
+      }
+    } @else {
+      @if $modernizr == true {
+        .no-js &:hover,
+        .no-js &:focus,
+        .js.#{$modernizr-hook-off} &:hover,
+        .js.#{$modernizr-hook-off} &:focus,
+        .js.#{$modernizr-hook-on} &:active {
+          @content;
+        }
+      } @else {
+        &:hover,
+        &:focus,
+        &:active {
+          @content;
+        }
+      }
+    }
+  }
 }
 
 
@@ -166,9 +166,9 @@
 ///   // }
 ///
 @mixin list-reset() {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -187,8 +187,8 @@
 ///   // visibility: visible;
 ///
 @mixin show( $display: block ) {
-	display: $display;
-	visibility: visible;
+  display: $display;
+  visibility: visible;
 }
 
 /// @author jhogue
@@ -203,8 +203,8 @@
 ///   // visibility: hidden;
 ///
 @mixin hide() {
-	display: none;
-	visibility: hidden;
+  display: none;
+  visibility: hidden;
 }
 
 
@@ -234,12 +234,12 @@
 ///   //   padding-bottom: 56.25%;
 ///   // }
 ///   // .container .element {
-///   // 	transform: translateX(-50%);
-///   // 	top: 0;
-///   // 	left: 50%;
-///   // 	width: auto;
-///   // 	max-width: none;
-///   // 	height: 100%;
+///   //  transform: translateX(-50%);
+///   //  top: 0;
+///   //  left: 50%;
+///   //  width: auto;
+///   //  max-width: none;
+///   //  height: 100%;
 ///   // }
 ///
 
@@ -263,12 +263,12 @@
 ///   // padding-bottom: 56.25%;
 ///
 @mixin maintain-ratio($ratio: 1 1) {
-	@if length($ratio) < 2 or length($ratio) > 2 {
-		@warn "$ratio must be a list with two values.";
-	}
-	width: 100%;
-	height: 0;
-	padding-bottom: percentage(nth($ratio, 2) / nth($ratio, 1));
+  @if length($ratio) < 2 or length($ratio) > 2 {
+    @warn "$ratio must be a list with two values.";
+  }
+  width: 100%;
+  height: 0;
+  padding-bottom: percentage(nth($ratio, 2) / nth($ratio, 1));
 }
 
 /// proportional-container() =
@@ -291,10 +291,10 @@
 ///  // width: 100%
 ///
 @mixin proportional-container( $ratio: 1 1 ) {
-	position: relative;
-	overflow: hidden;
-	z-index: 1;
-	@include maintain-ratio( $ratio );
+  @include maintain-ratio( $ratio );
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
 /// image-cover() =
@@ -311,42 +311,42 @@
 ///  // @include image-cover(auto 100%)
 ///
 @mixin image-cover( $center: '100% auto' ) {
-	$allowed: ('100% auto','auto 100%','contain');
+  $allowed: ('100% auto','auto 100%','contain');
 
   @if not index($allowed, $center) {
-		@error "Keyword `#{$center}` for mixin 'image-cover' is not allowed. `#{$allowed}` is expected.";
-	}
-	position: absolute;
-	z-index: 2;
+    @error "Keyword `#{$center}` for mixin 'image-cover' is not allowed. `#{$allowed}` is expected.";
+  }
+  position: absolute;
+  z-index: 2;
 
-	@if ($center == 'contain') {
-		// Keep the entire element inside the container
-		@include transform( translate(-50%,-50%) );
-		top: 50%;
-		left: 50%;
-		width: auto;
-		height: auto;
-		max-height: 100%;
-	} @else if ($center == '100% auto') {
-		// Fill the width, let the height be what it needs to be
-		@include transform( translateY(-50%) );
-		top: 50%;
-		left: 0;
-		width: 100%;
-		height: auto;
-	} @else {
-		// Default: Fill the height, let the width be what it needs to be
-		@include transform( translateX(-50%) );
-		top: 0;
-		left: 50%;
-		width: auto;
-		max-width: none;
-		height: 100%;
-	}
+  @if ($center == 'contain') {
+    // Keep the entire element inside the container
+    @include transform( translate(-50%,-50%) );
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    max-height: 100%;
+  } @else if ($center == '100% auto') {
+    // Fill the width, let the height be what it needs to be
+    @include transform( translateY(-50%) );
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: auto;
+  } @else {
+    // Default: Fill the height, let the width be what it needs to be
+    @include transform( translateX(-50%) );
+    top: 0;
+    left: 50%;
+    width: auto;
+    max-width: none;
+    height: 100%;
+  }
 }
 
 /// rem() =
-/// Provide REM and PX fallback for any property
+/// Provide rem and px fallback for any property
 /// @author jhogue
 ///
 /// @param {String} valid css property
@@ -371,17 +371,17 @@
 ///  // padding-top: 2rem;
 ///
 @mixin rem($property, $value) {
-	$number: strip-units($value * 1);
-	$declaration: unquote($property);
+  $number: strip-units($value * 1);
+  $declaration: unquote($property);
 
-	// scss-lint:disable DuplicateProperty
-	#{$declaration}: px($number);
-	#{$declaration}: rem($number);
+  // scss-lint:disable DuplicateProperty
+  #{$declaration}: px($number);
+  #{$declaration}: rem($number);
 }
 
 /// Alias of rem() for font-size only
 @mixin rem-fontsize($value) {
-	@include rem('font-size', $value);
+  @include rem('font-size', $value);
 }
 
 
@@ -447,11 +447,11 @@
 ///  // }
 ///
 @mixin javascript-listener($content) {
-	body:after {
-		content: $content;
-		display: none;
-		speak: none;
-	}
+  body:after {
+    content: $content;
+    display: none;
+    speak: none;
+  }
 }
 
 
@@ -470,25 +470,25 @@
 ///  // .element { @include icon('\f105', after); }
 ///
 @mixin icon($icon, $position: 'before', $color:inherit) {
-	&::#{unquote($position)} {
-		content: $icon;
-		color: $color;
-		display: inline-block;
-		font-family: $icon-font-family;
-		font-style: normal;
-		font-weight: normal;
-		text-decoration: inherit;
-		-webkit-font-smoothing: antialiased;
-		moz-osx-font-smoothing: grayscale;
+  &::#{unquote($position)} {
+    content: $icon;
+    color: $color;
+    display: inline-block;
+    font-family: $icon-font-family;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;
+    moz-osx-font-smoothing: grayscale;
 
-		@if $position == 'before' {
-			margin-right: .5em;
-		}
+    @if $position == 'before' {
+      margin-right: .5em;
+    }
 
-		@if $position == 'after' {
-			margin-left: .5em;
-		}
-	}
+    @if $position == 'after' {
+      margin-left: .5em;
+    }
+  }
 }
 
 
