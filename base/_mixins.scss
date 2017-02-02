@@ -76,7 +76,7 @@
 /// 1. Set the name of the class hooks that moderniizr provides
 /// 2. Turn off modernizr as a dependency
 ///
-@mixin touch-hover( $state: 'idle', $disabled: false ) {
+@mixin touch-hover($state: 'idle', $disabled: false) {
   $modernizr-hook-off: 'no-touchevents';
   $modernizr-hook-on: 'touchevents';
   $modernizr: true !default; // set this to false to maintain mixin but use the no-modernizr fallbacks
@@ -186,7 +186,7 @@
 ///   // display: block;
 ///   // visibility: visible;
 ///
-@mixin show( $display: block ) {
+@mixin show($display: block) {
   display: $display;
   visibility: visible;
 }
@@ -208,7 +208,7 @@
 }
 
 
-/// maintain-ratio(), proportional-container) and image-cover() = 
+/// maintain-ratio(), proportional-container() and image-cover() = 
 ///
 /// Set a container to crop an element and maintain an aspect ratio
 /// Use proportional-container() and image-cover() together:
@@ -290,7 +290,7 @@
 ///  // padding-bottom: 56.25%;
 ///  // width: 100%
 ///
-@mixin proportional-container( $ratio: 1 1 ) {
+@mixin proportional-container($ratio: 1 1) {
   @include maintain-ratio( $ratio );
   position: relative;
   overflow: hidden;
@@ -310,7 +310,7 @@
 /// @example scss - Usage
 ///  // @include image-cover(auto 100%)
 ///
-@mixin image-cover( $center: '100% auto' ) {
+@mixin image-cover($center: '100% auto') {
   $allowed: ('100% auto','auto 100%','contain');
 
   @if not index($allowed, $center) {
@@ -356,7 +356,6 @@
 ///   The value, assumed ot be pixels
 ///
 /// @require {function} unquote
-///
 /// @require {function} px
 ///
 /// @require {library} Bourbon
