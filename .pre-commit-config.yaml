@@ -3,8 +3,8 @@
   hooks:
   - id: scss-lint
     args: [
-      --config=src/scss/.scss-lint.yml,
-      --exclude=src/scss/libraries/,
+      --config=.scss-lint.yml,
+      --exclude=libraries/,
       --color
     ]
     stages: [commit] # push?
