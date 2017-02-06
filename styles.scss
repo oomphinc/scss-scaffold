@@ -3,18 +3,18 @@
 // #Requirements
 @import
 "libraries/bourbon/bourbon",
-"layout/settings",
 "libraries/neat/neat";
 
 @import
 // #Mixins and Variables
 "base/functions",
 "base/mixins",
+"layout/settings",
+"layout/breakpoints",
 "base/colors",
 "base/variables",
 "base/typesizes",
 
-"layout/breakpoints",
 
 // #Project: Start to output CSS
 "base/reset",

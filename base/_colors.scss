@@ -1,20 +1,3 @@
-// @file colors.scss
-
-// Getter function for color palettes using SASS maps
-// Link: http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
-// Example usage: { color: palette(brand,blue); }
-@function palette($palette, $tone:base) {
-
-	@if not index(map-keys($palettes), $palette) {
-		@error "Palette `#{$palette}` does not exist.";
-	}
-	@if not index(map-keys(map-get($palettes, $palette)), $tone) {
-		@error "There is no `#{$tone}` defined in your `#{$palette}` color map however, its being called in your theme.";
-	}
-	@return map-deep-get( $palettes, $palette, $tone );
-}
-
-
 // Color palettes using SASS maps
 // Link: http://chir.ag/projects/name-that-color/
 $palettes: (
