@@ -8,12 +8,12 @@
 @import
 // #Mixins and Variables
 "base/functions",
-"base/mixins",
+"base/mixins/main",
 "layout/settings",
 "layout/breakpoints",
 "base/colors",
-"base/variables",
 "base/typesizes",
+"base/variables",
 
 
 // #Project: Start to output CSS
@@ -27,4 +27,7 @@
 "component/forms",
 "component/search",
 "component/buttons",
-"component/navigation";
+"component/header",
+"component/navigation",
+"component/content",
+"component/footer";

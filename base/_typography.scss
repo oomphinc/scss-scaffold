@@ -84,7 +84,9 @@ h4,
   @include one-element-size(h4);
 }
 
-%base-rwd-size { @include one-element-size(); }
+%base-rwd-size {
+  @include one-element-size();
+}
 
 h5,
 .echo {
@@ -100,10 +102,13 @@ h6,
   font-weight: $font-weight-bold;
 }
 
+// Set a fluid size for block-level content elements
 p,
 li,
 dt,
 dd,
+th,
+td,
 address,
 input,
 button,
@@ -112,12 +117,14 @@ textarea {
   @extend %base-rwd-size;
 }
 
+// Set the vertical rhythm for block-level containers
 p,
 ul,
 ol,
 dl,
 address,
 form,
+figure,
 table {
   margin-bottom: $vert-line-height;
 }
@@ -159,7 +166,9 @@ blockquote {
   }
 }
 
-address { font-style: italic; }
+address {
+  font-style: italic;
+}
 
 hr {
   border: none;
@@ -171,7 +180,9 @@ hr {
 }
 
 ul,
-ol { margin-left: 3em; }
+ol {
+  margin-left: 3em;
+}
 
 // scss-lint:disable MergeableSelector
 ul { list-style: square; }
@@ -205,9 +216,11 @@ dt {
   font-weight: $font-weight-bold;
 }
 
-dd { border-bottom: 2px solid $color-borders; }
+dd {
+  border-bottom: 2px solid $color-borders;
+}
 
-figure { margin: 0; }
+figure {}
 
 table {
   @if $table-border-collapse == true {
@@ -249,7 +262,9 @@ i,
 cite,
 small,
 sup,
-sup { letter-spacing: .03125em; }
+sup {
+  letter-spacing: .03125em;
+}
 
 sub,
 sup {
@@ -258,16 +273,24 @@ sup {
   position: relative;
 }
 
-sup { top: -0.5em; }
+sup {
+  top: -0.5em;
+}
 
-sub { bottom: -0.25em; }
+sub {
+  bottom: -0.25em;
+}
 
 abbr[title],
 cite,
-dfn[title] { border-bottom: 1px dotted $color-link; }
+dfn[title] {
+  border-bottom: 1px dotted $color-link;
+}
 
 abbr[title],
-dfn[title] { cursor: help; }
+dfn[title] {
+  cursor: help;
+}
 
 abbr[title] {
   font-size: 75%;
@@ -277,11 +300,15 @@ abbr[title] {
 }
 
 b,
-strong { font-weight: $font-weight-bold; }
+strong {
+  font-weight: $font-weight-bold;
+}
 
 i,
 em,
-cite { font-style: italic; }
+cite {
+  font-style: italic;
+}
 
 var {
   color: palette(mono, 75);
@@ -330,21 +357,31 @@ code {
   color: $color-code;
 }
 
-mark { background-color: #ff9; }
+mark {
+  background-color: #ff9; // yellow
+}
 
 strike,
-s { color: palette(mono, 25); }
+s {
+  color: palette(mono, 25);
+}
 
-del { color: $color-error; }
+del {
+  color: $color-error;
+}
 
-u { text-decoration: underline; }
+u {
+  text-decoration: underline;
+}
 
 ins {
   background-color: palette(mono, 25);
   text-decoration: none;
 }
 
-small { font-size: 87.5%; }
+small {
+  font-size: 87.5%;
+}
 
 // These should change depending on the language
 [lang="en-US"] {
