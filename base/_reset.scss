@@ -86,12 +86,12 @@ time,
 mark,
 audio,
 video {
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	margin: 0;
-	padding: 0;
-	vertical-align: baseline;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
 }
 
 // HTML5 display-role reset for older browsers
@@ -106,23 +106,27 @@ hgroup,
 menu,
 nav,
 section {
-	display: block;
+  display: block;
 }
 
-body {
-	line-height: 1;
-}
+// We redeclare line-height in our global.scss
+//body {
+//  line-height: 1;
+//}
 
-ol,
-ul {
-	list-style: none;
-}
+// We fully declare UL/OL styling in typography.scss
+//ol,
+//ul {
+//  list-style: none;
+//}
 
-blockquote {
-	quotes: none;
-}
+// Already declared in typography.scss
+//blockquote {
+//  quotes: none;
+//}
 
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+// Already declared in typography.scss
+//table {
+//  border-collapse: collapse;
+//  border-spacing: 0;
+//}

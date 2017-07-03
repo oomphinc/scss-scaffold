@@ -17,13 +17,14 @@ fieldset {
 
 label {}
 
-#{$all-text-inputs},
+input,
 textarea {
   @include transition( all 250ms ease );
   border: $form-input-border-width solid $form-input-border-color;
   box-sizing: border-box; // Declare explicitly, as form elements do not inherit from HTML declaration in iOS and Android
   border-radius: $form-input-border-radius;
   color: $form-input-color;
+  display: inline-block;
   padding: $form-input-padding;
   width: 100%;
 
@@ -55,9 +56,8 @@ textarea {
 
 textarea {
   overflow: auto;
-  padding-left: $form-input-padding;
   vertical-align: top;
-  width: 100%;
+  resize: vertical;
 }
 
 select {
@@ -75,7 +75,9 @@ input[type="file"] {
 }
 
 input[type="checkbox"],
-input[type="radio"] {}
+input[type="radio"] {
+  width: auto;
+}
 
 // Form action buttons
 input[type="submit"],
@@ -84,7 +86,6 @@ input[type="button"],
 button {
   @include transition(all 250ms ease);
   border: $form-input-border-width solid $form-input-border-color;
-  display: inline-block;
   width: auto;
 }
 
