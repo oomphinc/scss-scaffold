@@ -6,11 +6,11 @@
 ///   valid display property
 ///
 /// @example scss - Usage
-///   // @include show()
+///   @include show()
 ///
 /// @example css - Output
-///   // display: block;
-///   // visibility: visible;
+///   display: block;
+///   visibility: visible;
 ///
 @mixin show($display: block) {
   display: $display;
@@ -20,13 +20,13 @@
 /// @author jhogue
 ///
 /// @param {None}
-/// 
+///
 /// @example scss - UsAGE
-///   // @include hide()
+///   @include hide()
 ///
 /// @example css - Output
-///   // display: none;
-///   // visibility: hidden;
+///   display: none;
+///   visibility: hidden;
 ///
 @mixin hide() {
   display: none;

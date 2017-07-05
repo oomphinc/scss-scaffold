@@ -1,4 +1,4 @@
-/// maintain-ratio(), proportional-container() and image-cover() = 
+//// maintain-ratio(), proportional-container() and image-cover() =
 ///
 /// Set a container to crop an element and maintain an aspect ratio
 /// Use proportional-container() and image-cover() together:
@@ -6,32 +6,32 @@
 /// @link https://gist.github.com/brianmcallister/2932463
 ///
 /// @example scss - Usage
-///   // .container {
-///   //   @include proportional-container(16 9);
-///   //   
-///   //   .element {
-///   //     @include image-cover();
-///   //   }
-///   // }
+///   .container {
+///     @include proportional-container(16 9);
+///
+///     .element {
+///       @include image-cover();
+///     }
+///   }
 ///
 /// @example css - Output
-///   // .container {
-///   //   position: relative;
-///   //   overflow: hidden;
-///   //   z-index: 1;
-///   //   width: 100%;
-///   //   height: 0;
-///   //   padding-bottom: 56.25%;
-///   // }
-///   // .container .element {
-///   //  transform: translateX(-50%);
-///   //  top: 0;
-///   //  left: 50%;
-///   //  width: auto;
-///   //  max-width: none;
-///   //  height: 100%;
-///   // }
-///
+///   .container {
+///     position: relative;
+///     overflow: hidden;
+///     z-index: 1;
+///     width: 100%;
+///     height: 0;
+///     padding-bottom: 56.25%;
+///   }
+///   .container .element {
+///    transform: translateX(-50%);
+///    top: 0;
+///    left: 50%;
+///    width: auto;
+///    max-width: none;
+///    height: 100%;
+///   }
+////
 
 
 /// maintain-ratio() =
@@ -45,12 +45,12 @@
 /// @require {function} nth
 ///
 /// @example scss - Usage
-///   // @include maintain-ratio(16 9)
+///   @include maintain-ratio(16 9)
 ///
 /// @example css - Output
-///   // width: 100%;
-///   // height: 0;
-///   // padding-bottom: 56.25%;
+///   width: 100%;
+///   height: 0;
+///   padding-bottom: 56.25%;
 ///
 @mixin maintain-ratio($ratio: 1 1) {
   @if length($ratio) < 2 or length($ratio) > 2 {
@@ -70,15 +70,15 @@
 /// @require {mixin} maintain-ratio
 ///
 /// @example scss - Usage
-///  // @include proportional-container(16 9)
+///   @include proportional-container(16 9)
 ///
 /// @example css - Output
-///  // position: relative;
-///  // overflow: hidden;
-///  // z-index: 1;
-///  // height: 0;
-///  // padding-bottom: 56.25%;
-///  // width: 100%
+///   position: relative;
+///   overflow: hidden;
+///   z-index: 1;
+///   height: 0;
+///   padding-bottom: 56.25%;
+///   width: 100%
 ///
 @mixin proportional-container($ratio: 1 1) {
   @include maintain-ratio($ratio);
@@ -98,7 +98,7 @@
 /// @require {mixin} transform
 ///
 /// @example scss - Usage
-///  // @include image-cover(auto 100%)
+///  @include image-cover(auto 100%)
 ///
 @mixin image-cover($center: '100% auto') {
   $allowed: ('100% auto','auto 100%','contain');
