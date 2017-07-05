@@ -6,60 +6,60 @@
 ///
 /// @content the @content directive is used
 ///
-/// @param {String} $state 
+/// @param {String} $state
 ///    Which state is this element in? Accepts 'idle' or 'hover'
 ///
 /// @param {Boolean} $disabled
 ///
 /// @example scss - Usage
-///   //  .link {
-///   //   padding: .5em 1em; // Styles that do not change when interacting with this element
-///   //  
-///   //   @include touch-hover('idle') {
-///   //     color: black; // Styles for the :link and :visited states
-///   //   }
-///   //   @include touch-hover('hover') {
-///   //     color: red; // Styles for the :focus, :hover and :active states
-///   //   }
-///   //  
-///   //   &__disabled {
-///   //     @include touch-hover('hover', true) {
-///   //      color: silver; // All psuedo states are included
-///   //     }
-///   //   }
-///   //  }
+///   .link {
+///    padding: .5em 1em; // Styles that do not change when interacting with this element
+///
+///    @include touch-hover('idle') {
+///      color: black; // Styles for the :link and :visited states
+///    }
+///    @include touch-hover('hover') {
+///      color: red; // Styles for the :focus, :hover and :active states
+///    }
+///
+///    &__disabled {
+///      @include touch-hover('hover', true) {
+///       color: silver; // All psuedo states are included
+///      }
+///    }
+///   }
 ///
 /// @example css - Output
-///   //  .link {
-///   //    padding: .5em 1em;
-///   //  }
-///   //  .link,
-///   //  .link:link,
-///   //  .link:visited {
-///   //    color: black;
-///   //  }
-///   //  .no-js .link:hover,
-///   //  .no-js .link:focus,
-///   //  .js.no-touchevents .link:hover,
-///   //  .js.no-touchevents .link:focus,
-///   //  .js.touchevents .link:active {
-///   //    color: red;
-///   //  }
-///   //  .no-js .link__disabled,
-///   //  .no-js .link__disabled:link,
-///   //  .no-js .link__disabled:visited,
-///   //  .no-js .link__disabled:hover,
-///   //  .no-js .link__disabled:focus,
-///   //  .js.no-touchevents .link__disabled,
-///   //  .js.no-touchevents .link__disabled:link,
-///   //  .js.no-touchevents .link__disabled:visited,
-///   //  .js.no-touchevents .link__disabled:hover,
-///   //  .js.no-touchevents .link__disabled:focus,
-///   //  .js.touchevents .link__disabled,
-///   //  .js.touchevents .link__disabled:active {
-///   //    cursor: default;
-///   //    color: silver;
-///   //  }
+///   .link {
+///     padding: .5em 1em;
+///   }
+///   .link,
+///   .link:link,
+///   .link:visited {
+///     color: black;
+///   }
+///   .no-js .link:hover,
+///   .no-js .link:focus,
+///   .js.no-touchevents .link:hover,
+///   .js.no-touchevents .link:focus,
+///   .js.touchevents .link:active {
+///     color: red;
+///   }
+///   .no-js .link__disabled,
+///   .no-js .link__disabled:link,
+///   .no-js .link__disabled:visited,
+///   .no-js .link__disabled:hover,
+///   .no-js .link__disabled:focus,
+///   .js.no-touchevents .link__disabled,
+///   .js.no-touchevents .link__disabled:link,
+///   .js.no-touchevents .link__disabled:visited,
+///   .js.no-touchevents .link__disabled:hover,
+///   .js.no-touchevents .link__disabled:focus,
+///   .js.touchevents .link__disabled,
+///   .js.touchevents .link__disabled:active {
+///     cursor: default;
+///     color: silver;
+///   }
 ///
 /// @options
 /// 1. Set the name of the class hooks that moderniizr provides

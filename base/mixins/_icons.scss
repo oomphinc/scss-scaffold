@@ -12,7 +12,7 @@
 /// @param {Color} $color [inherit]
 ///
 /// @example scss - Usage
-///  // .element { @include icon('\f105', after); }
+///  .element { @include icon('\f105', after); }
 ///
 @mixin icon($icon, $position: 'before', $color:inherit) {
   &::#{unquote($position)} {
