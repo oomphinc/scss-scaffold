@@ -19,27 +19,27 @@
 ///   Min/Max viewport width. Which viewport "locks" should the fluid measurements start and end at?
 ///
 /// @example scss - Usage
-///  // .element {
-///  //   @include fluid-unit(padding-top padding-bottom, 1em, 4em, em(480), em(1200));
-///  // }
+///  .element {
+///    @include fluid-unit(padding-top padding-bottom, 1em, 4em, em(480), em(1200));
+///  }
 ///
 /// @example css - Output
-///  // .element {
-///  //   padding-top: 1em;
-///  //   padding-bottom: 1em;
-///  // }
-///  // @media (min-width: 38.75em) {
-///  //   .element {
-///  //     padding-top: calc(1em + 3 * (100vw - 38.75em) / 46.25);
-///  //     padding-bottom: calc(1em + 3 * (100vw - 38.75em) / 46.25);
-///  //   }
-///  // }
-///  // @media (min-width: 85em) {
-///  //   .element {
-///  //     padding-top: calc(1em + 3 * 1em);
-///  //     padding-bottom: calc(1em + 3 * 1em);
-///  //   }
-///  // }
+///  .element {
+///    padding-top: 1em;
+///    padding-bottom: 1em;
+///  }
+///  @media (min-width: 38.75em) {
+///    .element {
+///      padding-top: calc(1em + 3 * (100vw - 38.75em) / 46.25);
+///      padding-bottom: calc(1em + 3 * (100vw - 38.75em) / 46.25);
+///    }
+///  }
+///  @media (min-width: 85em) {
+///    .element {
+///      padding-top: calc(1em + 3 * 1em);
+///      padding-bottom: calc(1em + 3 * 1em);
+///    }
+///  }
 ///
 @mixin fluid-units($properties, $min-value, $max-value, $min-vw, $max-vw) {
   // Mobile-first: declare the $min-value as the default for any property passed
@@ -54,10 +54,20 @@
     }
   }
 
+  // Check the unit and adjust the multiplier accordingly so this can be applied to more than just type
+  $multiplier: 1;
+  @if unit($min-value) == 'rem' {
+    $multiplier: $multiplier * 1rem;
+  } @elseif unit($min-value) == 'em' {
+    $multiplier: $multiplier * 1em;
+  } @else {
+    $multiplier: $multiplier * 1px;
+  }
+
   // Finally, stop the crazy fluidity and set the max value at the max viewport width
   @media (min-width: $max-vw) {
     @each $property in $properties {
-      #{$property}: calc(#{$min-value} + #{strip-units($max-value - $min-value)} * 1em);
+      #{$property}: calc(#{$min-value} + #{strip-units($max-value - $min-value)} * #{$multiplier});
     }
   }
 }
