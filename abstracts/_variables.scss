@@ -40,3 +40,13 @@ $default-border-radius: 4px;
 $table-border-collapse: true;
 $table-border-color: $color-borders;
 $table-cell-padding: .5em;
+
+
+// Buttons
+// Remove and edit styles as needed. This basic idea provides three button styles
+$form-button-background-default: palette(mono, 10);
+$form-button-color-default: palette(mono, 66);
+$form-button-border-color-default: palette(mono, 33);
+$form-button-border-width: 1px;
+$form-button-border-radius: $default-border-radius;
+$form-button-padding: .625em 1em .5em;
