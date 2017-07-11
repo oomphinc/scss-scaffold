@@ -1,8 +1,8 @@
 # Default application configuration that all configurations inherit from.
 # https://github.com/brigade/scss-lint/blob/master/lib/scss_lint/linter/README.md
 
-scss_files: '../*.scss'
-exclude: '../libraries/*'
+scss_files: "**/*.scss"
+exclude: ["**/vendor/*", "**/libraries/*"]
 plugin_directories: ['.scss-linters']
 
 # List of gem names to load custom linters from (make sure they are already
