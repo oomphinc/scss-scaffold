@@ -22,6 +22,8 @@ an update.
 scaffold and files an issue in Github and assigns it to themself.
 * They can then resolve the issue by making the change needed and submitting a
 PR for review, or they can go back and handle the issue later.
+* The Team Member finishes their update, has it approved in code review, commits 
+their change to master and creates a new annotated tag (more on tags below).
 
 In this way, maintenance becomes a team effort and no one person is burdened
 with all maintenance responsibilities.
@@ -29,6 +31,23 @@ with all maintenance responsibilities.
 Likewise, if there is a new great idea that we should incorporate into this
 scaffold, any Team Member can file an issue and bring the idea forward for
 review and inclusion.
+
+### Using and Creating Tags
+New changes that get merged to master should also receive a new tagged release.
+
+To create a tag locally, use the following command:
+```sh
+$ git tag -a 1.1.2
+```
+You'll be prompted to enter release notes and save after running this command. 
+Alternatively, you can use the `-m` flag and enter your message inline the same 
+way you might write a quick commit message. Your release notes should contain a 
+clear overview of all changes that were added in this release.
+
+Tags don't push up to the remote server automatically. 
+To push your tag up, use `git push --tags`. 
+
+For more information on tags, check https://git-scm.com/book/en/v2/Git-Basics-Tagging.
 
 ## Getting Started
 
