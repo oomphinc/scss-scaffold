@@ -14,14 +14,27 @@ $font-sans: $helvetica;
 $font-serif: $georgia;
 $font-mono: $monospace;
 
+
 // Declare the custom font and fallback
 // Declare font weights as specified by the custom family: Google usually prefers numeric weights
 $font-custom: 'Google font name', $font-sans;
 $font-weight-normal: normal;
 $font-weight-bold: bold;
 
+
+// Grid Settings
+$grid-columns: 12;
+$min-width: em(320);
+$max-width: em(1366);
+$visual-grid: false;
+$visual-grid-index: front;
+$visual-grid-opacity: 0.2;
+$visual-grid-color: pink;
+
+
 // Other globals
 $default-border-radius: 4px;
+
 
 // Tables
 $table-border-collapse: true;

@@ -2,32 +2,27 @@
 
 // #Requirements
 @import
-"libraries/bourbon/bourbon",
-"libraries/neat/neat";
+  "vendor/bourbon/bourbon",
+  "vendor/neat/neat";
 
+
+// #Project
 @import
-// #Mixins and Variables
-"base/functions",
-"base/mixins/main",
-"layout/settings",
-"layout/breakpoints",
-"base/colors",
-"base/typesizes",
-"base/variables",
+  // All Abstracts
+  "abstracts/main",
 
+  // All Base
+  "base/main",
 
-// #Project: Start to output CSS
-"base/reset",
-"base/accessibility",
-"base/typography",
+  // Layout
+  "layout/layout",
 
-"layout/layout",
+  // Components
+  "components/content",
+  "components/header",
+  "components/search",
+  "components/navigation",
+  "components/footer",
 
-"component/global",
-"component/forms",
-"component/search",
-"component/buttons",
-"component/header",
-"component/navigation",
-"component/content",
-"component/footer";
+  // Pages
+  "pages/home";

@@ -13,6 +13,7 @@ button,
 input,
 select,
 textarea {
+  // Size is not declared: assumed to be set by browser (default 16px)
   color: $color-text;
   font-family: $font-sans;
   font-weight: $font-weight-normal;
@@ -133,6 +134,7 @@ table {
 
 // Block level elements
 blockquote {
+  quotes: none;
   position: relative;
 
   p {
@@ -306,14 +308,14 @@ strong {
 
 i,
 em,
-cite {
+cite,
+var {
   font-style: italic;
 }
 
 var {
   color: palette(mono, 75);
   display: inline-block;
-  font-style: italic;
   padding: 0 .125em;
 }
 
