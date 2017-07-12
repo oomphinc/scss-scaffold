@@ -37,7 +37,7 @@ review and inclusion.
 New changes that get merged to master should also receive a new tagged release.
 
 Follow the conventions outlined here: http://semver.org/ to determine the new 
-release number you should bump up to, 
+release number you should bump up to. 
 
 To create a tag locally, use the following command:
 ```sh
@@ -62,7 +62,6 @@ instead of just cloning master (as we did previously).
 
 To grab the lastest tagged release, navigate to the 'Releases' tab for this repo and download
 the most recent version.
-
 
 ### Add Bourbon & Neat
 
