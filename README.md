@@ -32,8 +32,12 @@ Likewise, if there is a new great idea that we should incorporate into this
 scaffold, any Team Member can file an issue and bring the idea forward for
 review and inclusion.
 
-### Using and Creating Tags
+### Creating Tags
+
 New changes that get merged to master should also receive a new tagged release.
+
+Follow the conventions outlined here: http://semver.org/ to determine the new 
+release number you should bump up to. 
 
 To create a tag locally, use the following command:
 ```sh
@@ -45,11 +49,19 @@ way you might write a quick commit message. Your release notes should contain a
 clear overview of all changes that were added in this release.
 
 Tags don't push up to the remote server automatically. 
-To push your tag up, use `git push --tags`. 
+To push your tag up, use `git push --follow-tags`. 
 
 For more information on tags, check https://git-scm.com/book/en/v2/Git-Basics-Tagging.
 
 ## Getting Started
+
+### Using a Tagged Release
+
+When adding scaffold to a new project, make sure you use the latest tagged release 
+instead of just cloning master (as we did previously).
+
+To grab the lastest tagged release, navigate to the [Releases section](https://github.com/oomphinc/scss-scaffold/releases) 
+and download the most recent version.
 
 ### Add Bourbon & Neat
 
