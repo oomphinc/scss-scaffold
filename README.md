@@ -60,8 +60,8 @@ For more information on tags, check https://git-scm.com/book/en/v2/Git-Basics-Ta
 When adding scaffold to a new project, make sure you use the latest tagged release 
 instead of just cloning master (as we did previously).
 
-To grab the lastest tagged release, navigate to the 'Releases' tab for this repo and download
-the most recent version.
+To grab the lastest tagged release, navigate to the [Releases section](https://github.com/oomphinc/scss-scaffold/releases) 
+and download the most recent version.
 
 ### Add Bourbon & Neat
 
