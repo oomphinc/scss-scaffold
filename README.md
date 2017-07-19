@@ -1,6 +1,9 @@
 # Oomph's scss-scaffold
 
-This is Oomph's boilerplate scaffold for starting front-end theme development.
+This is Oomph's boilerplate scaffold for starting front-end theme development. 
+The basics of typography are here, along with some helpers that we find useful to 
+include on every project. [A sample of what these naked styles render as can be 
+found here](http://jhogue.dev.oomphcloud.com/scaffold/sample.html).
 
 ## Documentation
 
@@ -60,7 +63,7 @@ For more information on tags, check https://git-scm.com/book/en/v2/Git-Basics-Ta
 When adding scaffold to a new project, make sure you use the latest tagged release 
 instead of just cloning master (as we did previously).
 
-To grab the lastest tagged release, navigate to the [Releases section](https://github.com/oomphinc/scss-scaffold/releases) 
+To grab the latest tagged release, navigate to the [Releases section](https://github.com/oomphinc/scss-scaffold/releases) 
 and download the most recent version.
 
 ### Add Bourbon & Neat
