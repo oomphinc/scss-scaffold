@@ -47,13 +47,13 @@
   @if $type == 'secondary' {
 
     @include touch-hover('idle') {
-      background-color: palette(mono, 90);
-      border-color: palette(mono, black);
-      color: palette(mono, 25);
+      background-color: palette(mono, 25);
+      border-color: palette(mono, 33);
+      color: palette(mono, 90);
     }
 
     @include touch-hover('hover') {
-      background-color: palette(mono, black);
+      background-color: palette(mono);
       color: palette(mono, white);
     }
   }
