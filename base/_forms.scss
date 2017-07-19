@@ -6,22 +6,24 @@ $form-input-border-width: 1px;
 $form-input-border-radius: $default-border-radius;
 $form-input-placeholder-color: palette(mono, 33);
 $form-input-color: palette(mono, 66);
-$form-input-padding: .25em;
+$form-input-padding: .25em .75em;
 
 fieldset {
+  @extend .charlie;
   border: $form-input-border-width solid $form-input-border-color;
   border-radius: $form-input-border-radius;
   margin-bottom: 1em;
-  padding: 1em;
+  padding: 1em 1em 0;
 }
 
-label {}
+label {
+  font-weight: $font-weight-bold;
+}
 
 input,
 textarea {
   @include transition( all 250ms ease );
   border: $form-input-border-width solid $form-input-border-color;
-  box-sizing: border-box; // Declare explicitly, as form elements do not inherit from HTML declaration in iOS and Android
   border-radius: $form-input-border-radius;
   color: $form-input-color;
   display: inline-block;
