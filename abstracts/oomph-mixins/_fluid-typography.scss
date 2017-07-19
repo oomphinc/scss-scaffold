@@ -75,8 +75,8 @@
 
   // Change these key values into a typographic value
   // by getting the matching key/value pair from the $type-sizes array
-  $min-value: em(one-type-size($first-key, $elem));
-  $max-value: em(one-type-size($last-key, $elem));
+  $min-value: rem(one-type-size($first-key, $elem));
+  $max-value: rem(one-type-size($last-key, $elem));
 
   // Use the same keys to grab the corresponding breakpoints
   @if type-of($breakpoints) != 'map' {
