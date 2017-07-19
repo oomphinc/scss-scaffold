@@ -85,7 +85,6 @@ input[type="reset"],
 input[type="button"],
 button {
   @include transition(all 250ms ease);
-  border: $form-input-border-width solid $form-input-border-color;
   width: auto;
 }
 
