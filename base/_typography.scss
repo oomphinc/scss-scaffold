@@ -1,7 +1,7 @@
 // @file typography.scss
 
 // Copy
-$paragraph: 1em;
+$base-type-size: 1em;
 $line-height: 1.75;
 
 // establishing some vertical rhythm for no type elements
@@ -14,6 +14,7 @@ input,
 select,
 textarea {
   // Size is not declared: assumed to be set by browser (default 16px)
+  // and our Reset, which declares font-size: 100%
   color: $color-text;
   font-family: $font-sans;
   font-weight: $font-weight-normal;
@@ -28,14 +29,16 @@ a {
     text-decoration: none;
   }
 
+  // Note: The text-decoration declaration is not animatable.
+  // It will not respond to the transition() that we have above.
   @include touch-hover('hover') {
     color: $color-hover;
-    text-decoration: none;
+    text-decoration: underline;
   }
 
   &[href^=tel] {
     color: inherit;
-    text-decoration: none;
+    text-decoration: dotted;
   }
 }
 
@@ -130,6 +133,14 @@ table {
   margin-bottom: $vert-line-height;
 }
 
+// Nested lists should not have margin bottom
+ol ol,
+ul ul,
+ul ol,
+ol ul {
+  margin-bottom: 0;
+}
+
 .micro { @include one-element-size(micro); }
 
 // Block level elements
@@ -168,10 +179,6 @@ blockquote {
   }
 }
 
-address {
-  font-style: italic;
-}
-
 hr {
   border: none;
   border-top: 1px solid palette(mono, 25);
@@ -183,7 +190,7 @@ hr {
 
 ul,
 ol {
-  margin-left: 3em;
+  margin-left: 1.5rem;
 }
 
 // scss-lint:disable MergeableSelector
@@ -214,7 +221,7 @@ dd {
 }
 
 dt {
-  border-bottom: 1px solid $color-borders;
+  border-bottom: 1px dotted $color-borders;
   font-weight: $font-weight-bold;
 }
 
@@ -233,7 +240,6 @@ table {
 
   th {
     border-bottom: 2px solid $table-border-color;
-    font-weight: $font-weight-bold;
     padding: $table-cell-padding;
     text-align: left;
   }
@@ -283,34 +289,11 @@ sub {
   bottom: -0.25em;
 }
 
-abbr[title],
-cite,
-dfn[title] {
-  border-bottom: 1px dotted $color-link;
-}
-
-abbr[title],
-dfn[title] {
-  cursor: help;
-}
-
 abbr[title] {
   font-size: 75%;
   font-weight: $font-weight-bold;
   letter-spacing: 0.125em;
   text-transform: uppercase;
-}
-
-b,
-strong {
-  font-weight: $font-weight-bold;
-}
-
-i,
-em,
-cite,
-var {
-  font-style: italic;
 }
 
 var {
@@ -347,8 +330,6 @@ ins {
 code,
 kbd,
 samp {
-  // scss-lint:disable DuplicateProperty
-  background: palette(mono, 10);
   background: rgba(#000, .05);
   border-radius: $default-border-radius;
   box-shadow: 0 0 .25em rgba(#000, .1) inset;
@@ -370,10 +351,6 @@ s {
 
 del {
   color: $color-error;
-}
-
-u {
-  text-decoration: underline;
 }
 
 ins {
@@ -412,14 +389,14 @@ small {
     background-color: transparent;
     border: 1px solid $color-borders;
     box-shadow: 0 0 1em rgba(#000, 0.2);
-    margin: -1em -1.25em -1px;
-    padding: 1em 1.25em 1px;
+    margin-bottom: $vert-line-height;
+    padding: 2em 1.5em 1px;
     position: relative;
   }
 
   .example::before {
     background-color: palette(brand);
-    color: #fff;
+    color: palette(mono, white);
     content: 'EXAMPLE';
     font-size: .75em;
     padding: .4em .75em .3em;
@@ -427,7 +404,7 @@ small {
       top: 0; right: 0;
     z-index: 9999;
   }
-  //.example + .examplecode { margin-top: -1.25em; }
+  .examplecode { margin-bottom: $vert-line-height; }
   .element-caption { display: block; }
 }
 
