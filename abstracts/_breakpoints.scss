@@ -11,18 +11,18 @@ $breakpoints: (
 
 // Reusable Media Queries
 $xsmall-up: new-breakpoint( min-width bppx(base) );
-$xsmall: new-breakpoint( min-width ( bppx(base) ) max-width ( (bppx(small)-1px) ) );
+$xsmall: new-breakpoint( min-width ( bppx(base) ) max-width ( bppx(small)-1px ) );
 
 $small-up: new-breakpoint( min-width bppx(small) );
 $small: new-breakpoint( min-width ( bppx(small) ) max-width ( bppx(medium)-1px ) );
 
 $medium-up: new-breakpoint( min-width bppx(medium) );
-$medium: new-breakpoint( min-width ( bppx(medium) ) max-width (bppx(large)-1px) );
+$medium: new-breakpoint( min-width ( bppx(medium) ) max-width ( bppx(large)-1px) );
 
 $large-up: new-breakpoint( min-width bppx(large) );
-$large: new-breakpoint( min-width ( bppx(large) ) max-width (bppx(x-large)-1px) );
+$large: new-breakpoint( min-width ( bppx(large) ) max-width ( bppx(x-large)-1px) );
 
 $xlarge-up: new-breakpoint( min-width bppx(x-large) );
-$xlarge: new-breakpoint( min-width ( bppx(x-large) ) max-width (bppx(xx-large)-1px) );
+$xlarge: new-breakpoint( min-width ( bppx(x-large) ) max-width ( bppx(xx-large)-1px) );
 
 $xxlarge-up: new-breakpoint( min-width bppx(xx-large) );
