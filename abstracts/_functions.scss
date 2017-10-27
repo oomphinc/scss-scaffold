@@ -8,6 +8,103 @@
 ////
 
 
+/// Remove (strip) Units
+/// @author Bourbon / Thoughbot
+/// @parameter {Value} $value -Value, assumed number with unit
+/// @example  scss - Usage
+///   line-height: strip-unit(1.5em);
+/// @example css - Output
+///   line-height: 1.5;
+@function strip-unit($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+
+/// px()
+/// Change a unitless value to px
+/// @author jhogue
+/// @require strip-unit()
+/// @param {float} $value - Numeric value assumed to be pixels
+/// @example scss - Usage
+///   width: px(48);
+/// @example css - Output
+///   width: 48px;
+@function px($value) {
+  @if not unitless($value) {
+    $value: strip-unit($value);
+  }
+  @return ($value * 1px);
+}
+
+
+/// em()
+/// Change a (assumed) pixel value to an em
+/// @author Bourbon / Thoughbot
+/// @require strip-unit()
+/// @param {float} $value - Numeric value assumed to be pixels
+/// @param {float} $base - (optional) Numeric value for the pixel multiplier
+/// @example scss - Usage
+///   font-size: em(24);
+///   width: em(48, 24);
+/// @example css - Output
+///   font-size: 1.5em;
+///   width: 2em;
+@function em($value, $base: $base-type-size-px) {
+  @if not unitless($value) {
+    $value: strip-unit($value);
+  }
+  @if not unitless($base) {
+    $base: strip-unit($base);
+  }
+  @return ($value / $base) * 1em;
+}
+
+
+/// rem()
+/// Change a (assumed) pixel value to an rem
+/// @author Bourbon / Thoughbot
+/// @require strip-unit()
+/// @param {float} $value - Numeric value assumed to be pixels
+/// @param {float} $base - (very optional) Numeric value for the pixel multiplier
+/// @example scss - Usage
+///   width: rem(48);
+/// @example css - Output
+///   width: 3rem;
+@function rem($value, $base: $base-type-size-px) {
+  @if not unitless($value) {
+    $value: strip-unit($value);
+  }
+  @if not unitless($base) {
+    $base: strip-unit($base);
+  }
+  @return ($value / $base) * 1rem;
+}
+
+
+/// clearfix()
+/// Clearfix still useful, though less and less
+/// @author Bourbon / Thoughbot
+/// @require {None}
+/// @param {None}
+/// @example scss - Usage
+///   .element {
+///     @include clearfix;
+///   }
+/// @example css - Output
+///   .element::after {
+///     clear: both;
+///     content: "";
+///     display: block;
+///   }
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
+
+
 /// Map deep get
 /// @author Hugo Giraudel
 /// @require SASS map-get()
@@ -18,10 +115,10 @@
 /// @example css - Output
 ///   {*} - Desired value
 @function map-deep-get($map, $keys...) {
-	@each $key in $keys {
-		$map: map-get($map, $key);
-	}
-	@return $map;
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
 }
 
 
@@ -39,13 +136,13 @@
 ///
 @function palette($palette, $tone:base) {
 
-	@if not index(map-keys($palettes), $palette) {
-		@error "Palette `#{$palette}` does not exist.";
-	}
-	@if not index(map-keys(map-get($palettes, $palette)), $tone) {
-		@error "There is no `#{$tone}` defined in your `#{$palette}` color map however, its being called in your theme.";
-	}
-	@return map-deep-get( $palettes, $palette, $tone );
+  @if not index(map-keys($palettes), $palette) {
+    @error "Palette `#{$palette}` does not exist.";
+  }
+  @if not index(map-keys(map-get($palettes, $palette)), $tone) {
+    @error "There is no `#{$tone}` defined in your `#{$palette}` color map however, its being called in your theme.";
+  }
+  @return map-deep-get( $palettes, $palette, $tone );
 }
 
 
@@ -59,7 +156,7 @@
 /// @example css - Output
 ///   30em
 @function bp($size: 'base') {
-	@return em( map-get( $breakpoints, $size ) );
+  @return em( map-get( $breakpoints, $size ) );
 }
 
 
@@ -73,7 +170,7 @@
 /// @example css - Output
 ///   480px
 @function bppx($size: 'base') {
-	@return px( map-get( $breakpoints, $size ) );
+  @return px( map-get( $breakpoints, $size ) );
 }
 
 
@@ -88,23 +185,7 @@
 /// @example css - Output
 ///   26
 @function rwd-size($elem, $group: 'base') {
-	@return map-deep-get( $type-sizes, $group, $elem );
-}
-
-
-/// px() =
-/// Change a unitless value to px
-/// @author jhogue
-/// @require Bourbon strip-units()
-/// @param {float} $value - Numeric value assumed to be pixels
-/// @example scss - Usage
-///   width: px(48);
-/// @example css - Output
-///   width: 48px;
-@function px($value) {
-	// Make sure it is unitless
-	$value: strip-units($value);
-	@return ($value * 1px);
+  @return map-deep-get( $type-sizes, $group, $elem );
 }
 
 
@@ -120,8 +201,8 @@
 /// @example css - Output
 ///   background-color: #ccc;
 @function percent-color($color, $percent, $background: white) {
-	$percent: strip-units($percent);
-	$opaque: opacify($color, 1);
-	$solid-color: mix($opaque, $background, $percent);
-	@return $solid-color;
+  $percent: strip-unit($percent);
+  $opaque: opacify($color, 1);
+  $solid-color: mix($opaque, $background, $percent);
+  @return $solid-color;
 }
