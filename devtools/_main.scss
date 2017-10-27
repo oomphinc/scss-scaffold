@@ -1,0 +1,10 @@
+@import 
+  'debug',
+  'diagnosticss';
+
+@include heydon_rules;
+@include debug_links;
+@include debug_images;
+@include debug_misc;
+@include debug_deprecated;
+@include debug_empty;

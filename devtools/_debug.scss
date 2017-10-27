@@ -1,0 +1,235 @@
+// Consider an alternative set of rules for bad habits: https://github.com/diagnosticss/diagnosticss
+
+//
+//  This file was taken from  http://www.tomato-root.com/sandbox/holmes/
+//  and adapted to remove some annoying warnings that I really don't care about.
+//  Also removed .holmes-debug namespace, so I can just include stylesheet as following.
+//
+//    <%= stylesheet_link_tag "debug" if Rails.env.development? %>
+//
+//  ------------------------
+//
+//  Debug colours and what they mean
+//
+//  - tomato       denotes an error, invalid markup or a missing attribute
+//  - gold         denotes a warning, so potentionally erroneous markup or bad practice
+//  - goldenrod    denotes a deprecated element or element with deprecated or Non-W3C attributes
+//  - darkorchid   denotes missing translation. Authors should add the class in while working, and remove it when done. 
+//
+//  -------------------------
+//
+
+
+//**************
+//  General... applied manually
+//**************
+.error,
+.invalid {
+    color: tomato; 
+}
+
+
+
+@mixin heydon_rules {
+    
+    // Adapted from http://coding.smashingmagazine.com/2013/08/20/semantic-css-with-intelligent-selectors/
+    // I removed the Comic Sans font declaration because, well, I really can't stand it, even in this context
+    
+    %uglystyle {
+      display: block !important;
+      background: pink !important;
+      padding: 0.5em !important;
+      color: #000 !important;
+      //font-family: 'comic sans ms', cursive !important;
+      //font-size: 16px !important;
+    }
+    
+    // Rule 1: “If it’s a hyperlink, it should have an href attribute.”
+    a:not([href]):after {
+      @extend %uglystyle; 
+      content: 'Do you mean for this to be a link or a button, because it does not link to anything!';
+    }
+    
+    // Rule 2: “If it’s a hyperlink and has an href attribute, it should have a valid value.”
+    a[href=""]:after, a[href$="#"]:after, a[href^="javascript"]:after {
+      @extend %uglystyle; 
+      content: 'Do you mean for this link to be a button, because it does not go anywhere!';
+    }
+    
+    // Rule 3: “If it uses a button class, it should be a button — at least in the accessibility layer.”
+    .button:not(button):not([role="button"]):not([type="button"]):not([type="submit"]):not([type="reset"]):after,
+    .btn:not(button):not([role="button"]):not([type="button"]):not([type="submit"]):not([type="reset"]):after, 
+    a[class*="button"]:not([role="button"]):after {
+     @extend %uglystyle; 
+     content: 'If you are going to make it look like a button, make it a button, damn it!';
+    }
+    
+    // Rule 4: “If it is an a element with role="button", then it should link to somewhere when JavaScript is off.”
+    a[role="button"]:not([href*="/"]):not([href*="."]):not([href*="?"]):after {
+     @extend %uglystyle; 
+     content: 'Either use a link fallback, or just use a button element.';
+    }
+    
+    // Rule 5: “You can’t disable a hyperlink.”
+    a.button[class*="disabled"]:after, 
+    a.btn.disabled:after,
+    a[class*="button"][class*="disabled"]:after {
+      @extend %uglystyle; 
+      content: 'You cannot disable a hyperlink. Use a button element with disabled="disabled".';
+    }
+    
+    // Rule 6: “Buttons in forms should have explicit types.”
+    form button:not([type]):after {
+      @extend %uglystyle; 
+      content: 'Is this a submit button, a reset button or what? Use type="submit", type="reset" or type="button"';
+    }
+    
+    // Rule 7: “Both hyperlinks and buttons should have some sort of content or an ARIA label.”
+    // Buttons and links that don’t include any kind of direction for their usage are pretty bogus.
+    a:empty:not([aria-label]):not([aria-labelledby]):after, 
+    button:empty:not([aria-label]):not([aria-labelledby]):after, 
+    button:not([aria-label]):not([aria-labelledby]) img:only-child:not([alt]):after, 
+    a:not([aria-label]):not([aria-labelledby]) img:only-child:not([alt]):after {
+      @extend %uglystyle; 
+      content: 'All buttons and links should have text content, an image with alt text or an ARIA label';
+    }
+}
+
+
+//**************
+//  LINKS
+//**************
+
+@mixin debug_links {
+    
+  // The name attr on an anchor is obsolete! http://dev.w3.org/html5/markup/a.html#placeholder-hyperlink
+  a:not([href]),
+  a[name], 
+  a[href=""], 
+  a[href="%"] {
+    outline: 2px solid tomato;
+  }
+  
+  a[href="#"],
+  a[href^="javascript"] {
+    outline: 2px solid gold;
+  }
+}
+
+//**************
+//  IMAGES
+//**************
+
+@mixin debug_images {
+    
+  img:not([alt]),
+  img[alt=""] {
+    outline: 2px solid tomato;
+  }
+}
+
+//*************************
+//  MISC ATTRIBUTES
+//**************************
+
+@mixin debug_misc {
+
+  // empty or missing "for" tags on labels, "names" on inputs, selects and textareas, abbr without a title, empty class or is declarations
+  label:not([for]),
+  label[for=""],
+  input:not([name]),
+  input[name=""],
+  select:not([name]),
+  select[name=""],
+  textarea:not([name]),
+  textarea[name=""],
+    
+  abbr:not([title]),
+  abbr[title=""],
+    
+  [class=""],
+  [id=""] {
+    outline: 2px solid tomato;
+  }
+    
+  // Warnings here, for inline styles and event calls,
+  // ideally they should be external (CSS) and JS applied by JS scripts,
+  // keep markup purely presentational!
+  [style],
+  [onclick],
+  [onblur],
+  [onfocus],
+  [onselect],
+  [onload],
+  [onunload] {
+    outline: 2px solid gold;
+  }
+}
+
+//*************************************************************************
+// DEPRECATED & NON-W3C CONTENT ELEMENTS (goldenrod)
+// Based largely on http://www.w3.org/TR/html5/obsolete.html#obsolete
+//*************************************************************************
+
+@mixin debug_deprecated {
+
+  applet,
+  acronym,
+  center,
+  dir,
+  font,
+  strike,
+  u,
+  /*i, apparently not deprecated
+  b,  apparently not deprecated  */
+  big,
+  tt,
+  marquee, /* i've left this because it is a stupid thing to use */
+  plaintext,
+  xmp {
+    outline: 2px solid goldenrod;
+  }
+
+  //************************************************************************
+  // DEPRECATED NON-W3C ATTRIBUTES (goldenrod)
+  // Based largely on http://www.w3.org/TR/html5/obsolete.html#obsolete
+  //************************************************************************
+    
+  body[bgproperties],
+  body[topmargin],
+  body[rightmargin],
+  body[bottommargin],
+  body[leftmargin] {
+    outline: 2px solid goldenrod;
+  }
+    
+  *[bordercolor],
+  *[bordercolordark],
+  *[bordercolorlight],
+  table[frame] {
+    outline: 2px solid goldenrod;
+  }
+}
+
+//*********************
+//  EMPTY ELEMENTS (warning level for now)
+//**********************
+
+@mixin debug_empty {
+
+  div:empty,
+  span:empty,
+  li:empty,
+  p:empty,
+  td:empty,
+  th:empty {
+    outline: 2px solid gold;
+  }
+
+  //*********************
+  //  MISSING TRANSLATIONS
+  //**********************
+  .translation_missing {
+    outline: 2px solid #B516A9;
+  }
+}
