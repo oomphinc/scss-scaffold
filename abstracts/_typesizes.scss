@@ -27,17 +27,17 @@ $type-sizes: (
     giga: 33
   ),
 
-  // 1.25 typographic scale base 18
+  // 1.225 typographic scale base 18
   // scss-lint:disable DeclarationOrder
   x-large: (
     micro: 14,
     base: 18,
     h4: 22,
-    h3: 27,
-    h2: 33,
-    h1: 41,
-    kilo: 51,
-    mega: 63,
-    giga: 78,
+    h3: 26,
+    h2: 31,
+    h1: 37,
+    kilo: 45,
+    mega: 55,
+    giga: 67
   ),
 );
