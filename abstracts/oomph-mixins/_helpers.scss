@@ -23,45 +23,6 @@
 }
 
 
-/// rem() =
-/// Provide rem and px fallback for any property
-/// @author jhogue
-///
-/// @param {String} valid css property
-///   The property to calculate px and rem for
-///
-/// @param {Numeric} value
-///   The value, assumed ot be pixels
-///
-/// @require {function} unquote
-/// @require {function} px
-///
-/// @require {library} Bourbon
-/// @require {function} strip-units
-/// @require {function} rem
-///
-/// @example scss - Usage
-///  @include rem('padding-top', 32)
-///
-/// @example css - Output
-///  padding-top: 32px;
-///  padding-top: 2rem;
-///
-@mixin rem($property, $value) {
-  $number: strip-units($value * 1);
-  $declaration: unquote($property);
-
-  // scss-lint:disable DuplicateProperty
-  #{$declaration}: px($number);
-  #{$declaration}: rem($number);
-}
-
-/// Alias of rem() for font-size only
-@mixin rem-fontsize($value) {
-  @include rem('font-size', $value);
-}
-
-
 /// javascript-listener() =
 /// Provide a method for passing parameters to JS
 /// @author jhogue
