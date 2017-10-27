@@ -1,8 +1,5 @@
 // @file typography.scss
 
-// Copy
-$base-type-size: 1em;
-$line-height: 1.75;
 
 // establishing some vertical rhythm for no type elements
 // use this on margin bottom etc.
@@ -22,7 +19,7 @@ textarea {
 }
 
 a {
-  @include transition(all 250ms ease);
+  transition: $default-transition;
 
   @include touch-hover('idle') {
     color: $color-link;
@@ -86,6 +83,7 @@ h3,
 h4,
 .delta {
   @include one-element-size(h4);
+  font-weight: $font-weight-bold;
 }
 
 %base-rwd-size {
@@ -382,36 +380,11 @@ small {
   }
 }
 
-.typography {
-
-  // For the style guide template
-  .example {
-    background-color: transparent;
-    border: 1px solid $color-borders;
-    box-shadow: 0 0 1em rgba(#000, 0.2);
-    margin-bottom: $vert-line-height;
-    padding: 2em 1.5em 1px;
-    position: relative;
-  }
-
-  .example::before {
-    background-color: palette(brand);
-    color: palette(mono, white);
-    content: 'EXAMPLE';
-    font-size: .75em;
-    padding: .4em .75em .3em;
-    position: absolute;
-      top: 0; right: 0;
-    z-index: 9999;
-  }
-  .examplecode { margin-bottom: $vert-line-height; }
-  .element-caption { display: block; }
-}
 
 .vertical-grid {
   // Debug vertical rhythm
   // scss-lint:disable UrlFormat
   background-image: url('http://basehold.it/i/31/cc0000');
-  background-position: 0 14px;
+  background-position: 0 8px;
   // scss-lint:enable UrlFormat
 }
