@@ -80,12 +80,12 @@ For our SCSS testing we are using `pre-commit` hooks provided by `git`. More
 info here: [pre-commit by Yelp](http://pre-commit.com/)
 
 #### Installing Pre-Commit
-If you use Homebrew, run `brew install pre-commit`
-If not, freakin install it from [Homebrew](http://brew.sh/)
+If you use Homebrew (and you should), run `brew install pre-commit`
+If not, install it from [Homebrew](http://brew.sh/)
 
 Currently the linter is setup to only run on changed files and only when committing.
 Occasionally we have projects that for whatever reason need us to "tweak" these
-standards and the linter process allows two simple ways to do so.
+standards and the linter process allows two simple ways to do so:
 
 1. To notify the linter to not run on certain code blocks you can use some
 special comments, read more here: [Disabling Linters via Source](https://github.com/brigade/scss-lint#disabling-linters-via-source)
