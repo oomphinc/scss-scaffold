@@ -1,6 +1,6 @@
-# Oomph's scss-scaffold
+# Oomph’s scss-scaffold
 
-This is Oomph's boilerplate scaffold for starting front-end theme development. 
+This is Oomph’s boilerplate scaffold for starting front-end theme development. 
 The basics of typography are here, along with some helpers that we find useful to 
 include on every project. [A sample of what these naked styles render as can be 
 found here](http://jhogue.dev.oomphcloud.com/scaffold/sample.html).
@@ -109,17 +109,17 @@ For our SCSS testing we are using `pre-commit` hooks provided by `git` more
 info here: [pre-commit by Yelp](http://pre-commit.com/)
 
 ##### Installing Pre-Commit
-If you use Homebrew, run `brew install pre-commit`
-If not, freakin install it from [Homebrew](http://brew.sh/)
+If you use Homebrew (and you should), run `brew install pre-commit`
+If not, install it from [Homebrew](http://brew.sh/)
 
-Currently the linter is setup to only run on changed files and only when commiting.
-Occasionaly we have projects that for whatever reason need us to "tweak" these
-standards and the linter process allows two simple ways to do so.
+Currently the linter is setup to only run on changed files and only when committing.
+Occasionally we have projects that for whatever reason need us to "tweak" these
+standards and the linter process allows two simple ways to do so:
 
 1. To notify the linter to not run on certain code blocks you can use some
 special comments, read more here: [Disabling Linters via Source](https://github.com/brigade/scss-lint#disabling-linters-via-source)
 
-2. To override the linter during the actual commiting process, you can use
+2. To override the linter during the actual committing process, you can use
 the `--no-verify` flag when doing your commit. For more information review the [Advanced Features](http://pre-commit.com/#advanced) of pre-commit.
 
 # Happy theming!
