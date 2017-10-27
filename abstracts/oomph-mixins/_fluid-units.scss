@@ -4,8 +4,7 @@
 /// @link http://www.sassmeister.com/gist/7f22e44ace49b5124eec
 /// @link Inspired by http://madebymike.com.au/writing/precise-control-responsive-typography/
 ///
-/// @require {library} Bourbon
-/// @require {function} strip-units
+/// @require {function} strip-unit
 ///
 /// @param {List} $properties
 ///   List one or multiple properties to assign values to
@@ -50,7 +49,7 @@
   // Now declare the creamy, fluid center using a media query at the min-width
   @media (min-width: $min-vw) {
     @each $property in $properties {
-      #{$property}: calc(#{$min-value} + #{strip-units($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-units($max-vw - $min-vw)});
+      #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
     }
   }
 
@@ -67,7 +66,7 @@
   // Finally, stop the crazy fluidity and set the max value at the max viewport width
   @media (min-width: $max-vw) {
     @each $property in $properties {
-      #{$property}: calc(#{$min-value} + #{strip-units($max-value - $min-value)} * #{$multiplier});
+      #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * #{$multiplier});
     }
   }
 }
