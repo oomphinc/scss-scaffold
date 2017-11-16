@@ -1,6 +1,6 @@
-# Oomph’s scss-scaffold
+# Oomph's scss-scaffold
 
-This is Oomph’s boilerplate scaffold for starting front-end theme development. 
+This is Oomph's boilerplate scaffold for starting front-end theme development. 
 The basics of typography are here, along with some helpers that we find useful to 
 include on every project. [A sample of what these naked styles render as can be 
 found here](http://jhogue.dev.oomphcloud.com/scaffold/sample.html).
@@ -22,7 +22,7 @@ NOT specific for this project, like a default markup pattern has changed, a
 browser has become unsupported, or an error or omission in a function needs
 an update.
 * The Team Member changes it in their new project, AND ALSO goes back to the
-scaffold and files an issue in Github and assigns it to themself.
+scaffold and files an issue in Github and assigns it to themselves.
 * They can then resolve the issue by making the change needed and submitting a
 PR for review, or they can go back and handle the issue later.
 * The Team Member finishes their update, has it approved in code review, commits 
@@ -56,6 +56,7 @@ To push your tag up, use `git push --follow-tags`.
 
 For more information on tags, check https://git-scm.com/book/en/v2/Git-Basics-Tagging.
 
+
 ## Getting Started
 
 ### Using a Tagged Release
@@ -66,36 +67,6 @@ instead of just cloning master (as we did previously).
 To grab the latest tagged release, navigate to the [Releases section](https://github.com/oomphinc/scss-scaffold/releases) 
 and download the most recent version.
 
-### Add Bourbon & Neat
-
-If you are going to compile and test this scaffold locally, you will need to
-add the dependencies Bourbon and Neat:
-
-```sh
-# You already have SASS installed, right?
-$ which sass
-
-# You should see a path to your local SASS copy
-# Not there? Install it:
-$ sudo gem install sass
-
-# Requires Sass 3.3+
-$ sass --v
-$ Sass 3.4.20
-
-# Old version? Update!
-$ sudo gem update sass
-
-# Never installed bourbon or neat? Install their gems first.
-$ sudo gem install bourbon
-$ sudo gem install neat
-
-# Then, navigate to the `libraries` directory to install:
-$ cd path/to/scaffold/libraries
-$ bourbon install
-$ neat install
-```
-
 ### Compile manually
 While working on the Scaffold, compile your CSS and test the output by running
 it in this folder. Here's the command:
@@ -105,10 +76,10 @@ $ sass --watch path/to/styles.scss:path/to/output.css --style compressed
 ```
 
 ### Linting
-For our SCSS testing we are using `pre-commit` hooks provided by `git` more
+For our SCSS testing we are using `pre-commit` hooks provided by `git`. More
 info here: [pre-commit by Yelp](http://pre-commit.com/)
 
-##### Installing Pre-Commit
+#### Installing Pre-Commit
 If you use Homebrew (and you should), run `brew install pre-commit`
 If not, install it from [Homebrew](http://brew.sh/)
 

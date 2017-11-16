@@ -2,6 +2,12 @@
 // Most variables are localized at the top of the file from which they are first used
 
 
+// Typography
+$base-type-size: 1em;
+$base-type-size-px: 16px;
+$line-height: 1.75;
+
+
 // Default constants used by our mixins
 // Change below only if you require a different value
 $icon-font-family: 'FontAwesome';
@@ -25,6 +31,7 @@ $font-weight-bold: bold;
 // Grid Settings
 $grid-columns: 12;
 $min-width: em(320);
+$text-width: em(960);
 $max-width: em(1366);
 $visual-grid: false;
 $visual-grid-index: front;
@@ -34,6 +41,7 @@ $visual-grid-color: pink;
 
 // Other globals
 $default-border-radius: 4px;
+$default-transition: all 250ms ease;
 
 
 // Tables
