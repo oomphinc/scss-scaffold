@@ -9,12 +9,13 @@
 ////
 
 /// Abstracts:
-/// All files that DO NOT output CSS. 
+/// All files that DO NOT output CSS.
 /// Functions, Mixins, and variable declarations.
 @import
 
   // Our standard functions and mixins
   "functions",
+  "neat-media/main",
   "oomph-mixins/main",
 
   // Breakpoints and Fluid Type
