@@ -1,11 +1,5 @@
 // @file styles.scss
 
-// #Requirements
-@import
-  "vendor/bourbon/bourbon",
-  "vendor/neat/neat";
-
-
 // #Project
 @import
   // All Abstracts
@@ -30,4 +24,4 @@
 
 // Development ONLY
 @import
-  "devtools/";
+  "devtools/main";
