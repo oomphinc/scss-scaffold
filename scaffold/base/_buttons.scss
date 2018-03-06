@@ -1,0 +1,15 @@
+// @file buttons.scss
+
+// Classes can be used independently: 
+// class="button", or class="button--primary"
+.button {
+  @include button();
+
+  &--primary {
+    @include button('primary');
+  }
+
+  &--secondary {
+    @include button('secondary');
+  }
+}

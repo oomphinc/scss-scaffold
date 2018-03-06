@@ -1,0 +1,208 @@
+////
+/// Oomph Scaffold Functions
+/// @access public
+/// @group Oomph Functions
+/// @author Oomph, Inc. UX Engineers
+/// @parameter none
+/// @require no 3rd party requirements
+////
+
+
+/// Remove (strip) Units
+/// @author Bourbon / Thoughbot
+/// @parameter {Value} $value -Value, assumed number with unit
+/// @example  scss - Usage
+///   line-height: strip-unit(1.5em);
+/// @example css - Output
+///   line-height: 1.5;
+@function strip-unit($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+
+/// px()
+/// Change a unitless value to px
+/// @author jhogue
+/// @require strip-unit()
+/// @param {float} $value - Numeric value assumed to be pixels
+/// @example scss - Usage
+///   width: px(48);
+/// @example css - Output
+///   width: 48px;
+@function px($value) {
+  @if not unitless($value) {
+    $value: strip-unit($value);
+  }
+  @return ($value * 1px);
+}
+
+
+/// em()
+/// Change a (assumed) pixel value to an em
+/// @author Bourbon / Thoughbot
+/// @require strip-unit()
+/// @param {float} $value - Numeric value assumed to be pixels
+/// @param {float} $base - (optional) Numeric value for the pixel multiplier
+/// @example scss - Usage
+///   font-size: em(24);
+///   width: em(48, 24);
+/// @example css - Output
+///   font-size: 1.5em;
+///   width: 2em;
+@function em($value, $base: $base-type-size-px) {
+  @if not unitless($value) {
+    $value: strip-unit($value);
+  }
+  @if not unitless($base) {
+    $base: strip-unit($base);
+  }
+  @return ($value / $base) * 1em;
+}
+
+
+/// rem()
+/// Change a (assumed) pixel value to an rem
+/// @author Bourbon / Thoughbot
+/// @require strip-unit()
+/// @param {float} $value - Numeric value assumed to be pixels
+/// @param {float} $base - (very optional) Numeric value for the pixel multiplier
+/// @example scss - Usage
+///   width: rem(48);
+/// @example css - Output
+///   width: 3rem;
+@function rem($value, $base: $base-type-size-px) {
+  @if not unitless($value) {
+    $value: strip-unit($value);
+  }
+  @if not unitless($base) {
+    $base: strip-unit($base);
+  }
+  @return ($value / $base) * 1rem;
+}
+
+
+/// clearfix()
+/// Clearfix still useful, though less and less
+/// @author Bourbon / Thoughbot
+/// @require {None}
+/// @param {None}
+/// @example scss - Usage
+///   .element {
+///     @include clearfix;
+///   }
+/// @example css - Output
+///   .element::after {
+///     clear: both;
+///     content: "";
+///     display: block;
+///   }
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
+
+
+/// Map deep get
+/// @author Hugo Giraudel
+/// @require SASS map-get()
+/// @parameter {Map} $map - Map
+/// @parameter {Arglist} $keys - Key chain
+/// @example  scss - Usage
+///   property: map-deep-get($mapname, key);
+/// @example css - Output
+///   {*} - Desired value
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+
+/// palette() =
+/// A specific deep-getter: A deep get on a map called $palette
+/// @author jcionci
+/// @link http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
+/// @param $pallete
+/// @param $tone [base]
+/// @require SASS map-get(), map-keys(), Oomph map-deep-get()
+/// @example scss - Usage
+///   color: palette(mono, white);
+/// @example css - Output
+///   color: #fff;
+///
+@function palette($palette, $tone:base) {
+
+  @if not index(map-keys($palettes), $palette) {
+    @error "Palette `#{$palette}` does not exist.";
+  }
+  @if not index(map-keys(map-get($palettes, $palette)), $tone) {
+    @error "There is no `#{$tone}` defined in your `#{$palette}` color map however, its being called in your theme.";
+  }
+  @return map-deep-get( $palettes, $palette, $tone );
+}
+
+
+/// bp() =
+/// A specific deep-getter: A deep get on a map called $breakpoints
+/// @author jhogue
+/// @require SASS map-get()
+/// @param {string} $size ['base'] - A key value
+/// @example scss - Usage
+///   bp(small)
+/// @example css - Output
+///   30em
+@function bp($size: 'base') {
+  @return em( map-get( $breakpoints, $size ) );
+}
+
+
+/// bppx() =
+/// A specific deep-getter: A deep get on a map called $breakpoints
+/// @author jhogue
+/// @require SASS map-get()
+/// @param {string} $size ['base'] A key value
+/// @example scss - Usage
+///   bp(small)
+/// @example css - Output
+///   480px
+@function bppx($size: 'base') {
+  @return px( map-get( $breakpoints, $size ) );
+}
+
+
+/// rwd-size() =
+/// A specific deep-getter: A deep get on a map called $type-sizes
+/// @author jhogue
+/// @require Oomph map-deep-get()
+/// @param $elem - A key value
+/// @param {string} $group ['base'] - A deep key value
+/// @example scss - Usage
+///   rwd-size(h1, small)
+/// @example css - Output
+///   26
+@function rwd-size($elem, $group: 'base') {
+  @return map-deep-get( $type-sizes, $group, $elem );
+}
+
+
+/// percent-color() =
+/// Emulate the way Adobe Illustrator allows percentages of defined global colors
+/// @link http://thesassway.com/intermediate/mixins-for-semi-transparent-colors
+/// @require Bourbon strip-units(), SASS opacify() and mix()
+/// @param $color - A color as Hex, RGB or HSL. Percent as numeric
+/// @param $percent - Optional background color for mixing function
+/// @param $background [white]
+/// @example scss - Usage
+///   background-color: percent-color(#666, 50%);
+/// @example css - Output
+///   background-color: #ccc;
+@function percent-color($color, $percent, $background: white) {
+  $percent: strip-unit($percent);
+  $opaque: opacify($color, 1);
+  $solid-color: mix($opaque, $background, $percent);
+  @return $solid-color;
+}

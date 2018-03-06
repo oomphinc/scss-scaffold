@@ -1,0 +1,60 @@
+// Variables throughout the project
+// Most variables are localized at the top of the file from which they are first used
+
+
+// Typography
+$base-type-size: 1em;
+$base-type-size-px: 16px;
+$line-height: 1.75;
+
+
+// Default constants used by our mixins
+// Change below only if you require a different value
+$icon-font-family: 'FontAwesome';
+$min-vw: bp(small) !default;
+$max-vw: bp(x-large) !default;
+
+
+// Global font declarations
+$font-sans: $helvetica;
+$font-serif: $georgia;
+$font-mono: $monospace;
+
+
+// Declare the custom font and fallback
+// Declare font weights as specified by the custom family: Google usually prefers numeric weights
+$font-custom: 'Google font name', $font-sans;
+$font-weight-normal: normal;
+$font-weight-bold: bold;
+
+
+// Grid Settings
+$grid-columns: 12;
+$min-width: em(320);
+$text-width: em(960);
+$max-width: em(1366);
+$visual-grid: false;
+$visual-grid-index: front;
+$visual-grid-opacity: 0.2;
+$visual-grid-color: pink;
+
+
+// Other globals
+$default-border-radius: 4px;
+$default-transition: all 250ms ease;
+
+
+// Tables
+$table-border-collapse: true;
+$table-border-color: $color-borders;
+$table-cell-padding: .5em;
+
+
+// Buttons
+// Remove and edit styles as needed. This basic idea provides three button styles
+$form-button-background-default: palette(mono, 10);
+$form-button-color-default: palette(mono, 66);
+$form-button-border-color-default: palette(mono, 33);
+$form-button-border-width: 1px;
+$form-button-border-radius: $default-border-radius;
+$form-button-padding: .625em 1em .5em;

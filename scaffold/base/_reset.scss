@@ -1,0 +1,186 @@
+// @file reset.scss
+
+// Based on Meyer's Reset
+// http://meyerweb.com/eric/tools/css/reset/
+// but also modified and simplified
+// 
+// Deprecated tags removed:
+// acronym
+// applet
+// big
+// center
+// strike
+// tt (teletype)
+
+html,
+body,
+div,
+span,
+section,
+header,
+hgroup, // non-standard element, should be avoided
+nav,
+menu, // non-standard element, should be avoided
+main,
+article,
+aside,
+figure,
+figcaption,
+footer,
+time,
+audio,
+video,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+mark,
+q,
+s,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+u,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+form,
+fieldset,
+label,
+legend,
+table,
+caption,
+thead,
+tbody,
+tr,
+th,
+td,
+tfoot,
+details,
+summary,
+canvas,
+embed,
+object,
+iframe,
+output,
+ruby {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+// HTML5 display-role for Opera Mini and IE 11
+// http://caniuse.com/#feat=html5semantic
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup, // non-standard element, should be avoided
+main,
+nav,
+menu, // non-standard element, should be avoided
+section {
+  display: block;
+}
+
+// Box model declaration
+// Bourbon's Neat used to supply this declaration for us
+// Form elements do not inherit from a simple HTML declaration in iOS and Android,
+// so, declare them here explicitly
+html,
+input,
+textarea {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+// https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+// Typography resets/normalization
+// Styling here should not change from project to project
+address,
+i,
+em,
+cite,
+var {
+  font-style: italic;
+}
+
+b,
+strong,
+th {
+  font-weight: $font-weight-bold;
+}
+
+// The <s> tag is on its way out
+// WordPress TinyMCE uses <del> instead
+del,
+s {
+  text-decoration: line-through;
+}
+
+// The <u> tag is on its way out
+// WordPress TinyMCE does not offer an underline option
+u {
+  text-decoration: underline;
+}
+
+abbr[title],
+cite,
+dfn[title] {
+  border-bottom: 1px dotted $color-link;
+  text-decoration: none;
+}
+
+abbr[title],
+dfn[title] {
+  cursor: help;
+}
+
+// Reset lists ONLY when used as navigational elements
+nav > ul, 
+nav > ol,
+ul.menu, 
+ol.menu {
+  @include list-reset();
+
+  // More often than not, anchors in menus should be block
+  a {
+    display: block;
+  }
+}

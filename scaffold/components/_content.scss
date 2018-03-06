@@ -1,0 +1,148 @@
+.content {
+  clear: both;
+
+  &__main {
+
+    h1:first-child,
+    h2:first-child,
+    .vertical-rhythm h1:first-child,
+    .vertical-rhythm h2:first-child {
+      margin-top: 0;
+    }
+
+    // 3 full vertical lines before an element and an H1
+    // 1 line below
+    h1 {
+      margin-top: 1.9375em;
+      margin-bottom: .5625em;
+    }
+
+    // 2 full vertical lines before an element and an H1
+    // 1 line below
+    h2 {
+      margin-top: 1.5em; 
+      margin-bottom: .75em;
+    }
+
+    // 1 full vertical lines before an element and an H1
+    // 1 line below
+    h3 { 
+      margin-top: -.375em;
+      margin-bottom: 1em;
+    }
+
+    // 1 full vertical lines before an element and an H1
+    // 0 line below
+    h4 {
+      margin-top: -.25em;
+      margin-bottom: 0;
+    }
+
+    h5 {
+      margin-top: -.0625em;
+      margin-bottom: 0;
+    }
+
+    h6 {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    // Adjust some pairings
+    h2 + h3 {
+      margin-top: 1.6875em;
+    }
+
+    h3 + h4 {
+      margin-top: -.3125em;
+    }
+
+    // Default vertical rhythm
+    p,
+    dl,
+    address,
+    form,
+    table {
+      margin-bottom: $vert-line-height;
+    }
+
+    // Mostly only for our sample pages, as pres dont come up much on client sites
+    pre {
+      margin-top: -.5em;
+      margin-bottom: 1em;
+
+      & + h3 {
+        margin-top: ($vert-line-height - .5em);
+      }
+    }
+
+    // Remove margin bottom when nested
+    ul,
+    ol {
+      margin-bottom: $vert-line-height;
+
+      & ul, 
+      & ol {
+        margin-left: 1.5em;
+        margin-bottom: 0;
+      }
+
+      // Adjust line height to tighten multi-line LIs, and add space in between to maintain rhythm
+      li {
+        line-height: 1.5;
+        padding-bottom: .25em;
+      }
+    }
+
+    
+    dl {
+
+      dt,
+      dd {
+        line-height: 1.5;
+      }
+    }
+
+    // Code looks too large in context. Change if needed.
+    code,
+    kbd,
+    samp {
+      font-size: 93.75%;
+    }
+
+
+    // For the style guide template
+    .example {
+      background-color: transparent;
+      border: 1px solid $color-borders;
+      box-shadow: 0 0 1em rgba(#000, 0.2);
+      margin-bottom: $vert-line-height;
+      padding: 2em 1.5em 1px;
+      position: relative;
+      
+      + .examplecode {
+        margin-top: - $vert-line-height;
+      }
+    }
+
+    .example::before {
+      background-color: palette(brand);
+      color: palette(mono, white);
+      content: 'EXAMPLE';
+      font-size: .75em;
+      padding: .4em .75em .3em;
+      position: absolute;
+        top: 0;
+        right: 0;
+      z-index: 9999;
+    }
+
+    .examplecode {
+      margin-bottom: $vert-line-height;
+    }
+
+    .element-caption {
+      display: block;
+    }
+  }
+}

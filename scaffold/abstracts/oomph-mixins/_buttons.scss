@@ -1,0 +1,60 @@
+// @file buttons.scss
+
+/// Generate styles for a button.
+/// @author The Oomph Team
+/// @group oomph mixins
+/// @example scss
+///   @include button()
+/// @param $type [default] - Accepts: null (default), primary, secondary
+/// @output A compiled set of button styles including idle and hover
+///
+@mixin button($type:default) {
+  border: $form-button-border-width solid $form-button-border-color-default;
+  border-radius: $form-button-border-radius;
+  display: inline-block;
+  padding: $form-button-padding;
+  text-transform: uppercase;
+
+  // Default styles are light grey, hover to darker grey
+  @if $type == 'default' {
+
+    @include touch-hover('idle') {
+      background-color: $form-button-background-default;
+      color: $form-button-color-default;
+    }
+
+    @include touch-hover('hover') {
+      background-color: darken($form-button-background-default, 8%);
+      color: lighten($form-button-color-default, 8%);
+      cursor: pointer;
+    }
+  }
+
+  @if $type == 'primary' {
+
+    @include touch-hover('idle') {
+      background-color: palette(brand);
+      border-color: darken(palette(brand), 8%);
+      color: palette(mono, 10);
+    }
+
+    @include touch-hover('hover') {
+      background-color: palette(brand, dark);
+      color: palette(mono, white);
+    }
+  }
+
+  @if $type == 'secondary' {
+
+    @include touch-hover('idle') {
+      background-color: palette(mono, 25);
+      border-color: palette(mono, 33);
+      color: palette(mono, 90);
+    }
+
+    @include touch-hover('hover') {
+      background-color: palette(mono);
+      color: palette(mono, white);
+    }
+  }
+}

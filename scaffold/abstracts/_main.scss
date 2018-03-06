@@ -1,0 +1,26 @@
+////
+/// Oomph Abstracts
+/// @access public
+/// @group Oomph Abstracts
+/// @author Oomph, Inc. UX Engineers
+/// @content the @content directive is not used
+/// @parameter none
+/// @require no 3rd party requirements
+////
+
+/// Abstracts:
+/// All files that DO NOT output CSS. 
+/// Functions, Mixins, and variable declarations.
+@import
+
+  // Our standard functions and mixins
+  "functions",
+  "oomph-mixins/main",
+
+  // Breakpoints and Fluid Type
+  "breakpoints",
+  "typesizes",
+
+  // Project Variables
+  "colors",
+  "variables";

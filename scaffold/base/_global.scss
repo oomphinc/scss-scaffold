@@ -1,0 +1,75 @@
+//
+// Root Elements
+//
+html,
+body {
+  height: 100%;
+}
+
+//
+// Media Elements
+//
+img,
+video,
+object {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+//
+// Text selection colors. Keep declarations separate
+//
+::selection {
+  background: palette(brand);
+  color: palette(mono, white);
+}
+::-moz-selection {
+  background: palette(brand);
+  color: palette(mono, white);
+}
+
+//
+// Video embed containers
+//
+// <div class="embed-container">
+// 	<iframe width="560" height="315" src="//www.youtube.com/embed/TdwT5JlH8gM?wmode=transparent" frameborder="0" allowfullscreen></iframe>
+// </div>
+//
+// @requires Modernizr to flip the /no-js class on <html> to .js
+//
+.js .embed-container {
+  @include proportional-container( 16 9 );
+
+  iframe,
+  object,
+  embed,
+  & > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+.no-js .embed-container {
+  padding: 1em;
+  background-color: palette(mono, 66);
+  text-align: center;
+
+  &:before {
+    @extend .charlie;
+    content: 'Sorry, embedded video players need javascript enabled.';
+    width: 100%;
+    color: palette(mono, 10);
+  }
+
+  iframe,
+  object,
+  embed,
+  & > div {
+    @include hide();
+  }
+}
