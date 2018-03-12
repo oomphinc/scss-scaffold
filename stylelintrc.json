@@ -1,0 +1,155 @@
+Comments show which rule these map to in scss-lint.yml
+
+{
+  "plugins": ["stylelint-order", "stylelint-scss"],
+  "rules": {
+    /* DebugStatement */
+    "at-rule-blacklist": ["debug"],
+    "at-rule-no-unknown": null,
+    /* VendorPrefixes */
+    "at-rule-no-vendor-prefix": true,
+    /* EmptyRule */
+    "block-no-empty": true,
+    /* SpaceBeforeBrace */
+    "block-opening-brace-space-before": "always",
+    /* HexNotation */
+    "color-hex-case": "lower",
+    /* HexLength */
+    "color-hex-length": "short",
+    /* ColorKeyword */
+    "color-named": "never",
+    /* HexValidation */
+    "color-no-invalid-hex": true,
+    /* Bang Format space after bang */
+    "declaration-bang-space-after": "never",
+    /* Bang Format space before bang */
+    "declaration-bang-space-before": "always",
+    /* SingleLinePerProperty */
+    "declaration-block-semicolon-newline-after": "always",
+    /* TrailingSemicolon */
+    "declaration-block-semicolon-space-before": "never",
+    "declaration-block-single-line-max-declarations": 1,
+    "declaration-block-trailing-semicolon": "always",
+    /* SpaceAfterPropertyColon */
+    "declaration-colon-space-after": "always-single-line",
+    /* SpaceAfterPropertyName */
+    "declaration-colon-space-before": "never",
+    /* BorderZero */
+    "declaration-property-value-blacklist": {
+      "border": ["none"],
+      "border-top": ["none"],
+      "border-right": ["none"],
+      "border-bottom": ["none"],
+      "border-left": ["none"]
+    },
+    /* SpaceAfterComma */
+    "function-comma-space-after": "always-single-line",
+    /* SpaceBetweenParens */
+    "function-parentheses-space-inside": "never",
+    /* UrlQuotes */
+    "function-url-quotes": "always",
+    /* Indentation */
+    "indentation": 2,
+    /* ZeroUnit */
+    "length-zero-no-unit": true,
+    /* NestingDepth */
+    "max-nesting-depth": [
+      1,
+      {
+        "ignoreAtRules": [
+          "media",
+          "supports",
+          "include"
+        ]
+      }
+    ],
+    /* VendorPrefixes */
+    "media-feature-name-no-vendor-prefix": true,
+    "media-feature-parentheses-space-inside": "never",
+    /* FinalNewline */
+    "no-missing-end-of-source-newline": true,
+    /* LeadingZero */
+    "number-leading-zero": "always",
+    /* TrailingZero */ && /* UnnecessaryMantissa */
+    "number-no-trailing-zeros": true,
+    "order/order": [
+      [
+        "custom-properties",
+        "dollar-variables",
+        {
+          "type": "at-rule",
+          "name": "extend"
+        },
+        {
+          "type": "at-rule",
+          "name": "include",
+          "hasBlock": false
+        },
+        "declarations",
+        {
+          "type": "at-rule",
+          "name": "include",
+          "hasBlock": true
+        },
+        "rules"
+      ]
+    ],
+    "order/properties-alphabetical-order": true,
+    /* PropertySpelling */
+    "property-no-unknown": true,
+    /* VendorPrefixes */
+    "property-no-vendor-prefix": true,
+    "rule-empty-line-before": [
+      "always-multi-line",
+      {
+        "except": ["first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ],
+    /* PlaceholderInExtend */
+    "scss/at-extend-no-missing-placeholder": true,
+    /* NameFormat */
+    "scss/at-function-pattern": "^[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
+    /* ImportPath */
+    "scss/at-import-no-partial-leading-underscore": true,
+    /* ImportPath */
+    "scss/at-import-partial-extension-blacklist": ["scss"],
+    /* NameFormat */
+    "scss/at-mixin-pattern": "^[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
+    "scss/at-rule-no-unknown": true,
+    /* SpaceAfterVariableColon */
+    "scss/dollar-variable-colon-space-after": "always",
+    /* SpaceAfterVariableName */
+    "scss/dollar-variable-colon-space-before": "never",
+    /* NameFormat */
+    "scss/dollar-variable-pattern": "^[_]?[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
+    "scss/percent-placeholder-pattern": "^[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
+    /* UnnecessaryParentReference */
+    "scss/selector-no-redundant-nesting-selector": true,
+    "selector-class-pattern": [
+      "^[a-z0-9\\-]+$",
+      {
+        "message":
+          "Selector should be written in lowercase with hyphens (selector-class-pattern)"
+      }
+    ],
+    "selector-list-comma-newline-after": "always",
+    /* SelectorDepth */
+    "selector-max-compound-selectors": 3,
+    "selector-max-id": 0,
+    /* QualifyingElement */
+    "selector-no-qualifying-type": true,
+    /* VendorPrefixes */
+    "selector-no-vendor-prefix": true,
+    /* PseudoElement */
+    "selector-pseudo-element-colon-notation": "double",
+    /* PseudoElement */
+    "selector-pseudo-element-no-unknown": true,
+    /* Shorthand */
+    "shorthand-property-no-redundant-values": true,
+    /* StringQuotes */
+    "string-quotes": "single",
+    /* VendorPrefixes */
+    "value-no-vendor-prefix": true
+  }
+}
